@@ -16,9 +16,9 @@ interface MapState {
   setViewState: (viewState: ViewState) => void
 
   // Map style and theme
-  mapStyle: string
+  mapStyle: string | any
   mapTheme: 'day' | 'night' | 'satellite' | 'hybrid'
-  setMapStyle: (style: string) => void
+  setMapStyle: (style: string | any) => void
   setMapTheme: (theme: MapState['mapTheme']) => void
 
   // Boundaries

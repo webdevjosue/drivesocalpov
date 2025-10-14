@@ -297,7 +297,7 @@ export function MapProvider({
             console.log('Map clicked:', e.lngLat)
           }
         }}
-        onMove={(e) => {
+        onMove={() => {
           // Update view state in store and enforce bounds strictly
           if (mapRef.current) {
             const center = mapRef.current.getCenter()

@@ -5,6 +5,9 @@
 
 import { Database } from '@/types/supabase'
 
+// Re-export Database type for Supabase client
+export type { Database } from '@/types/supabase'
+
 // =====================================================
 // BASIC TYPE DEFINITIONS
 // =====================================================
@@ -93,7 +96,7 @@ export type UserProfileUpdate = Database['public']['Tables']['user_profiles']['U
 // EXTENDED TYPES WITH RELATIONS
 // =====================================================
 
-export interface LocationWithRelations extends Location {
+export interface LocationWithRelations extends Omit<Location, 'bookmark_count'> {
   category?: Category
   subcategory?: Subcategory
   neighborhood?: Neighborhood

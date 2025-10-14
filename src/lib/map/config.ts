@@ -242,7 +242,7 @@ export const MAP_CONFIG: MapConfig = {
 export const GTA_MAP_STYLES = {
   day: OPENSTREETMAP_STYLES.osm_standard,        // Standard OpenStreetMap
   night: OPENSTREETMAP_STYLES.cartodb_dark,      // Dark theme for night driving
-  satellite: OPENSTREETMAP_STYLES.stamen_terrain, // Terrain view (closest to satellite)
+  satellite: OPENSTREETMAP_STYLES.cartodb_light,  // Light view (closest to satellite available)
   hybrid: OPENSTREETMAP_STYLES.cartodb_light,     // Clean hybrid view
   streets: OPENSTREETMAP_STYLES.stamen_toner,     // High contrast street view
 }
