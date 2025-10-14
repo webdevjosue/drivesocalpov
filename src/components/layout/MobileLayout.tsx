@@ -6,13 +6,28 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { Button } from '@/components/ui/button'
-import { Separator } from '@/components/ui/separator'
 import { Navigation, Menu, Home, Search, Heart, User, MapPin, Star, Settings, LogOut, Maximize2, X, ChevronUp } from 'lucide-react'
 
 interface MobileLayoutProps {
   children: React.ReactNode
   title?: string
+}
+
+// Type definitions for map object
+interface MapLibreMap {
+  getCenter(): { lat: number; lng: number }
+  flyTo(options: {
+    center: [number, number]
+    zoom: number
+    bearing?: number
+    pitch?: number
+    duration?: number
+    essential?: boolean
+  }): void
+}
+
+interface WindowWithDebugMap extends Window {
+  __debugMap?: MapLibreMap
 }
 
 export default function MobileLayout({ children, title = "Drive SoCal POV" }: MobileLayoutProps) {
@@ -24,7 +39,6 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
 
   // New state for slide-up filter and ad banner interactions
   const [areAdsVisible, setAreAdsVisible] = useState(true)
-  const [isAdSliding, setIsAdSliding] = useState(false)
   const [isFilterCardVisible, setIsFilterCardVisible] = useState(false)
 
   // Close filter popups when clicking outside
@@ -50,7 +64,7 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
   // Smart region detection based on map center position
   useEffect(() => {
     const detectRegion = () => {
-      const map = (window as any).__debugMap
+      const map = (window as WindowWithDebugMap).__debugMap
       if (!map) return
 
       const center = map.getCenter()
@@ -108,7 +122,7 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
     setActiveFilter(null)
 
     // Access the map instance and move to selected region
-    const map = (window as any).__debugMap
+    const map = (window as WindowWithDebugMap).__debugMap
     if (map) {
       map.flyTo({
         center: region.coordinates,
@@ -129,20 +143,16 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
 
   // Handle ad banner interactions
   const handleCloseAds = () => {
-    setIsAdSliding(true)
     setTimeout(() => {
       setAreAdsVisible(false)
       setIsFilterCardVisible(true)
-      setIsAdSliding(false)
     }, 300)
   }
 
   const handleSlideAdsDown = () => {
-    setIsAdSliding(true)
     setTimeout(() => {
       setAreAdsVisible(false)
       setIsFilterCardVisible(true)
-      setIsAdSliding(false)
     }, 300)
   }
 
@@ -197,7 +207,7 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
           className="btn btn--secondary"
           onClick={() => {
             // Reset map to initial view
-            const map = (window as any).__debugMap
+            const map = (window as WindowWithDebugMap).__debugMap
             if (map) {
               map.flyTo({
                 center: [-118.2437, 34.0522],
@@ -773,7 +783,7 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
           if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
               (position) => {
-                const map = (window as any).__debugMap
+                const map = (window as WindowWithDebugMap).__debugMap
                 if (map) {
                   map.flyTo({
                     center: [position.coords.longitude, position.coords.latitude],
