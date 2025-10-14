@@ -315,6 +315,104 @@ a {
   min-width: 44px;
 }
 
+/* === iOS SAFARI COMPATIBILITY === */
+/* iOS Safari specific fixes for better mobile experience */
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  /* iOS Safari backdrop-filter support */
+  .ios-backdrop-filter {
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+  }
+}
+
+/* Mobile PWA viewport height fix */
+@supports (-webkit-touch-callout: none) {
+  html {
+    height: -webkit-fill-available;
+  }
+
+  body {
+    height: -webkit-fill-available;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    /* Fix for mobile browsers viewport issues */
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
+  }
+}
+
+/* Mobile PWA specific fixes */
+@supports (height: 100dvh) {
+  .app-container {
+    height: 100dvh;
+    height: 100vh;
+  }
+}
+
+/* Ensure proper viewport handling on mobile devices */
+@media (max-width: 768px) {
+  .app-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+  }
+}
+
+/* iOS Safari scroll momentum and bounce */
+@supports (-webkit-overflow-scrolling: touch) {
+  .ios-scroll {
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+  }
+}
+
+/* iOS Safari transform and animation performance */
+@supports (transform: translateZ(0)) {
+  .gpu-accelerated {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
+  }
+}
+
+/* iOS Safari tap highlighting fix */
+button,
+a,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* iOS Safari fixed positioning support */
+@supports (position: fixed) {
+  .ios-fixed {
+    position: fixed;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+}
+
+/* iOS Safari safe area support */
+@supports (padding: max(0px)) {
+  .ios-safe-area {
+    padding-left: max(env(safe-area-inset-left), var(--space-4));
+    padding-right: max(env(safe-area-inset-right), var(--space-4));
+    padding-top: max(env(safe-area-inset-top), var(--space-4));
+    padding-bottom: max(env(safe-area-inset-bottom), var(--space-4));
+  }
+}
+
 /* Prevent text selection on interactive elements */
 .no-select {
   -webkit-user-select: none;

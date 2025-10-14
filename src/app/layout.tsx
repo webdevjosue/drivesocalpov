@@ -84,16 +84,45 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+        {/* Mobile PWA and iOS Safari specific meta tags */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Drive SoCal POV" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="application-name" content="Drive SoCal POV" />
         <meta name="msapplication-TileColor" content="#007AFF" />
         <meta name="theme-color" content="#007AFF" />
+
+        {/* iOS Safari viewport and PWA optimizations */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <meta name="format-detection" content="address=no" />
+
+        {/* Prevent bounce scroll on iOS Safari */}
+        <meta name="apple-mobile-web-app-scroll-to-top" content="yes" />
+
+        {/* Safe area support for iOS devices with notches */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
       </head>
       <body
-        className="min-h-screen bg-background text-foreground antialiased overflow-x-hidden"
+        className="min-h-screen bg-background text-foreground antialiased overflow-x-hidden ios-fixed"
         suppressHydrationWarning
+        style={{
+          // iOS Safari specific fixes
+          WebkitOverflowScrolling: 'touch',
+          WebkitTouchCallout: 'none',
+          WebkitUserSelect: 'none',
+          userSelect: 'none',
+          // Prevent zoom on input focus
+          WebkitTextSizeAdjust: '100%',
+          // Mobile PWA viewport fixes
+          height: '100vh',
+          height: '100dvh',
+          minHeight: '100vh',
+          minHeight: '100dvh',
+        }}
       >
         <div className="relative min-h-screen flex flex-col">
           {/* Main content area */}

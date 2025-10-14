@@ -258,7 +258,12 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
           position: 'relative',
           overflow: 'hidden',
           minHeight: 0, // Critical: Allows flex item to shrink properly
-          height: 'calc(100vh - var(--header-height) - var(--filter-height) - var(--footer-height))',
+          height: 'calc(100vh - var(--header-height) - var(--footer-height))',
+          // Mobile PWA viewport fixes
+          height: 'calc(100dvh - var(--header-height) - var(--footer-height))',
+          // iOS Safari specific fix
+          maxHeight: 'calc(100vh - var(--header-height) - var(--footer-height))',
+          WebkitOverflowScrolling: 'touch',
         }}
       >
         {/* Map Container - Full Width */}
@@ -280,17 +285,45 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
           padding: 'var(--space-4)',
           boxShadow: '0 10px 40px rgba(0, 0, 0, 0.15), 0 6px 20px rgba(0, 0, 0, 0.1)',
           border: '1px solid rgba(255, 255, 255, 0.2)',
+          WebkitBackdropFilter: 'blur(20px)',
           backdropFilter: 'blur(20px)',
           transform: isFilterCardVisible ? 'translateY(0)' : 'translateY(100px)',
+          WebkitTransform: isFilterCardVisible ? 'translateY(0)' : 'translateY(100px)',
           transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+          WebkitTransition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
           opacity: isFilterCardVisible ? 1 : 0,
+          willChange: 'transform, opacity',
+          // iOS Safari specific fixes
+          touchAction: 'pan-y',
+          WebkitTouchCallout: 'none',
+          WebkitUserSelect: 'none',
+          userSelect: 'none',
+          // Mobile PWA viewport fixes
+          marginBottom: 'env(safe-area-inset-bottom, 0px)',
+          paddingBottom: 'calc(var(--space-4) + env(safe-area-inset-bottom, 0px))',
+          // Ensure card is always accessible
+          maxHeight: 'calc(100vh - var(--header-height) - var(--footer-height) - 32px)',
+          overflowY: 'auto',
+          WebkitOverflowScrolling: 'touch',
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = 'translateY(-4px)'
+          e.currentTarget.style.WebkitTransform = 'translateY(-4px)'
           e.currentTarget.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.2), 0 10px 30px rgba(0, 0, 0, 0.15)'
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.transform = 'translateY(0)'
+          e.currentTarget.style.WebkitTransform = 'translateY(0)'
+          e.currentTarget.style.boxShadow = '0 10px 40px rgba(0, 0, 0, 0.15), 0 6px 20px rgba(0, 0, 0, 0.1)'
+        }}
+        onTouchStart={(e) => {
+          e.currentTarget.style.transform = 'translateY(-4px)'
+          e.currentTarget.style.WebkitTransform = 'translateY(-4px)'
+          e.currentTarget.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.2), 0 10px 30px rgba(0, 0, 0, 0.15)'
+        }}
+        onTouchEnd={(e) => {
+          e.currentTarget.style.transform = 'translateY(0)'
+          e.currentTarget.style.WebkitTransform = 'translateY(0)'
           e.currentTarget.style.boxShadow = '0 10px 40px rgba(0, 0, 0, 0.15), 0 6px 20px rgba(0, 0, 0, 0.1)'
         }}
       >
@@ -348,9 +381,18 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
                   boxShadow: '0 25px 50px rgba(0, 0, 0, 0.25), 0 12px 24px rgba(0, 0, 0, 0.15)',
                   zIndex: 'var(--z-dropdown)',
                   border: '1px solid rgba(255, 255, 255, 0.2)',
+                  WebkitBackdropFilter: 'blur(20px)',
                   backdropFilter: 'blur(20px)',
                   transform: 'translateY(0)',
+                  WebkitTransform: 'translateY(0)',
                   transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                  WebkitTransition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                  willChange: 'transform',
+                  // iOS Safari specific fixes
+                  touchAction: 'pan-y',
+                  WebkitTouchCallout: 'none',
+                  WebkitUserSelect: 'none',
+                  userSelect: 'none',
                 }}
               >
                 <div style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.5px', color: 'var(--color-text-muted)', marginBottom: 'var(--space-2)', textAlign: 'center', fontWeight: 'var(--font-weight-semibold)' }}>
@@ -446,11 +488,21 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
                   boxShadow: '0 25px 50px rgba(0, 0, 0, 0.25), 0 12px 24px rgba(0, 0, 0, 0.15)',
                   zIndex: 'var(--z-dropdown)',
                   border: '1px solid rgba(255, 255, 255, 0.2)',
+                  WebkitBackdropFilter: 'blur(20px)',
                   backdropFilter: 'blur(20px)',
                   maxHeight: '280px',
                   overflowY: 'auto',
+                  WebkitOverflowScrolling: 'touch',
                   transform: 'translateY(0)',
+                  WebkitTransform: 'translateY(0)',
                   transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                  WebkitTransition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                  willChange: 'transform',
+                  // iOS Safari specific fixes
+                  touchAction: 'pan-y',
+                  WebkitTouchCallout: 'none',
+                  WebkitUserSelect: 'none',
+                  userSelect: 'none',
                 }}
               >
                 {placeCategories.map((place) => (
@@ -543,9 +595,18 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
                   boxShadow: '0 25px 50px rgba(0, 0, 0, 0.25), 0 12px 24px rgba(0, 0, 0, 0.15)',
                   zIndex: 'var(--z-dropdown)',
                   border: '1px solid rgba(255, 255, 255, 0.2)',
+                  WebkitBackdropFilter: 'blur(20px)',
                   backdropFilter: 'blur(20px)',
                   transform: 'translateY(0)',
+                  WebkitTransform: 'translateY(0)',
                   transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                  WebkitTransition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+                  willChange: 'transform',
+                  // iOS Safari specific fixes
+                  touchAction: 'pan-y',
+                  WebkitTouchCallout: 'none',
+                  WebkitUserSelect: 'none',
+                  userSelect: 'none',
                 }}
               >
                 <div style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.5px', color: 'var(--color-text-muted)', marginBottom: 'var(--space-3)', textAlign: 'center', fontWeight: 'var(--font-weight-semibold)' }}>
@@ -629,11 +690,19 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
                   boxShadow: '0 25px 50px rgba(0, 0, 0, 0.25), 0 12px 24px rgba(0, 0, 0, 0.15)',
                   zIndex: 'calc(var(--z-dropdown) - 1)', // Behind dropdowns but above other elements
                   border: '1px solid rgba(255, 255, 255, 0.2)',
+                  WebkitBackdropFilter: 'blur(20px)',
                   backdropFilter: 'blur(20px)',
                   transform: isMenuOpen ? 'translateY(0)' : 'translateY(10px)',
+                  WebkitTransform: isMenuOpen ? 'translateY(0)' : 'translateY(10px)',
                   opacity: isMenuOpen ? 1 : 0,
                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                  animation: 'popUpFromBehind 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                  WebkitTransition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  willChange: 'transform, opacity',
+                  // iOS Safari specific fixes
+                  touchAction: 'pan-y',
+                  WebkitTouchCallout: 'none',
+                  WebkitUserSelect: 'none',
+                  userSelect: 'none',
                 }}
                 onClick={(e) => e.stopPropagation()}
               >
@@ -765,16 +834,36 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
           height: '52px',
           boxShadow: '0 8px 32px rgba(37, 99, 235, 0.3), 0 4px 16px rgba(37, 99, 235, 0.2)',
           border: '2px solid rgba(255, 255, 255, 0.3)',
+          WebkitBackdropFilter: 'blur(10px)',
           backdropFilter: 'blur(10px)',
           backgroundColor: 'rgba(37, 99, 235, 0.95)',
           transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+          WebkitTransition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+          willChange: 'transform, box-shadow',
+          // iOS Safari specific fixes
+          touchAction: 'pan-y',
+          WebkitTouchCallout: 'none',
+          WebkitUserSelect: 'none',
+          userSelect: 'none',
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = 'translateY(-2px)'
+          e.currentTarget.style.WebkitTransform = 'translateY(-2px)'
           e.currentTarget.style.boxShadow = '0 12px 40px rgba(37, 99, 235, 0.4), 0 6px 20px rgba(37, 99, 235, 0.3)'
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.transform = 'translateY(0)'
+          e.currentTarget.style.WebkitTransform = 'translateY(0)'
+          e.currentTarget.style.boxShadow = '0 8px 32px rgba(37, 99, 235, 0.3), 0 4px 16px rgba(37, 99, 235, 0.2)'
+        }}
+        onTouchStart={(e) => {
+          e.currentTarget.style.transform = 'translateY(-2px)'
+          e.currentTarget.style.WebkitTransform = 'translateY(-2px)'
+          e.currentTarget.style.boxShadow = '0 12px 40px rgba(37, 99, 235, 0.4), 0 6px 20px rgba(37, 99, 235, 0.3)'
+        }}
+        onTouchEnd={(e) => {
+          e.currentTarget.style.transform = 'translateY(0)'
+          e.currentTarget.style.WebkitTransform = 'translateY(0)'
           e.currentTarget.style.boxShadow = '0 8px 32px rgba(37, 99, 235, 0.3), 0 4px 16px rgba(37, 99, 235, 0.2)'
         }}
         aria-label="Find my location"
@@ -807,6 +896,10 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
       {/* Ad Banner with X button and Slide-down functionality */}
       <footer
         style={{
+          position: 'fixed',
+          bottom: 0,
+          left: 0,
+          right: 0,
           height: areAdsVisible ? 'var(--footer-height)' : '0px',
           backgroundColor: 'var(--color-surface)',
           borderTop: areAdsVisible ? `1px solid var(--color-border-primary)` : 'none',
@@ -816,9 +909,19 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
           padding: areAdsVisible ? '0 var(--space-3)' : '0',
           flexShrink: 0,
           transform: areAdsVisible ? 'translateY(0)' : 'translateY(100%)',
+          WebkitTransform: areAdsVisible ? 'translateY(0)' : 'translateY(100%)',
           transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          WebkitTransition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
           overflow: 'hidden',
           opacity: areAdsVisible ? 1 : 0,
+          zIndex: 'calc(var(--z-fixed) + 1)',
+          // Mobile PWA viewport fixes
+          paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+          // iOS Safari specific fixes
+          touchAction: 'pan-y',
+          WebkitTouchCallout: 'none',
+          WebkitUserSelect: 'none',
+          userSelect: 'none',
         }}
       >
         {areAdsVisible && (
@@ -883,25 +986,48 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
           style={{
             position: 'fixed',
             bottom: 'var(--footer-height)',
-            left: 'var(--space-4)',
-            right: 'var(--space-4)',
-            zIndex: 'calc(var(--z-fixed) + 1)',
+            left: 0,
+            right: 0,
+            zIndex: 'calc(var(--z-fixed) + 2)',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            padding: 'var(--space-2)',
-            backgroundColor: 'rgba(0, 0, 0, 0.05)',
-            borderTopLeftRadius: 'var(--radius-lg)',
-            borderTopRightRadius: 'var(--radius-lg)',
+            padding: 'var(--space-3)',
+            backgroundColor: 'rgba(0, 0, 0, 0.1)',
+            borderTopLeftRadius: 'var(--radius-xl)',
+            borderTopRightRadius: 'var(--radius-xl)',
             cursor: 'pointer',
             transition: 'all var(--transition-normal)',
+            WebkitTransition: 'all var(--transition-normal)',
+            // Mobile PWA viewport fixes
+            paddingBottom: 'calc(var(--space-3) + env(safe-area-inset-bottom, 0px))',
+            // iOS Safari specific fixes
+            touchAction: 'pan-y',
+            WebkitTouchCallout: 'none',
+            WebkitUserSelect: 'none',
+            userSelect: 'none',
+            willChange: 'transform, background-color',
           }}
           onClick={handleSlideAdsDown}
-          onMouseEnter={(e) => {
+          onTouchStart={(e) => {
+            e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.2)'
+            e.currentTarget.style.transform = 'translateY(-2px)'
+            e.currentTarget.style.WebkitTransform = 'translateY(-2px)'
+          }}
+          onTouchEnd={(e) => {
             e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.1)'
+            e.currentTarget.style.transform = 'translateY(0)'
+            e.currentTarget.style.WebkitTransform = 'translateY(0)'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.15)'
+            e.currentTarget.style.transform = 'translateY(-1px)'
+            e.currentTarget.style.WebkitTransform = 'translateY(-1px)'
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.05)'
+            e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.1)'
+            e.currentTarget.style.transform = 'translateY(0)'
+            e.currentTarget.style.WebkitTransform = 'translateY(0)'
           }}
         >
           <ChevronUp style={{ width: '20px', height: '20px', color: 'var(--color-text-muted)' }} />
@@ -909,7 +1035,9 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
             marginLeft: 'var(--space-2)',
             fontSize: 'var(--text-xs)',
             color: 'var(--color-text-muted)',
-            fontWeight: 'var(--font-weight-medium)'
+            fontWeight: 'var(--font-weight-medium)',
+            textTransform: 'uppercase',
+            letterSpacing: '0.5px'
           }}>
             Slide to reveal menu
           </span>
