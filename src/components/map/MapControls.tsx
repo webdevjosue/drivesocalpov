@@ -7,7 +7,7 @@
 
 import React from 'react'
 import { useMap } from '@vis.gl/react-maplibre'
-import { ZoomIn, ZoomOut, Compass } from 'lucide-react'
+import { ZoomIn, ZoomOut } from 'lucide-react'
 
 interface MapControlsProps {
   className?: string
@@ -28,12 +28,7 @@ export default function MapControls({ className = '' }: MapControlsProps) {
     }
   }
 
-  const handleResetNorth = () => {
-    if (map.current) {
-      map.current.resetNorth()
-    }
-  }
-
+  
   return (
     <div className={`absolute top-4 right-4 z-10 flex flex-col gap-2 ${className}`}>
       {/* Zoom Controls */}
@@ -53,15 +48,6 @@ export default function MapControls({ className = '' }: MapControlsProps) {
           <ZoomOut className="h-4 w-4 text-foreground" />
         </button>
       </div>
-
-      {/* Compass Control */}
-      <button
-        onClick={handleResetNorth}
-        className="bg-white/95 backdrop-blur-sm rounded-lg shadow-lg border border-border/50 w-10 h-10 flex items-center justify-center hover:bg-accent/50 transition-colors"
-        aria-label="Reset north"
-      >
-        <Compass className="h-4 w-4 text-foreground" />
-      </button>
     </div>
   )
 }

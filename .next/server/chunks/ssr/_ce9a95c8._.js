@@ -236,12 +236,39 @@ function RootLayout({ children }) {
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("meta", {
                         name: "viewport",
-                        content: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+                        content: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover, height=device-height"
                     }, void 0, false, {
                         fileName: "[project]/src/app/layout.tsx",
                         lineNumber: 107,
                         columnNumber: 9
-                    }, this)
+                    }, this),
+                    "undefined" !== 'undefined' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Fragment"], {
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("script", {
+                                async: true,
+                                src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX",
+                                crossOrigin: "anonymous"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/layout.tsx",
+                                lineNumber: 112,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("script", {
+                                dangerouslySetInnerHTML: {
+                                    __html: `
+                  (adsbygoogle = window.adsbygoogle || []).push({
+                    google_ad_client: "ca-pub-XXXXXXXXXXXXXXXX",
+                    enable_page_level_ads: true
+                  });
+                `
+                                }
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/layout.tsx",
+                                lineNumber: 117,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/layout.tsx",
@@ -252,33 +279,68 @@ function RootLayout({ children }) {
                 className: "min-h-screen bg-background text-foreground antialiased overflow-x-hidden ios-fixed",
                 suppressHydrationWarning: true,
                 style: {
-                    // iOS Safari specific fixes
+                    // iOS Safari specific fixes - CRITICAL HEIGHT FIXES
                     WebkitOverflowScrolling: 'touch',
                     WebkitTouchCallout: 'none',
                     WebkitUserSelect: 'none',
                     userSelect: 'none',
                     // Prevent zoom on input focus
                     WebkitTextSizeAdjust: '100%',
-                    // Mobile PWA viewport fixes
-                    height: '100vh',
-                    height: '100dvh',
-                    minHeight: '100vh',
-                    minHeight: '100dvh'
+                    // Force iOS Safari to use full viewport height with fallback
+                    height: '-webkit-fill-available',
+                    minHeight: '-webkit-fill-available',
+                    // Prevent iOS Safari from adding extra space
+                    margin: '0px',
+                    padding: '0px',
+                    // Force full viewport coverage
+                    position: 'fixed',
+                    top: '0px',
+                    left: '0px',
+                    right: '0px',
+                    bottom: '0px',
+                    width: '100vw',
+                    // Override iOS Safari viewport behavior
+                    overflow: 'hidden'
                 },
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "relative min-h-screen flex flex-col",
+                        className: "relative flex flex-col ios-fixed",
+                        style: {
+                            // Force iOS Safari viewport coverage
+                            height: '-webkit-fill-available',
+                            minHeight: '-webkit-fill-available',
+                            width: '100vw',
+                            position: 'fixed',
+                            top: '0px',
+                            left: '0px',
+                            right: '0px',
+                            bottom: '0px',
+                            margin: '0px',
+                            padding: '0px',
+                            // Prevent iOS Safari viewport issues
+                            WebkitOverflowScrolling: 'touch',
+                            overflow: 'hidden'
+                        },
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
                             className: "flex-1 relative",
+                            style: {
+                                // Ensure main content fills available space
+                                flex: '1',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                // iOS Safari specific fixes
+                                WebkitOverflowScrolling: 'touch',
+                                overflow: 'hidden'
+                            },
                             children: children
                         }, void 0, false, {
                             fileName: "[project]/src/app/layout.tsx",
-                            lineNumber: 129,
+                            lineNumber: 178,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/layout.tsx",
-                        lineNumber: 127,
+                        lineNumber: 158,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -288,18 +350,18 @@ function RootLayout({ children }) {
                             className: "animate-spin rounded-full h-8 w-8 border-b-2 border-primary"
                         }, void 0, false, {
                             fileName: "[project]/src/app/layout.tsx",
-                            lineNumber: 136,
+                            lineNumber: 196,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/layout.tsx",
-                        lineNumber: 135,
+                        lineNumber: 195,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/layout.tsx",
-                lineNumber: 109,
+                lineNumber: 130,
                 columnNumber: 7
             }, this)
         ]

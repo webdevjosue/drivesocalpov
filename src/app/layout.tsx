@@ -94,7 +94,7 @@ export default function RootLayout({
         <meta name="msapplication-TileColor" content="#007AFF" />
         <meta name="theme-color" content="#007AFF" />
 
-        {/* iOS Safari viewport and PWA optimizations */}
+        {/* iOS Safari viewport and PWA optimizations - CRITICAL FIXES */}
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="format-detection" content="email=no" />
@@ -103,30 +103,90 @@ export default function RootLayout({
         {/* Prevent bounce scroll on iOS Safari */}
         <meta name="apple-mobile-web-app-scroll-to-top" content="yes" />
 
-        {/* Safe area support for iOS devices with notches */}
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+        {/* Force iOS Safari to use full viewport height */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover, height=device-height" />
+
+        {/* Google AdSense Script - Client Side Only */}
+        {typeof window !== 'undefined' && (
+          <>
+            <script
+              async
+              src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+              crossOrigin="anonymous"
+            />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+                  (adsbygoogle = window.adsbygoogle || []).push({
+                    google_ad_client: "ca-pub-XXXXXXXXXXXXXXXX",
+                    enable_page_level_ads: true
+                  });
+                `,
+              }}
+            />
+          </>
+        )}
       </head>
       <body
         className="min-h-screen bg-background text-foreground antialiased overflow-x-hidden ios-fixed"
         suppressHydrationWarning
         style={{
-          // iOS Safari specific fixes
+          // iOS Safari specific fixes - CRITICAL HEIGHT FIXES
           WebkitOverflowScrolling: 'touch',
           WebkitTouchCallout: 'none',
           WebkitUserSelect: 'none',
           userSelect: 'none',
           // Prevent zoom on input focus
           WebkitTextSizeAdjust: '100%',
-          // Mobile PWA viewport fixes
-          height: '100vh',
-          height: '100dvh',
-          minHeight: '100vh',
-          minHeight: '100dvh',
+          // Force iOS Safari to use full viewport height with fallback
+          height: '-webkit-fill-available',
+          minHeight: '-webkit-fill-available',
+          // Prevent iOS Safari from adding extra space
+          margin: '0px',
+          padding: '0px',
+          // Force full viewport coverage
+          position: 'fixed',
+          top: '0px',
+          left: '0px',
+          right: '0px',
+          bottom: '0px',
+          width: '100vw',
+          // Override iOS Safari viewport behavior
+          overflow: 'hidden',
         }}
       >
-        <div className="relative min-h-screen flex flex-col">
+        <div
+          className="relative flex flex-col ios-fixed"
+          style={{
+            // Force iOS Safari viewport coverage
+            height: '-webkit-fill-available',
+            minHeight: '-webkit-fill-available',
+            width: '100vw',
+            position: 'fixed',
+            top: '0px',
+            left: '0px',
+            right: '0px',
+            bottom: '0px',
+            margin: '0px',
+            padding: '0px',
+            // Prevent iOS Safari viewport issues
+            WebkitOverflowScrolling: 'touch',
+            overflow: 'hidden',
+          }}
+        >
           {/* Main content area */}
-          <main className="flex-1 relative">
+          <main
+            className="flex-1 relative"
+            style={{
+              // Ensure main content fills available space
+              flex: '1',
+              display: 'flex',
+              flexDirection: 'column',
+              // iOS Safari specific fixes
+              WebkitOverflowScrolling: 'touch',
+              overflow: 'hidden',
+            }}
+          >
             {children}
           </main>
         </div>

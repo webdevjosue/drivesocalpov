@@ -295,12 +295,42 @@ body {
     /* Remove safe area padding for full-width map experience */
     padding-left: 0;
     padding-right: 0;
+    /* Force iOS Safari to use full viewport */
+    height: 100vh !important;
+    height: 100dvh !important;
+    /* Prevent iOS Safari from adding bottom space */
+    padding-bottom: 0px !important;
+    margin-bottom: 0px !important;
   }
 
   /* Only apply safe area to specific elements */
   .app-header {
     padding-left: max(env(safe-area-inset-left), var(--space-4));
     padding-right: max(env(safe-area-inset-right), var(--space-4));
+  }
+
+  /* iOS Safari viewport height fix - CRITICAL */
+  html {
+    height: 100vh !important;
+    height: 100dvh !important;
+    /* Prevent iOS Safari viewport issues */
+    overflow: hidden !important;
+  }
+
+  /* Force full viewport coverage */
+  .app-container {
+    height: 100vh !important;
+    height: 100dvh !important;
+    width: 100vw !important;
+    position: fixed !important;
+    top: 0px !important;
+    left: 0px !important;
+    right: 0px !important;
+    bottom: 0px !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    /* Prevent iOS Safari from adding extra space */
+    overflow: hidden !important;
   }
 }
 
@@ -325,20 +355,27 @@ a {
   }
 }
 
-/* Mobile PWA viewport height fix */
+/* iOS Safari specific viewport fixes */
 @supports (-webkit-touch-callout: none) {
   html {
     height: -webkit-fill-available;
+    /* Prevent iOS Safari from hiding bottom elements */
+    height: 100vh;
+    height: 100dvh;
   }
 
   body {
     height: -webkit-fill-available;
+    height: 100vh;
+    height: 100dvh;
     min-height: 100vh;
     min-height: -webkit-fill-available;
     /* Fix for mobile browsers viewport issues */
     position: fixed;
     width: 100%;
     overflow: hidden;
+    /* Ensure body extends to actual viewport edge */
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 }
 
@@ -347,6 +384,8 @@ a {
   .app-container {
     height: 100dvh;
     height: 100vh;
+    /* Ensure container extends to viewport edge */
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 }
 
@@ -362,6 +401,23 @@ a {
     height: 100vh;
     height: 100dvh;
     overflow: hidden;
+    /* Ensure container reaches actual viewport edge */
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  /* iOS Safari specific bottom positioning fix */
+  @supports (-webkit-touch-callout: none) {
+    .app-container {
+      /* Force iOS Safari to respect bottom edge */
+      padding-bottom: 0px;
+      margin-bottom: 0px;
+    }
+
+    html, body {
+      /* Prevent iOS Safari viewport bottom padding */
+      padding-bottom: 0px !important;
+      margin-bottom: 0px !important;
+    }
   }
 }
 
@@ -409,7 +465,71 @@ select {
     padding-left: max(env(safe-area-inset-left), var(--space-4));
     padding-right: max(env(safe-area-inset-right), var(--space-4));
     padding-top: max(env(safe-area-inset-top), var(--space-4));
-    padding-bottom: max(env(safe-area-inset-bottom), var(--space-4));
+    /* Don't add bottom padding for bottom edge elements */
+    padding-bottom: max(env(safe-area-inset-bottom), 0px);
+  }
+
+  /* iOS Safari bottom edge fix - force elements to viewport edge */
+  .ios-bottom-edge {
+    position: fixed !important;
+    bottom: 0px !important;
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
+    /* Force GPU acceleration */
+    transform: translate3d(0, 0, 0) !important;
+    -webkit-transform: translate3d(0, 0, 0) !important;
+    /* Override iOS Safari viewport calculations */
+    height: auto !important;
+    max-height: none !important;
+    /* Force bottom edge alignment */
+    vertical-align: bottom !important;
+    /* Prevent iOS Safari from adding extra space */
+    -webkit-margin-bottom-collapse: separate !important;
+    margin-collapse: separate !important;
+  }
+
+  /* iOS Safari viewport bottom fix */
+  html, body {
+    /* Prevent iOS Safari from adding bottom padding */
+    padding-bottom: 0px !important;
+    margin-bottom: 0px !important;
+    /* Force viewport height calculation */
+    height: 100vh !important;
+    height: 100dvh !important;
+    /* Prevent iOS Safari bottom bar interference */
+    padding-bottom: env(safe-area-inset-bottom, 0px) !important;
+  }
+
+  /* Force iOS Safari to respect bottom edge */
+  * {
+    -webkit-appearance: none;
+    /* Prevent iOS Safari from adding margin */
+    -webkit-margin-bottom-collapse: collapse;
+    margin-bottom-collapse: collapse;
+  }
+
+  /* iOS Safari specific bottom element fix */
+  footer {
+    /* Force footer to bottom edge */
+    bottom: 0px !important;
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
+    /* Override any iOS Safari default styles */
+    -webkit-appearance: none !important;
+    appearance: none !important;
+  }
+
+  /* Fix iOS Safari viewport height issues */
+  .app-container {
+    /* Ensure container uses full viewport */
+    height: 100vh !important;
+    height: 100dvh !important;
+    /* Prevent iOS Safari from adding bottom space */
+    padding-bottom: 0px !important;
+    margin-bottom: 0px !important;
+    /* Force full height */
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
   }
 }
 
@@ -470,4 +590,14 @@ html {
 
 .mapboxgl-popup-close-button:hover {
   color: var(--color-text-primary);
+}
+
+/* Shimmer animation for premium badges */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
