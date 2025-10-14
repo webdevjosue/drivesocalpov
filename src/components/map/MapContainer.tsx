@@ -7,8 +7,8 @@
 
 import React from 'react'
 import { MapProvider } from './MapProvider'
+import MapControls from './MapControls'
 import { useMapStore } from '@/store/mapStore'
-import { useMobilePerformance } from '@/hooks/useMobilePerformance'
 
 interface MapContainerProps {
   className?: string
@@ -23,8 +23,7 @@ export function MapContainer({
   showControls = true,
   enablePerformanceMode: enablePerfMode = true,
 }: MapContainerProps) {
-  const { isLowEndDevice, shouldReduceAnimations, shouldReduceQuality } = useMobilePerformance()
-  const { error, isLoading, performanceMode } = useMapStore()
+  const { error, isLoading } = useMapStore()
 
   // Handle map load
   const handleMapLoad = React.useCallback((map: any) => {
@@ -45,19 +44,18 @@ export function MapContainer({
     console.error('Map error:', error)
   }, [])
 
-  // Performance mode indicator (development only)
-  const PerformanceIndicator = () => {
-    if (process.env.NODE_ENV !== 'development') return null
-
-    return (
-      <div className="absolute top-4 left-4 bg-black bg-opacity-50 text-white text-xs p-2 rounded z-50">
-        <div>Mode: {performanceMode ? 'Performance' : 'Normal'}</div>
-        <div>Low-end: {isLowEndDevice ? 'Yes' : 'No'}</div>
-        <div>Reduce Anim: {shouldReduceAnimations ? 'Yes' : 'No'}</div>
-        <div>Reduce Quality: {shouldReduceQuality ? 'Yes' : 'No'}</div>
-      </div>
-    )
-  }
+  // Performance mode indicator (development only) - Removed for cleaner UI
+  // const PerformanceIndicator = () => {
+  //   if (process.env.NODE_ENV !== 'development') return null
+  //   return (
+  //     <div className="absolute top-4 left-4 bg-black bg-opacity-50 text-white text-xs p-2 rounded z-50">
+  //       <div>Mode: {performanceMode ? 'Performance' : 'Normal'}</div>
+  //       <div>Low-end: {isLowEndDevice ? 'Yes' : 'No'}</div>
+  //       <div>Reduce Anim: {shouldReduceAnimations ? 'Yes' : 'No'}</div>
+  //       <div>Reduce Quality: {shouldReduceQuality ? 'Yes' : 'No'}</div>
+  //     </div>
+  //   )
+  // }
 
   // Loading overlay
   const LoadingOverlay = () => {
@@ -96,7 +94,19 @@ export function MapContainer({
   }
 
   return (
-    <div className={`relative w-full h-full overflow-hidden ${className}`}>
+    <div
+      className={`relative overflow-hidden ${className}`}
+      style={{
+        width: '100%',
+        height: '100%',
+        minHeight: 0, // Critical: Allows flex item to shrink properly
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+      }}
+    >
       <MapProvider
         onMapLoad={handleMapLoad}
         onMapError={handleMapError}
@@ -105,15 +115,10 @@ export function MapContainer({
         {/* Map children will go here */}
         {children}
 
-        {/* Controls overlay */}
-        {showControls && (
-          <div className="absolute top-4 right-4 z-10">
-            {/* Controls will be added in next steps */}
-          </div>
-        )}
+        {/* Map Controls */}
+        {showControls && <MapControls />}
 
-        {/* Performance Indicator */}
-        <PerformanceIndicator />
+        {/* Performance Indicator - Removed for cleaner UI */}
 
         {/* Loading State */}
         <LoadingOverlay />

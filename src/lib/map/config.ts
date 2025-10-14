@@ -200,7 +200,7 @@ export const MAP_CONFIG: MapConfig = {
   initialViewState: {
     longitude: -118.2437, // Downtown LA
     latitude: 34.0522,
-    zoom: 11,            // Slightly zoomed in for better mobile experience
+    zoom: 10,            // Reduced zoom to prevent auto-zooming
     pitch: 0,
     bearing: 0,
   },
@@ -212,8 +212,8 @@ export const MAP_CONFIG: MapConfig = {
     [EXPANDED_BOUNDS.east, EXPANDED_BOUNDS.north]
   ],
 
-  // OpenStreetMap configuration - Completely free tiles, no API tokens required
-  mapStyle: OPENSTREETMAP_STYLES.osm_standard,
+  // OpenStreetMap configuration - Clean style with minimal labels
+  mapStyle: OPENSTREETMAP_STYLES.stamen_toner,
   projection: 'mercator' as const,
 
   // Mobile-optimized touch interactions (per official docs)
@@ -226,7 +226,7 @@ export const MAP_CONFIG: MapConfig = {
   keyboard: false,             // Disabled on mobile
 
   // Performance-optimized zoom levels
-  maxZoom: 18,
+  maxZoom: 16,        // Reduced max zoom to prevent over-zooming
   minZoom: 8,
   maxPitch: 0,
   minPitch: 0,
@@ -252,8 +252,7 @@ export const GTA_MAP_STYLES = {
  * Based on MapLibre GL JS performance optimization guidelines
  */
 export const MOBILE_PERFORMANCE_CONFIG = {
-  // Reduce tile requests for better mobile performance
-  maxTileCacheSize: 50,
+  // Mobile performance optimizations (note: maxTileCacheSize handled in MAP_CONFIG)
   enableCollisionDetection: true,
   enableTerrain: false,        // Disabled for mobile performance
   enable3D: false,            // Disabled for mobile performance
@@ -441,7 +440,6 @@ export function getOptimizedConfig(): Partial<MapConfig> {
   if (isLowEnd) {
     // Low-end device optimizations
     Object.assign(config, {
-      maxTileCacheSize: 25,
       fadeDuration: 0,
       renderWorldCopies: false,
     })

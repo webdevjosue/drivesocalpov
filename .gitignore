@@ -1,7 +1,9 @@
 node_modules
 .claude
+.next
 docs
 /Supabase_SETUP_INSTRUCTIONS.md
 /CLAUDE.md
+
 
 

@@ -99,7 +99,7 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "e:\\WebDevProjects\\githubprojectrepos\\directories\\rootdrivesocalpov\\drivesocalpov",
+    "outputFileTracingRoot": "E:\\WebDevProjects\\githubprojectrepos\\directories\\rootdrivesocalpov\\drivesocalpov",
     "experimental": {
       "useSkewCookie": false,
       "cacheLife": {
@@ -304,7 +304,7 @@
         ".json",
         ".mjs"
       ],
-      "root": "e:\\WebDevProjects\\githubprojectrepos\\directories\\rootdrivesocalpov\\drivesocalpov"
+      "root": "E:\\WebDevProjects\\githubprojectrepos\\directories\\rootdrivesocalpov\\drivesocalpov"
     },
     "_originalRedirects": [
       {
@@ -314,7 +314,7 @@
       }
     ]
   },
-  "appDir": "e:\\WebDevProjects\\githubprojectrepos\\directories\\rootdrivesocalpov\\drivesocalpov",
+  "appDir": "E:\\WebDevProjects\\githubprojectrepos\\directories\\rootdrivesocalpov\\drivesocalpov",
   "relativeAppDir": "",
   "files": [
     ".next\\routes-manifest.json",

@@ -1,93 +1,310 @@
 @import "tailwindcss";
 
+@plugin "tailwindcss-animate";
+
+/* ===================================
+   DESIGN SYSTEM - DRIVE SOCAL POV
+   Modern Mobile-First CSS Architecture
+   =================================== */
+
+/* CSS Custom Properties - Design Tokens */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --primary: #007AFF;
-  --primary-foreground: #ffffff;
-  --secondary: #F2F2F7;
-  --secondary-foreground: #1C1C1E;
-  --muted: #F2F2F7;
-  --muted-foreground: #8E8E93;
-  --accent: #007AFF;
-  --accent-foreground: #ffffff;
-  --destructive: #FF3B30;
-  --destructive-foreground: #ffffff;
-  --border: #C6C6C8;
-  --input: #F2F2F7;
-  --ring: #007AFF;
-  --radius: 0.5rem;
-}
+  /* === SPACING SYSTEM (4px base unit) === */
+  --space-0: 0;
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.25rem;  /* 20px */
+  --space-6: 1.5rem;   /* 24px */
+  --space-8: 2rem;     /* 32px */
+  --space-10: 2.5rem;  /* 40px */
+  --space-12: 3rem;    /* 48px */
+  --space-16: 4rem;    /* 64px */
+  --space-20: 5rem;    /* 80px */
+  --space-24: 6rem;    /* 96px */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
+  /* === TYPOGRAPHY SCALE === */
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+
+  --text-xs: 0.75rem;     /* 12px */
+  --text-sm: 0.875rem;    /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg: 1.125rem;    /* 18px */
+  --text-xl: 1.25rem;     /* 20px */
+  --text-2xl: 1.5rem;    /* 24px */
+  --text-3xl: 1.875rem;  /* 30px */
+  --text-4xl: 2.25rem;   /* 36px */
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* === COLOR PALETTE === */
+  /* Primary Colors - California Ocean/Sky Theme */
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+
+  /* Neutral Colors */
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+  /* Semantic Colors */
+  --color-background: #ffffff;
+  --color-surface: #f8fafc;
+  --color-surface-alt: #f1f5f9;
+
+  --color-text-primary: var(--color-gray-900);
+  --color-text-secondary: var(--color-gray-600);
+  --color-text-muted: var(--color-gray-500);
+  --color-text-inverse: #ffffff;
+
+  --color-border-primary: var(--color-gray-200);
+  --color-border-secondary: var(--color-gray-300);
+  --color-border-focus: var(--color-primary-500);
+
+  /* === BORDER RADIUS === */
+  --radius-sm: 0.25rem;   /* 4px */
+  --radius-md: 0.375rem;  /* 6px */
+  --radius-lg: 0.5rem;    /* 8px */
+  --radius-xl: 0.75rem;   /* 12px */
+  --radius-2xl: 1rem;     /* 16px */
+  --radius-3xl: 1.5rem;   /* 24px */
+  --radius-full: 9999px;
+
+  /* === SHADOWS === */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* === TRANSITIONS === */
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 200ms ease-in-out;
+  --transition-slow: 300ms ease-in-out;
+
+  /* === Z-INDEX SCALE === */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
+
+  /* === LAYOUT DIMENSIONS === */
+  --header-height: 60px;    /* App header height */
+  --filter-height: 60px;    /* Bottom filter height (reduced) */
+  --footer-height: 44px;    /* Ad banner height */
+  --sidebar-width: 120px;   /* Left sidebar width */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #000000;
-    --foreground: #ffffff;
-    --primary: #0A84FF;
-    --primary-foreground: #ffffff;
-    --secondary: #1C1C1E;
-    --secondary-foreground: #ffffff;
-    --muted: #2C2C2E;
-    --muted-foreground: #98989F;
-    --accent: #0A84FF;
-    --accent-foreground: #ffffff;
-    --destructive: #FF453A;
-    --destructive-foreground: #ffffff;
-    --border: #38383A;
-    --input: #2C2C2E;
-    --ring: #0A84FF;
-  }
-}
+/* ===================================
+   UTILITY CLASSES & COMPONENT BASE
+   =================================== */
 
-* {
+/* === RESET & BASE STYLES === */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+html {
+  font-size: 16px;
+  line-height: var(--line-height-normal);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
   font-family: var(--font-sans);
-  line-height: 1.5;
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-/* Mobile-first safe area support */
-@supports (padding: max(0px)) {
-  body {
-    padding-left: max(env(safe-area-inset-left), 1rem);
-    padding-right: max(env(safe-area-inset-right), 1rem);
+/* === LAYOUT UTILITIES === */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* === COMPONENT CLASSES === */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  text-decoration: none;
+  min-height: 44px; /* iOS touch target */
+  min-width: 44px;
+}
+
+.btn:focus {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn--primary {
+  background-color: var(--color-primary-600);
+  color: var(--color-text-inverse);
+  border-color: var(--color-primary-600);
+}
+
+.btn--primary:hover {
+  background-color: var(--color-primary-700);
+  border-color: var(--color-primary-700);
+}
+
+.btn--secondary {
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  border-color: var(--color-border-secondary);
+}
+
+.btn--secondary:hover {
+  background-color: var(--color-surface-alt);
+  border-color: var(--color-gray-300);
+}
+
+.btn--ghost {
+  background-color: transparent;
+  color: var(--color-text-secondary);
+  border-color: transparent;
+}
+
+.btn--ghost:hover {
+  background-color: var(--color-gray-100);
+  color: var(--color-text-primary);
+}
+
+.btn--icon {
+  padding: var(--space-2);
+  aspect-ratio: 1;
+}
+
+.card {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-normal);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.surface {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-xl);
+}
+
+/* === RESPONSIVE BREAKPOINTS === */
+/* Mobile-first approach */
+@media (min-width: 640px) {
+  :root {
+    --breakpoint: "sm";
   }
 }
 
+@media (min-width: 768px) {
+  :root {
+    --breakpoint: "md";
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --breakpoint: "lg";
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --breakpoint: "xl";
+  }
+}
+
+/* ===================================
+   APPLICATION-SPECIFIC STYLES
+   =================================== */
+
+/* === SAFE AREA SUPPORT === */
+@supports (padding: max(0px)) {
+  body {
+    /* Remove safe area padding for full-width map experience */
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Only apply safe area to specific elements */
+  .app-header {
+    padding-left: max(env(safe-area-inset-left), var(--space-4));
+    padding-right: max(env(safe-area-inset-right), var(--space-4));
+  }
+}
+
+/* === MOBILE OPTIMIZATIONS === */
 /* Touch-friendly tap targets */
 button,
 input,
@@ -98,7 +315,7 @@ a {
   min-width: 44px;
 }
 
-/* Prevent text selection on mobile */
+/* Prevent text selection on interactive elements */
 .no-select {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -106,7 +323,7 @@ a {
   user-select: none;
 }
 
-/* Smooth scrolling for mobile */
+/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
@@ -122,27 +339,37 @@ html {
   display: none;
 }
 
-/* Performance optimizations */
+/* === PERFORMANCE OPTIMIZATIONS === */
 .gpu-accelerated {
   transform: translateZ(0);
   will-change: transform;
 }
 
-/* Mobile viewport fixes */
-@viewport {
-  width: device-width;
+/* === MAP-SPECIFIC STYLES === */
+.mapboxgl-popup {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
 }
 
-/* Prevent zoom on input focus (iOS Safari) */
-@supports (-webkit-touch-callout: none) {
-  input[type="text"],
-  input[type="email"],
-  input[type="password"],
-  input[type="tel"],
-  input[type="number"],
-  input[type="search"],
-  textarea,
-  select {
-    font-size: 16px;
-  }
+.mapboxgl-popup-content {
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  border: none;
+  border-radius: var(--radius-xl);
+  padding: var(--space-4);
+}
+
+.mapboxgl-popup-close-button {
+  color: var(--color-text-muted);
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  padding: var(--space-2);
+  cursor: pointer;
+}
+
+.mapboxgl-popup-close-button:hover {
+  color: var(--color-text-primary);
 }

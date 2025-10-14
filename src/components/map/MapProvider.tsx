@@ -67,8 +67,7 @@ export function MapProvider({
         dragRotate: false,
         // Disable double-click zoom on mobile (use pinch instead)
         doubleClickZoom: false,
-        // Optimize tile loading for mobile
-        maxTileCacheSize: enablePerfMode ? 25 : 50,
+        // Note: maxTileCacheSize handled in MAP_CONFIG
         // Reduce animation complexity on mobile
         transitionDuration: enablePerfMode ? 0 : 200,
         // Better gesture handling
@@ -128,11 +127,8 @@ export function MapProvider({
       if (enablePerfMode) {
         setPerformanceMode(true)
 
-        // Reduce tile requests on slower connections
-        const connection = (navigator as any).connection
-        if (connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g')) {
-          map.setMaxTileCacheSize(25)
-        }
+        // Note: MapLibre GL doesn't have setMaxTileCacheSize method
+        // Performance is handled through config.maxTileCacheSize in MAP_CONFIG
 
         // Monitor performance
         setupPerformanceMonitoring(map)
@@ -217,8 +213,8 @@ export function MapProvider({
         if (fps < 30) {
           console.warn(`Low FPS detected: ${fps}, enabling performance optimizations`)
 
-          // Reduce tile requests
-          map.setMaxTileCacheSize(25)
+          // Note: MapLibre GL doesn't have setMaxTileCacheSize method
+          // Performance is handled through maxTileCacheSize config
 
           // Disable animations
           if (map.setPaintProperty) {
@@ -254,12 +250,22 @@ export function MapProvider({
   useEffect(() => {
     const handleResize = () => {
       if (mapRef.current) {
-        setViewport({
-          width: window.innerWidth,
-          height: window.innerHeight,
-          pixelRatio: window.devicePixelRatio,
-        })
-        mapRef.current.resize()
+        // Get the container element to calculate proper dimensions
+        const container = mapRef.current.getContainer()
+        if (container) {
+          const containerRect = container.getBoundingClientRect()
+
+          setViewport({
+            width: containerRect.width,
+            height: containerRect.height,
+            pixelRatio: window.devicePixelRatio,
+          })
+
+          // Only resize if container dimensions are valid
+          if (containerRect.width > 0 && containerRect.height > 0) {
+            mapRef.current.resize()
+          }
+        }
       }
     }
 
@@ -361,7 +367,7 @@ export function MapProvider({
           if (mapRef.current) {
             const zoom = mapRef.current.getZoom()
             const minZoom = MAP_CONFIG.minZoom || 8
-            const maxZoom = MAP_CONFIG.maxZoom || 18
+            const maxZoom = MAP_CONFIG.maxZoom || 16
 
             if (zoom < minZoom) {
               mapRef.current.setZoom(minZoom)
