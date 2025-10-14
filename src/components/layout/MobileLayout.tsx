@@ -400,8 +400,8 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                   WebkitTransition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                   willChange: 'transform',
-                  minWidth: '140px',
-                  maxHeight: '280px',
+                  minWidth: '160px',
+                  maxHeight: '320px',
                   overflowY: 'auto',
                   WebkitOverflowScrolling: 'touch',
                 }}
@@ -412,40 +412,35 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
                     className="btn btn--ghost"
                     style={{
                       width: '100%',
-                      padding: 'var(--space-3)',
+                      padding: 'var(--space-2) var(--space-4)',
                       fontSize: 'var(--text-sm)',
-                      textAlign: 'left',
-                      minHeight: '44px',
+                      textAlign: 'center',
+                      minHeight: '40px',
                       backgroundColor: selectedRegion === region.name ? 'var(--color-primary-50)' : 'transparent',
                       borderRadius: 'var(--radius-md)',
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'space-between',
+                      justifyContent: 'center',
                       transition: 'all var(--transition-fast)',
+                      gap: 'var(--space-2)',
                     }}
                     onClick={() => handleRegionSelect(region)}
                   >
                     <span style={{
                       fontWeight: '500',
-                      fontSize: '14px',
-                      lineHeight: '1.3',
-                      letterSpacing: '0.025em'
+                      fontSize: '13px',
+                      lineHeight: '1.2',
+                      letterSpacing: '0.01em',
+                      flex: 1,
+                      minWidth: 0,
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap',
+                      textDecoration: currentMapRegion === region.name ? 'underline' : 'none',
+                      textDecorationColor: 'var(--color-primary-600)',
+                      textDecorationThickness: '1px',
+                      textUnderlineOffset: '1px'
                     }}>{region.name}</span>
-                    {currentMapRegion === region.name && (
-                      <span style={{
-                        fontSize: '10px',
-                        backgroundColor: 'var(--color-primary-600)',
-                        color: 'white',
-                        padding: '3px 8px',
-                        borderRadius: '6px',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.075em',
-                        fontWeight: '600',
-                        lineHeight: '1'
-                      }}>
-                        Current
-                      </span>
-                    )}
                   </button>
                 ))}
               </div>
@@ -525,13 +520,13 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
                       width: '100%',
                       padding: 'var(--space-3)',
                       fontSize: 'var(--text-sm)',
-                      textAlign: 'left',
+                      textAlign: 'center',
                       minHeight: '44px',
                       backgroundColor: selectedPlace === place ? 'var(--color-primary-50)' : 'transparent',
                       borderRadius: 'var(--radius-md)',
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'space-between',
+                      justifyContent: 'center',
                       transition: 'all var(--transition-fast)',
                     }}
                     onClick={() => handlePlaceSelect(place)}
@@ -541,17 +536,12 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
                       fontSize: '14px',
                       lineHeight: '1.3',
                       letterSpacing: '0.025em',
-                      textTransform: 'capitalize'
+                      textTransform: 'capitalize',
+                      textDecoration: selectedPlace === place ? 'underline' : 'none',
+                      textDecorationColor: 'var(--color-primary-600)',
+                      textDecorationThickness: '2px',
+                      textUnderlineOffset: '2px'
                     }}>{place}</span>
-                    {selectedPlace === place && (
-                      <div style={{
-                        width: '8px',
-                        height: '8px',
-                        backgroundColor: 'var(--color-primary-600)',
-                        borderRadius: '50%',
-                        flexShrink: 0
-                      }} />
-                    )}
                   </button>
                 ))}
               </div>
@@ -629,7 +619,7 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
                         width: '100%',
                         padding: 'var(--space-3)',
                         fontSize: 'var(--text-sm)',
-                        textAlign: 'left',
+                        textAlign: 'center',
                         minHeight: '44px',
                         backgroundColor: selectedPrice === price ? 'var(--color-primary-50)' : 'transparent',
                         borderRadius: 'var(--radius-md)',
@@ -648,18 +638,13 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
                       <span style={{
                         fontWeight: 'var(--font-weight-medium)',
                         color: selectedPrice === price ? 'var(--color-primary-700)' : 'var(--color-text-primary)',
+                        textDecoration: selectedPrice === price ? 'underline' : 'none',
+                        textDecorationColor: 'var(--color-primary-600)',
+                        textDecorationThickness: '2px',
+                        textUnderlineOffset: '2px'
                       }}>
                         {price}
                       </span>
-                      {selectedPrice === price && (
-                        <div style={{
-                          width: '8px',
-                          height: '8px',
-                          backgroundColor: 'var(--color-primary-600)',
-                          borderRadius: '50%',
-                          marginLeft: 'var(--space-2)'
-                        }} />
-                      )}
                     </button>
                   ))}
                 </div>
