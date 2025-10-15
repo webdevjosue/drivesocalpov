@@ -123,6 +123,9 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
     setSelectedRegion(region.name)
     setActiveFilter(null)
 
+    // Save to localStorage for marker filtering
+    localStorage.setItem('selectedRegion', region.name)
+
     // Access the map instance and move to selected region
     const map = (window as WindowWithDebugMap).__debugMap
     if (map) {
@@ -141,6 +144,9 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
   const handlePlaceSelect = (place: string) => {
     setSelectedPlace(place)
     setActiveFilter(null)
+
+    // Save to localStorage for marker filtering
+    localStorage.setItem('selectedCategory', place)
   }
 
   // Handle integrated menu interactions - premium features are part of the menu
@@ -366,7 +372,13 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
                 userSelect: 'none',
                 touchAction: 'pan-y',
               }}
-              onClick={() => setActiveFilter(activeFilter === 'region' ? null : 'region')}
+              onClick={() => {
+                setActiveFilter(activeFilter === 'region' ? null : 'region')
+                // Close burger menu when opening region filter
+                if (isMenuOpen) {
+                  setIsMenuOpen(false)
+                }
+              }}
             >
               <span style={{
                 fontSize: '12px',
@@ -472,7 +484,13 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
                 userSelect: 'none',
                 touchAction: 'pan-y',
               }}
-              onClick={() => setActiveFilter(activeFilter === 'places' ? null : 'places')}
+              onClick={() => {
+                setActiveFilter(activeFilter === 'places' ? null : 'places')
+                // Close burger menu when opening places filter
+                if (isMenuOpen) {
+                  setIsMenuOpen(false)
+                }
+              }}
             >
               <span style={{
                 fontSize: '12px',
@@ -573,7 +591,13 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
                 userSelect: 'none',
                 touchAction: 'pan-y',
               }}
-              onClick={() => setActiveFilter(activeFilter === 'free' ? null : 'free')}
+              onClick={() => {
+                setActiveFilter(activeFilter === 'free' ? null : 'free')
+                // Close burger menu when opening price filter
+                if (isMenuOpen) {
+                  setIsMenuOpen(false)
+                }
+              }}
             >
               <span style={{
                 fontSize: '12px',
@@ -633,6 +657,9 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
                       onClick={() => {
                         setSelectedPrice(price)
                         setActiveFilter(null)
+
+                        // Save to localStorage for marker filtering
+                        localStorage.setItem('selectedPrice', price)
                       }}
                     >
                       <span style={{
@@ -655,7 +682,11 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
           {/* Burger Menu Icon - Opens Premium Menu */}
           <button
             className="btn btn--ghost btn--icon"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={() => {
+              // Close any active filters when opening menu
+              setActiveFilter(null)
+              setIsMenuOpen(!isMenuOpen)
+            }}
             aria-label="Open navigation menu with premium features"
             style={{
               padding: 'var(--space-2)',
@@ -764,7 +795,7 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
             borderRadius: 'var(--radius-2xl)',
             padding: 'var(--space-4)',
             boxShadow: '0 25px 50px rgba(0, 0, 0, 0.25), 0 12px 24px rgba(0, 0, 0, 0.15)',
-            zIndex: 'var(--z-dropdown)',
+            zIndex: 'calc(var(--z-dropdown) - 1)', // Lower z-index to appear behind filter bar
             border: '1px solid rgba(255, 255, 255, 0.2)',
             WebkitBackdropFilter: 'blur(20px)',
             backdropFilter: 'blur(20px)',
