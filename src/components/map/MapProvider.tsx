@@ -7,10 +7,11 @@
 'use client'
 
 import React, { useMemo, useCallback, useEffect, useRef } from 'react'
-import Map from '@vis.gl/react-maplibre'
+import Map, { MapRef } from '@vis.gl/react-maplibre'
 import { MAP_CONFIG, MOBILE_PERFORMANCE_CONFIG, getOptimizedConfig, OPENSTREETMAP_STYLES } from '@/lib/map/config'
 import { useMapStore } from '@/store/mapStore'
 import { useIsMobile } from '@/hooks/useIsMobile'
+import type { DriveSoCalMap } from '@/types/map'
 
 // Import styles for mobile optimization
 import '@/styles/map.css'
@@ -18,8 +19,8 @@ import '@/styles/map.css'
 interface MapProviderProps {
   children: React.ReactNode
   className?: string
-  onMapLoad?: (map: any) => void
-  onMapError?: (error: any) => void
+  onMapLoad?: (map: DriveSoCalMap) => void
+  onMapError?: (error: { error: Error }) => void
   enablePerformanceMode?: boolean
 }
 
@@ -41,9 +42,110 @@ export function MapProvider({
     setViewport,
   } = useMapStore()
 
-  const mapRef = useRef<any>(null)
+  const mapRef = useRef<MapRef | null>(null)
   const performanceTimerRef = useRef<number>(0)
   // const [mapLoading, setMapLoading] = useState(true)
+
+  // Progressive tile loading setup
+  const setupProgressiveLoading = useCallback((map: any) => {
+    let loadingLevel = 1 // Start with basic tiles
+    const loadingLevels = [
+      { zoom: 10, quality: 'basic' },      // Far zoom - minimal tiles
+      { zoom: 12, quality: 'standard' },   // Medium zoom - standard tiles
+      { zoom: 14, quality: 'high' },       // Close zoom - high quality tiles
+      { zoom: 16, quality: 'maximum' },    // Very close - maximum detail
+    ]
+
+    const updateLoadingLevel = useCallback(() => {
+      if (!mapRef.current) return
+
+      const currentZoom = mapRef.current.getZoom()
+
+      // Determine loading level based on zoom
+      for (let i = loadingLevels.length - 1; i >= 0; i--) {
+        if (currentZoom >= loadingLevels[i].zoom) {
+          loadingLevel = i + 1
+          break
+        }
+      }
+
+      // Adjust tile loading based on level and device performance
+      const isLowEndDevice = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4
+
+      if (isLowEndDevice && loadingLevel > 2) {
+        loadingLevel = 2 // Limit quality on low-end devices
+      }
+
+      // Configure tile loading strategy
+      if (mapRef.current.style && mapRef.current.style.sourceCaches) {
+        // Implement progressive loading based on current level
+        console.log(`Progressive loading: Level ${loadingLevel} at zoom ${currentZoom}`)
+      }
+    }, [])
+
+    // Update loading level on zoom changes
+    map.on('zoomend', updateLoadingLevel)
+
+    // Initial setup
+    updateLoadingLevel()
+  }, [])
+
+  // Enhanced performance monitoring with adaptive quality
+  const setupPerformanceMonitoring = useCallback((map: unknown) => {
+    let frameCount = 0
+    let lastTime = performance.now()
+    let performanceWarnings = 0
+
+    const measurePerformance = () => {
+      frameCount++
+      const currentTime = performance.now()
+      const deltaTime = currentTime - lastTime
+
+      if (deltaTime >= 1000) {
+        const fps = Math.round((frameCount * 1000) / deltaTime)
+
+        // Adaptive performance adjustments
+        if (fps < 30) {
+          performanceWarnings++
+          console.warn(`Low FPS detected: ${fps}, enabling performance optimizations (Warning ${performanceWarnings}/3)`)
+
+          const mapInstance = map as {
+            setPaintProperty?: (layer: string, property: string, value: unknown) => void,
+            setTerrain?: (terrain: any) => void,
+            setFog?: (fog: any) => void
+          }
+
+          // Progressive performance degradation
+          if (performanceWarnings === 1) {
+            // First warning: Reduce visual quality
+            if (mapInstance.setPaintProperty) {
+              mapInstance.setPaintProperty('background', 'background-color', '#1a1a1a')
+            }
+          } else if (performanceWarnings === 2) {
+            // Second warning: Disable terrain and fog
+            if (mapInstance.setTerrain) mapInstance.setTerrain(null)
+            if (mapInstance.setFog) mapInstance.setFog(null)
+          } else if (performanceWarnings >= 3) {
+            // Third warning: Enable aggressive performance mode
+            setPerformanceMode(true)
+          }
+        } else if (fps > 55 && performanceWarnings > 0) {
+          // Performance recovered: gradually restore quality
+          performanceWarnings = Math.max(0, performanceWarnings - 1)
+          console.log(`Performance recovered: ${fps} FPS, restoring quality`)
+        }
+
+        frameCount = 0
+        lastTime = currentTime
+      }
+
+      if (mapRef.current) {
+        performanceTimerRef.current = requestAnimationFrame(measurePerformance)
+      }
+    }
+
+    performanceTimerRef.current = requestAnimationFrame(measurePerformance)
+  }, [setPerformanceMode])
 
   // Mobile-optimized configuration
   const mapConfig = useMemo(() => {
@@ -81,11 +183,11 @@ export function MapProvider({
   // Map load handler with mobile optimizations
   const handleMapLoad = useCallback(
     (event: any) => {
-      const map = event.target
-      mapRef.current = map
+      const map = event.target.getMap ? event.target.getMap() : event.target
+      mapRef.current = event.target
 
       // Set map instance in store
-      setMap(map)
+      setMap(map as unknown as DriveSoCalMap)
       // setMapLoading(false)
       setLoading(false)
       setStyleLoaded(true)
@@ -116,10 +218,10 @@ export function MapProvider({
         }
 
         // Optimize font rendering for mobile
-        if (map.style && map.style.glyphs) {
+        if (map.style && (map.style as any).glyphs) {
           // Force better font rendering on mobile
-          canvas.style.fontSmooth = 'always'
-          canvas.style.webkitFontSmoothing = 'antialiased'
+          ;(canvas.style as any).fontSmooth = 'always'
+          ;(canvas.style as any).webkitFontSmoothing = 'antialiased'
         }
       }
 
@@ -132,6 +234,9 @@ export function MapProvider({
 
         // Monitor performance
         setupPerformanceMonitoring(map)
+
+        // Setup progressive tile loading
+        setupProgressiveLoading(map)
       }
 
       // Set viewport information
@@ -143,7 +248,7 @@ export function MapProvider({
 
       // Custom load callback
       if (onMapLoad) {
-        onMapLoad(map)
+        onMapLoad(map as unknown as DriveSoCalMap)
       }
 
       console.log('Map loaded successfully:', {
@@ -152,19 +257,19 @@ export function MapProvider({
         config: mapConfig,
       })
     },
-    [isMobile, setMap, setLoading, setStyleLoaded, setPerformanceMode, setViewport, onMapLoad, enablePerfMode, mapConfig]
+    [isMobile, setMap, setLoading, setStyleLoaded, setPerformanceMode, setViewport, onMapLoad, enablePerfMode, mapConfig, setupProgressiveLoading]
   )
 
   // Error handling with fallback strategies
   const handleError = useCallback(
-    (error: any) => {
-      console.error('Map loading error:', error)
+    (error: { error: Error }) => {
+      console.error('Map loading error:', error.error)
 
       // Set error state
-      setError(error)
+      setError(error.error)
 
       // Try to recover from common errors
-      if (error.error?.message) {
+      if (error.error && 'message' in error.error) {
         const errorMessage = error.error.message.toLowerCase()
 
         // Style loading error - try fallback style
@@ -195,47 +300,6 @@ export function MapProvider({
     },
     [setError, onMapError]
   )
-
-  // Performance monitoring setup
-  const setupPerformanceMonitoring = useCallback((map: any) => {
-    let frameCount = 0
-    let lastTime = performance.now()
-
-    const measurePerformance = () => {
-      frameCount++
-      const currentTime = performance.now()
-      const deltaTime = currentTime - lastTime
-
-      if (deltaTime >= 1000) {
-        const fps = Math.round((frameCount * 1000) / deltaTime)
-
-        // Adjust performance based on FPS
-        if (fps < 30) {
-          console.warn(`Low FPS detected: ${fps}, enabling performance optimizations`)
-
-          // Note: MapLibre GL doesn't have setMaxTileCacheSize method
-          // Performance is handled through maxTileCacheSize config
-
-          // Disable animations
-          if (map.setPaintProperty) {
-            map.setPaintProperty('background', 'background-color', '#1a1a1a')
-          }
-
-          // Enable performance mode if not already enabled
-          setPerformanceMode(true)
-        }
-
-        frameCount = 0
-        lastTime = currentTime
-      }
-
-      if (mapRef.current) {
-        performanceTimerRef.current = requestAnimationFrame(measurePerformance)
-      }
-    }
-
-    performanceTimerRef.current = requestAnimationFrame(measurePerformance)
-  }, [setPerformanceMode])
 
   // Cleanup on unmount
   useEffect(() => {

@@ -10,6 +10,13 @@ import MapContainer from '@/components/map/MapContainer'
 import MobileLayout from '@/components/layout/MobileLayout'
 import MockLocationMarkers from '@/components/map/MockLocationMarkers'
 import { validateMapEnvironment } from '@/lib/map/config'
+import {
+  WebSiteStructuredData,
+  MobileApplicationStructuredData,
+  TravelActionStructuredData,
+  BreadcrumbStructuredData,
+  FAQStructuredData,
+} from '@/components/seo/StructuredData'
 
 // Filter state interface
 interface FilterState {
@@ -90,22 +97,55 @@ export default function Home() {
   }
 
   return (
-    <MobileLayout
-      title="Drive SoCal POV"
-    >
-      {/* Map Container - Full Width */}
-      <MapContainer
-        className="w-full h-full"
-        showControls={true}
-        enablePerformanceMode={true}
+    <>
+      {/* SEO Structured Data */}
+      <WebSiteStructuredData />
+      <MobileApplicationStructuredData />
+      <TravelActionStructuredData />
+
+      {/* Breadcrumb for navigation */}
+      <BreadcrumbStructuredData
+        items={[
+          { name: 'Home', url: 'https://drivesocalpov.com' },
+          { name: 'Southern California Map', url: 'https://drivesocalpov.com/map' },
+        ]}
+      />
+
+      {/* FAQ Structured Data */}
+      <FAQStructuredData
+        faqs={[
+          {
+            question: 'Is Drive SoCal POV free to use?',
+            answer: 'Yes! Drive SoCal POV is completely free to use. We offer a premium tier with additional features, but the core travel guide functionality is always free.',
+          },
+          {
+            question: 'What areas of Southern California do you cover?',
+            answer: 'We cover all of Southern California including Los Angeles, San Diego, Orange County, and the Inland Empire, from Palmdale to Ensenada and Yuma to Santa Barbara.',
+          },
+          {
+            question: 'Can I use Drive SoCal POV on my mobile device?',
+            answer: 'Absolutely! Drive SoCal POV is designed mobile-first and works perfectly on smartphones and tablets with touch-optimized controls.',
+          },
+        ]}
+      />
+
+      <MobileLayout
+        title="Drive SoCal POV - Southern California Travel Guide"
       >
-        {/* Mock Location Markers with Filter Support */}
-        <MockLocationMarkers
-          showPopups={true}
-          onMarkerClick={handleMarkerClick}
-          filters={filters}
-        />
-      </MapContainer>
-    </MobileLayout>
+        {/* Map Container - Full Width */}
+        <MapContainer
+          className="w-full h-full"
+          showControls={true}
+          enablePerformanceMode={true}
+        >
+          {/* Mock Location Markers with Filter Support */}
+          <MockLocationMarkers
+            showPopups={true}
+            onMarkerClick={handleMarkerClick}
+            filters={filters}
+          />
+        </MapContainer>
+      </MobileLayout>
+    </>
   )
 }

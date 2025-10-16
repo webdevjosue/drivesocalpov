@@ -146,16 +146,16 @@ export interface LayerConfig {
   id: string
   type: 'background' | 'fill' | 'line' | 'symbol' | 'raster' | 'circle' | 'fill-extrusion' | 'heatmap' | 'hillshade'
   source: string
-  layout?: Record<string, any>
-  paint?: Record<string, any>
-  filter?: any[]
+  layout?: Record<string, unknown>
+  paint?: Record<string, unknown>
+  filter?: unknown[]
   minzoom?: number
   maxzoom?: number
 }
 
 // Event types
 export interface MapClickEvent {
-  features: any[]
+  features: unknown[]
   lngLat: { lng: number; lat: number }
   point: { x: number; y: number }
   originalEvent: MapLayerMouseEvent
@@ -325,9 +325,55 @@ export interface PopupLayerProps {
   onNavigate?: (location: Location) => void
 }
 
+// MapLibre interface for Drive SoCal POV
+export interface DriveSoCalMap {
+  // Core map methods
+  getCenter(): { lng: number; lat: number }
+  getZoom(): number
+  getBearing(): number
+  getPitch(): number
+  setCenter(center: { lng: number; lat: number }): void
+  setZoom(zoom: number): void
+  setBearing(bearing: number): void
+  setPitch(pitch: number): void
+  jumpTo(options: { center?: [number, number]; zoom?: number; bearing?: number; pitch?: number; essential?: boolean }): void
+  flyTo(options: { center?: [number, number]; zoom?: number; bearing?: number; pitch?: number; duration?: number; essential?: boolean }): void
+  easeTo(options: { center?: [number, number]; zoom?: number; bearing?: number; pitch?: number; duration?: number; essential?: boolean }): void
+
+  // Map state methods
+  getContainer(): HTMLElement
+  getCanvas(): HTMLCanvasElement
+  getBounds(): { getNorthEast(): { lng: number; lat: number }; getSouthWest(): { lng: number; lat: number } }
+  getMaxBounds(): { getNorthEast(): { lng: number; lat: number }; getSouthWest(): { lng: number; lat: number } } | null
+  setMaxBounds(bounds: [[number, number], [number, number]] | null): void
+  getMinZoom(): number
+  getMaxZoom(): number
+  setMinZoom(zoom: number): void
+  setMaxZoom(zoom: number): void
+  setRenderWorldCopies(renderWorldCopies: boolean): void
+  resize(): void
+
+  // Map style methods
+  getStyle(): Record<string, unknown> | undefined
+  setStyle(style: string | Record<string, unknown>): void
+  setPaintProperty(layer: string, name: string, value: unknown): void
+
+  // Style object access
+  style?: { glyphs?: string }
+
+  // Touch interactions
+  touchZoomRotate: { enable(): void; disable(): void; isEnabled(): boolean }
+  dragPan: { enable(): void; disable(): void; isEnabled(): boolean }
+  dragRotate: { enable(): void; disable(): void; isEnabled(): boolean }
+  touchPitch: { enable(): void; disable(): void; isEnabled(): boolean }
+
+  // React MapLibre compatibility
+  getMap(): DriveSoCalMap
+}
+
 // Hook return types
 export interface UseMapReturn {
-  map: any
+  map: DriveSoCalMap | null
   isLoaded: boolean
   isLoading: boolean
   error: MapError | null
@@ -377,7 +423,7 @@ export interface MapFeature {
     type: 'Point' | 'LineString' | 'Polygon'
     coordinates: number[] | number[][] | number[][][]
   }
-  properties: Record<string, any>
+  properties: Record<string, unknown>
 }
 
 export interface MapFeatureCollection {

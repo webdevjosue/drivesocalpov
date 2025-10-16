@@ -154,7 +154,7 @@ export interface ClusterPoint {
   cluster: boolean
   point_count?: number
   point_count_abbreviated?: string
-  properties?: Record<string, any>
+  properties?: Record<string, unknown>
 }
 
 export interface MapMarker {
@@ -232,7 +232,7 @@ export interface OfflineSyncData {
 
 export interface OfflineAction {
   type: 'bookmark' | 'check_in' | 'review' | 'itinerary_update'
-  data: any
+  data: Record<string, unknown>
   timestamp: number
   location_id?: string
 }
@@ -241,12 +241,12 @@ export interface OfflineAction {
 // API RESPONSE TYPES
 // =====================================================
 
-export interface ApiResponse<T = any> {
+export interface ApiResponse<T = unknown> {
   data?: T
   error?: {
     message: string
     code?: string
-    details?: any
+    details?: unknown
   }
   success: boolean
 }
@@ -302,7 +302,7 @@ export interface StreakInfo {
 export interface ContentEditor {
   mode: 'create' | 'edit'
   content_type: 'location' | 'collection' | 'itinerary'
-  initial_data?: any
+  initial_data?: Record<string, unknown>
   is_dirty: boolean
   validation_errors: ValidationError[]
 }
@@ -375,7 +375,7 @@ export interface FormField {
 
 export interface ValidationRule {
   type: 'required' | 'email' | 'url' | 'tel' | 'min' | 'max' | 'pattern' | 'custom'
-  value?: any
+  value?: unknown
   message: string
 }
 

@@ -3,7 +3,8 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Enable experimental features for Turbopack
   experimental: {
-    optimizePackageImports: ['tailwind-merge', 'clsx', 'maplibre-gl'],
+    optimizePackageImports: ['tailwind-merge', 'clsx', 'maplibre-gl', 'lucide-react'],
+    webpackBuildWorker: true,
   },
   // Server external packages
   serverExternalPackages: ['@supabase/supabase-js'],
@@ -91,6 +92,44 @@ const nextConfig: NextConfig = {
   // Performance optimizations
   poweredByHeader: false,
   compress: true,
+
+  // Webpack optimization for better bundling
+  webpack: (config, { isServer }) => {
+    // Optimize lucide-react imports
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'lucide-react': 'lucide-react/dist/esm/icons/index.js',
+    }
+
+    // Improve bundle splitting
+    if (!isServer) {
+      config.optimization = {
+        ...config.optimization,
+        splitChunks: {
+          chunks: 'all',
+          cacheGroups: {
+            vendor: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendors',
+              chunks: 'all',
+            },
+            maplibre: {
+              test: /[\\/]node_modules[\\/](maplibre-gl|@vis.gl)[\\/]/,
+              name: 'maplibre',
+              chunks: 'all',
+            },
+            lucide: {
+              test: /[\\/]node_modules[\\/]lucide-react[\\/]/,
+              name: 'lucide',
+              chunks: 'all',
+            },
+          },
+        },
+      }
+    }
+
+    return config
+  },
 };
 
 export default nextConfig;

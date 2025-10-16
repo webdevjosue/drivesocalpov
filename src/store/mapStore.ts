@@ -7,7 +7,7 @@ import React from 'react'
 import { create } from 'zustand'
 import { devtools, subscribeWithSelector } from 'zustand/middleware'
 import { ViewState } from '@vis.gl/react-maplibre'
-import { MapBounds, PerformanceConfig } from '@/types/map'
+import { MapBounds, PerformanceConfig, DriveSoCalMap } from '@/types/map'
 import { OPENSTREETMAP_STYLES, GTA_MAP_STYLES } from '@/lib/map/config'
 
 interface MapState {
@@ -16,9 +16,9 @@ interface MapState {
   setViewState: (viewState: ViewState) => void
 
   // Map style and theme
-  mapStyle: string | any
+  mapStyle: string | Record<string, unknown>
   mapTheme: 'day' | 'night' | 'satellite' | 'hybrid'
-  setMapStyle: (style: string | any) => void
+  setMapStyle: (style: string | Record<string, unknown>) => void
   setMapTheme: (theme: MapState['mapTheme']) => void
 
   // Boundaries
@@ -26,8 +26,8 @@ interface MapState {
   updateBoundaries: (bounds: MapBounds) => void
 
   // Map instance
-  map: any
-  setMap: (map: any) => void
+  map: DriveSoCalMap | null
+  setMap: (map: DriveSoCalMap | null) => void
 
   // UI state
   isFullscreen: boolean
@@ -70,9 +70,9 @@ interface MapState {
   setGesturesEnabled: (enabled: boolean) => void
 
   // Cache management
-  tileCache: Map<string, any>
+  tileCache: Map<string, unknown>
   clearTileCache: () => void
-  addToTileCache: (key: string, data: any) => void
+  addToTileCache: (key: string, data: unknown) => void
 
   // Viewport tracking
   viewport: {
@@ -306,7 +306,7 @@ export const useMapActions = () => useMapStore((state) => ({
 }))
 
 // Hooks for common patterns
-export const useMapEffect = (effect: (map: any) => void | (() => void), deps?: any[]) => {
+export const useMapEffect = (effect: (map: DriveSoCalMap | null) => void | (() => void), deps?: unknown[]) => {
   const map = useMapStore((state) => state.map)
 
   React.useEffect(() => {

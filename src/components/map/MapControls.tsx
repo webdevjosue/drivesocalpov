@@ -5,9 +5,20 @@
 
 'use client'
 
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState, useMemo } from 'react'
 import { useMap } from '@vis.gl/react-maplibre'
-import { ZoomIn, ZoomOut } from 'lucide-react'
+import dynamic from 'next/dynamic'
+
+// Dynamic imports for better bundle splitting
+const ZoomIn = dynamic(() => import('lucide-react').then(mod => ({ default: mod.ZoomIn })), {
+  loading: () => <div className="w-5 h-5 animate-pulse bg-gray-300 rounded" />,
+  ssr: false
+})
+
+const ZoomOut = dynamic(() => import('lucide-react').then(mod => ({ default: mod.ZoomOut })), {
+  loading: () => <div className="w-5 h-5 animate-pulse bg-gray-300 rounded" />,
+  ssr: false
+})
 
 interface MapControlsProps {
   className?: string
@@ -21,17 +32,18 @@ export default function MapControls({ className = '' }: MapControlsProps) {
   useEffect(() => {
     if (!map.current) return
 
+    const currentMap = map.current
     const handleZoom = () => {
-      setCurrentZoom(map.current?.getZoom() || 10)
+      setCurrentZoom(currentMap?.getZoom() || 10)
     }
 
-    map.current.on('zoom', handleZoom)
+    currentMap.on('zoom', handleZoom)
 
     // Initial values
     handleZoom()
 
     return () => {
-      map.current?.off('zoom', handleZoom)
+      currentMap?.off('zoom', handleZoom)
     }
   }, [map])
 
@@ -42,7 +54,7 @@ export default function MapControls({ className = '' }: MapControlsProps) {
       const newZoom = Math.round((map.current.getZoom() + 1) * 10) / 10
       announceToScreenReader(`Zoomed in to level ${newZoom}`)
     }
-  }, [])
+  }, [map])
 
   const handleZoomOut = useCallback(() => {
     if (map.current) {
@@ -50,7 +62,7 @@ export default function MapControls({ className = '' }: MapControlsProps) {
       const newZoom = Math.round((map.current.getZoom() - 1) * 10) / 10
       announceToScreenReader(`Zoomed out to level ${newZoom}`)
     }
-  }, [])
+  }, [map])
 
   // Screen reader announcement helper
   const announceToScreenReader = (message: string) => {
@@ -75,6 +87,10 @@ export default function MapControls({ className = '' }: MapControlsProps) {
     }
   }, [])
 
+  // Memoize button states to prevent unnecessary re-renders
+  const zoomInDisabled = useMemo(() => currentZoom >= 18, [currentZoom])
+  const zoomOutDisabled = useMemo(() => currentZoom <= 2, [currentZoom])
+
   return (
     <>
       {/* Screen reader announcements for map state */}
@@ -94,7 +110,7 @@ export default function MapControls({ className = '' }: MapControlsProps) {
             onKeyDown={(e) => handleKeyDown(e, handleZoomIn)}
             className="flex items-center justify-center w-12 h-12 hover:bg-blue-50 active:bg-blue-100 transition-all duration-150 border-b border-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
             aria-label="Zoom in"
-            disabled={currentZoom >= 18}
+            disabled={zoomInDisabled}
             title="Zoom in"
           >
             <ZoomIn className="h-5 w-5 text-gray-700" strokeWidth={2.5} />
@@ -105,7 +121,7 @@ export default function MapControls({ className = '' }: MapControlsProps) {
             onKeyDown={(e) => handleKeyDown(e, handleZoomOut)}
             className="flex items-center justify-center w-12 h-12 hover:bg-blue-50 active:bg-blue-100 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
             aria-label="Zoom out"
-            disabled={currentZoom <= 2}
+            disabled={zoomOutDisabled}
             title="Zoom out"
           >
             <ZoomOut className="h-5 w-5 text-gray-700" strokeWidth={2.5} />

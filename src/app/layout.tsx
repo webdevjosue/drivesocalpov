@@ -3,11 +3,25 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Drive SoCal POV",
+    default: "Drive SoCal POV - Southern California Travel Guide",
     template: "%s | Drive SoCal POV",
   },
-  description: "Your ultimate mobile travel guide to Southern California with GTA V-inspired maps and gamified exploration",
-  keywords: ["Southern California", "travel guide", "mobile app", "San Diego", "Los Angeles", "Inland Empire", "attractions", "restaurants", "events"],
+  description: "Explore Southern California with our free mobile travel guide. Discover attractions, restaurants, and events in LA, San Diego, Orange County, and Inland Empire with interactive maps.",
+  keywords: [
+    "Southern California travel guide",
+    "Los Angeles attractions",
+    "San Diego tourism",
+    "Orange County restaurants",
+    "Inland Empire events",
+    "mobile travel app",
+    "free travel guide",
+    "SoCal destinations",
+    "California tourism",
+    "interactive map",
+    "gamified travel",
+    "mobile-first travel",
+    "Southern California vacation"
+  ],
   authors: [{ name: "Drive SoCal POV Team" }],
   creator: "Drive SoCal POV",
   publisher: "Drive SoCal POV",
@@ -21,17 +35,22 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: process.env.NEXT_PUBLIC_SITE_URL || 'https://drivesocalpov.com',
-    title: "Drive SoCal POV - Your Ultimate Southern California Travel Guide",
-    description: "Explore Southern California with our mobile-first travel guide featuring interactive maps, gamified exploration, and curated local experiences.",
+    title: "Drive SoCal POV - Free Southern California Travel Guide",
+    description: "Discover the best attractions, restaurants, and events in Southern California. Interactive maps, mobile-first design, and completely free to use.",
     siteName: "Drive SoCal POV",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Drive SoCal POV - Southern California Travel Guide",
+        alt: "Drive SoCal POV - Interactive Southern California Travel Map",
       },
     ],
+    countryName: "United States",
+    region: "California",
+    locality: "Southern California",
+    category: "Travel",
+    tags: ["travel", "tourism", "Southern California", "mobile app", "free"],
   },
   twitter: {
     card: "summary_large_image",
@@ -105,6 +124,50 @@ export default function RootLayout({
 
         {/* Force iOS Safari to use full viewport height */}
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover, height=device-height" />
+
+        {/* Service Worker Registration */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                      console.log('SW registered: ', registration);
+
+                      // Check for updates
+                      registration.addEventListener('updatefound', function() {
+                        const newWorker = registration.installing;
+                        newWorker.addEventListener('statechange', function() {
+                          if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                            // New version available
+                            if (confirm('New version available! Reload to update?')) {
+                              window.location.reload();
+                            }
+                          }
+                        });
+                      });
+                    })
+                    .catch(function(registrationError) {
+                      console.log('SW registration failed: ', registrationError);
+                    });
+                });
+              }
+
+              // Register for periodic background sync (if supported)
+              if ('serviceWorker' in navigator && 'periodicSync' in window.ServiceWorkerRegistration.prototype) {
+                navigator.serviceWorker.ready.then(function(registration) {
+                  return registration.periodicSync.register({
+                    tag: 'map-tiles-sync',
+                    minPeriod: 24 * 60 * 60 * 1000, // 24 hours
+                  });
+                }).catch(function(error) {
+                  console.log('Periodic sync registration failed:', error);
+                });
+              }
+            `,
+          }}
+        />
 
         {/* Google AdSense Script - Client Side Only */}
         {typeof window !== 'undefined' && (

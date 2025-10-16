@@ -250,7 +250,9 @@ export function useMobilePerformance(): PerformanceState & {
       cleanupMemory()
       cleanupNetwork()
       cleanupDeviceLoad()
-      observersRef.current.forEach(observer => observer.disconnect())
+      // Fix memory leak: capture observersRef.current at cleanup time
+      const currentObservers = observersRef.current
+      currentObservers.forEach(observer => observer.disconnect())
     }
   }, [detectDeviceCapabilities, startFPSMonitoring, startMemoryMonitoring, startNetworkMonitoring, startDeviceLoadMonitoring])
 
