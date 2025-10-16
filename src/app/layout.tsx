@@ -46,11 +46,6 @@ export const metadata: Metadata = {
         alt: "Drive SoCal POV - Interactive Southern California Travel Map",
       },
     ],
-    countryName: "United States",
-    region: "California",
-    locality: "Southern California",
-    category: "Travel",
-    tags: ["travel", "tourism", "Southern California", "mobile app", "free"],
   },
   twitter: {
     card: "summary_large_image",
