@@ -56,7 +56,7 @@ export function MapProvider({
       { zoom: 16, quality: 'maximum' },    // Very close - maximum detail
     ]
 
-    const updateLoadingLevel = useCallback(() => {
+    const updateLoadingLevel = () => {
       if (!mapRef.current) return
 
       const currentZoom = mapRef.current.getZoom()
@@ -81,7 +81,7 @@ export function MapProvider({
         // Implement progressive loading based on current level
         console.log(`Progressive loading: Level ${loadingLevel} at zoom ${currentZoom}`)
       }
-    }, [])
+    }
 
     // Update loading level on zoom changes
     map.on('zoomend', updateLoadingLevel)
