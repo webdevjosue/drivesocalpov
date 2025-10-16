@@ -7,8 +7,8 @@ const nextConfig: NextConfig = {
     // Disable turbopack for production to fix MapLibre GL compatibility
     webpackBuildWorker: false,
   },
-  // Server external packages
-  serverExternalPackages: ['@supabase/supabase-js'],
+  // Server external packages - fix MapLibre GL conflict
+  serverExternalPackages: ['@supabase/supabase-js', 'maplibre-gl'],
 
   // Image optimization
   images: {

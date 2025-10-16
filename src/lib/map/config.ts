@@ -1,6 +1,6 @@
 /**
  * MapLibre GL configuration for Drive SoCal POV
- * Mobile-optimized settings using OpenStreetMap tiles
+ * Mobile-optimized settings using OpenFreeMap vector tiles
  * Completely free solution with no API tokens required
  * Updated for @vis.gl/react-maplibre v8
  */
@@ -87,6 +87,25 @@ export const OPENSTREETMAP_TILES = {
     attribution: '© OpenStreetMap contributors © Stamen Design',
     maxZoom: 18,
   }
+}
+
+/**
+ * OpenFreeMap vector tile styles
+ * Free, production-quality vector tiles that work perfectly with MapLibre GL
+ * No API tokens required, hosted at https://tiles.openfreemap.org/
+ */
+export const OPENFREEMAP_STYLES = {
+  // Liberty style - clean, modern design based on OSM Liberty
+  liberty: 'https://tiles.openfreemap.org/styles/liberty',
+
+  // Bright style - high contrast, clean design
+  bright: 'https://tiles.openfreemap.org/styles/bright',
+
+  // Positron style - minimal, light design
+  positron: 'https://tiles.openfreemap.org/styles/positron',
+
+  // Dark style - dark theme for night driving
+  dark: 'https://tiles.openfreemap.org/styles/dark',
 }
 
 /**
@@ -212,8 +231,8 @@ export const MAP_CONFIG: MapConfig = {
     [EXPANDED_BOUNDS.east, EXPANDED_BOUNDS.north]
   ],
 
-  // OpenStreetMap configuration - Clean style with minimal labels
-  mapStyle: OPENSTREETMAP_STYLES.stamen_toner,
+  // OpenFreeMap configuration - Vector tiles for better performance
+  mapStyle: OPENFREEMAP_STYLES.liberty,
   projection: 'mercator' as const,
 
   // Mobile-optimized touch interactions (per official docs)
@@ -236,15 +255,16 @@ export const MAP_CONFIG: MapConfig = {
 }
 
 /**
- * Drive SoCal POV map styles - Free OpenStreetMap alternatives (no API tokens required)
+ * Drive SoCal POV map styles - Free OpenFreeMap vector tiles (no API tokens required)
  * Multiple style options for different use cases and visual preferences
+ * Vector tiles provide better performance and quality than raster tiles
  */
 export const GTA_MAP_STYLES = {
-  day: OPENSTREETMAP_STYLES.osm_standard,        // Standard OpenStreetMap
-  night: OPENSTREETMAP_STYLES.cartodb_dark,      // Dark theme for night driving
-  satellite: OPENSTREETMAP_STYLES.cartodb_light,  // Light view (closest to satellite available)
-  hybrid: OPENSTREETMAP_STYLES.cartodb_light,     // Clean hybrid view
-  streets: OPENSTREETMAP_STYLES.stamen_toner,     // High contrast street view
+  day: OPENFREEMAP_STYLES.bright,                // Clean, bright design for daytime
+  night: OPENFREEMAP_STYLES.dark,                // Dark theme for night driving
+  satellite: OPENFREEMAP_STYLES.liberty,         // Modern design (closest to satellite available)
+  hybrid: OPENFREEMAP_STYLES.positron,           // Minimal, light design for hybrid view
+  streets: OPENFREEMAP_STYLES.bright,            // High contrast street view
 }
 
 /**
@@ -395,18 +415,20 @@ export const BOUNDS_UTILS = {
 
 /**
  * Environment validation
- * OpenStreetMap tiles are completely free - no API tokens required
+ * OpenFreeMap vector tiles are completely free - no API tokens required
  */
 export function validateMapEnvironment(): void {
-  // OpenStreetMap tiles are free and don't require any API tokens
-  // No validation needed for free tile sources
+  // OpenFreeMap tiles are free and don't require any API tokens
+  // No validation needed for free vector tile sources
   if (process.env.NODE_ENV === 'development') {
     console.log(
-      '✅ Using OpenStreetMap tiles - Completely free with no API tokens required!\n' +
-      '🗺️  Tile sources: OpenStreetMap, CartoDB, Stamen Design\n' +
+      '✅ Using OpenFreeMap vector tiles - Completely free with no API tokens required!\n' +
+      '🗺️  Vector tiles: Liberty, Bright, Positron, Dark\n' +
       '📍  Coverage: Worldwide\n' +
-      '🔄  Max Zoom: 19-20 depending on style\n' +
-      '💰  Cost: FREE'
+      '🔄  Max Zoom: 20+ with vector scaling\n' +
+      '🎯  Performance: Superior to raster tiles\n' +
+      '💰  Cost: FREE\n' +
+      '🌐  Host: https://tiles.openfreemap.org/'
     )
   }
 }
