@@ -1,23 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Enable experimental features for Turbopack
+  // Enable experimental features for better compatibility
   experimental: {
-    optimizePackageImports: ['tailwind-merge', 'clsx', 'maplibre-gl', 'lucide-react'],
-    webpackBuildWorker: true,
+    optimizePackageImports: ['tailwind-merge', 'clsx', 'lucide-react'],
+    // Disable turbopack for production to fix MapLibre GL compatibility
+    webpackBuildWorker: false,
   },
   // Server external packages
   serverExternalPackages: ['@supabase/supabase-js'],
-
-  // Turbopack configuration
-  turbopack: {
-    // Configure aliases for better module resolution
-    resolveAlias: {
-      // MapLibre GL related aliases can be added here if needed
-    },
-    // Custom extensions for module resolution
-    resolveExtensions: ['.ts', '.tsx', '.js', '.jsx', '.json', '.mjs'],
-  },
 
   // Image optimization
   images: {
@@ -101,7 +92,18 @@ const nextConfig: NextConfig = {
       'lucide-react': 'lucide-react/dist/esm/icons/index.js',
     }
 
-    // Improve bundle splitting
+    // Fix MapLibre GL module resolution for client-side
+    if (!isServer) {
+      // Ensure MapLibre GL is properly bundled
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        'fs': false,
+        'path': false,
+        'crypto': false,
+      }
+    }
+
+    // Improve bundle splitting for better caching
     if (!isServer) {
       config.optimization = {
         ...config.optimization,
@@ -112,16 +114,20 @@ const nextConfig: NextConfig = {
               test: /[\\/]node_modules[\\/]/,
               name: 'vendors',
               chunks: 'all',
+              priority: 10,
             },
             maplibre: {
               test: /[\\/]node_modules[\\/](maplibre-gl|@vis.gl)[\\/]/,
               name: 'maplibre',
               chunks: 'all',
+              priority: 20,
+              enforce: true,
             },
             lucide: {
               test: /[\\/]node_modules[\\/]lucide-react[\\/]/,
               name: 'lucide',
               chunks: 'all',
+              priority: 15,
             },
           },
         },

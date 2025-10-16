@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "dev:webpack": "next dev --webpack",
-    "build": "next build --turbopack",
-    "build:webpack": "next build --webpack",
+    "build": "next build",
+    "build:turbopack": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
@@ -27,7 +27,6 @@
     "next": "15.5.5",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "react-map-gl": "^8.1.0",
     "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7",
     "zustand": "^5.0.8"

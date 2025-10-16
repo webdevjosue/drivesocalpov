@@ -6,7 +6,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { Navigation, Menu, Home, Search, Heart, User, MapPin, Star, Settings, LogOut, Maximize2, X } from 'lucide-react'
+import { Navigation, Menu, Search, Heart, User, MapPin, Star, Settings, LogOut, Maximize2, X, House } from 'lucide-react'
 
 interface MobileLayoutProps {
   children: React.ReactNode
@@ -99,7 +99,7 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
   }, [])
 
   const menuItems = [
-    { icon: Home, label: 'Home' },
+    { icon: House, label: 'Home' },
     { icon: Search, label: 'Explore' },
     { icon: Heart, label: 'Favorites' },
     { icon: MapPin, label: 'Itinerary' },
