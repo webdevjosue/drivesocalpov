@@ -63,7 +63,8 @@ export function MapProvider({
 
       // Determine loading level based on zoom
       for (let i = loadingLevels.length - 1; i >= 0; i--) {
-        if (currentZoom >= loadingLevels[i].zoom) {
+        const currentLevel = loadingLevels[i]
+        if (currentLevel && currentZoom >= currentLevel.zoom) {
           loadingLevel = i + 1
           break
         }
