@@ -3,6 +3,8 @@
  * Displayed when user is offline or server is unavailable
  */
 
+'use client'
+
 import React from 'react'
 
 export default function OfflinePage() {
