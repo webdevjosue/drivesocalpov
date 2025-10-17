@@ -1,6 +1,11 @@
 node_modules
 .claude
 .next
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
 docs
 /Supabase_SETUP_INSTRUCTIONS.md
 /CLAUDE.md

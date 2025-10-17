@@ -8,7 +8,7 @@
 import React, { useEffect, useState } from 'react'
 import MapContainer from '@/components/map/MapContainer'
 import MobileLayout from '@/components/layout/MobileLayout'
-import MockLocationMarkers from '@/components/map/MockLocationMarkers'
+import SanDiegoLocationMarkers from '@/components/map/SanDiegoLocationMarkers'
 import { validateMapEnvironment } from '@/lib/map/config'
 import {
   WebSiteStructuredData,
@@ -33,8 +33,8 @@ export default function Home() {
 
   // Filter state to pass to markers
   const [filters, setFilters] = useState<FilterState>({
-    region: 'Los Angeles',
-    category: 'food',
+    region: 'San Diego',
+    category: 'All Categories',
     price: 'All Prices'
   })
 
@@ -42,8 +42,8 @@ export default function Home() {
   useEffect(() => {
     const handleFilterChange = () => {
       // Get current filter values from localStorage or global state
-      const selectedRegion = localStorage.getItem('selectedRegion') || 'Los Angeles'
-      const selectedCategory = localStorage.getItem('selectedCategory') || 'food'
+      const selectedRegion = localStorage.getItem('selectedRegion') || 'San Diego'
+      const selectedCategory = localStorage.getItem('selectedCategory') || 'All Categories'
       const selectedPrice = localStorage.getItem('selectedPrice') || 'All Prices'
 
       setFilters({
@@ -73,8 +73,8 @@ export default function Home() {
     // Check for filter updates periodically
     const interval = setInterval(() => {
       const newFilters = {
-        region: localStorage.getItem('selectedRegion') || 'Los Angeles',
-        category: localStorage.getItem('selectedCategory') || 'food',
+        region: localStorage.getItem('selectedRegion') || 'San Diego',
+        category: localStorage.getItem('selectedCategory') || 'All Categories',
         price: localStorage.getItem('selectedPrice') || 'All Prices'
       }
 
@@ -103,6 +103,7 @@ export default function Home() {
       <MobileApplicationStructuredData />
       <TravelActionStructuredData />
 
+      
       {/* Breadcrumb for navigation */}
       <BreadcrumbStructuredData
         items={[
@@ -138,8 +139,8 @@ export default function Home() {
           showControls={true}
           enablePerformanceMode={true}
         >
-          {/* Mock Location Markers with Filter Support */}
-          <MockLocationMarkers
+          {/* Real San Diego Location Markers from Database */}
+          <SanDiegoLocationMarkers
             showPopups={true}
             onMarkerClick={handleMarkerClick}
             filters={filters}
