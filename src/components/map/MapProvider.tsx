@@ -119,8 +119,19 @@ export function MapProvider({
           // Progressive performance degradation
           if (performanceWarnings === 1) {
             // First warning: Reduce visual quality
-            if (mapInstance.setPaintProperty) {
-              mapInstance.setPaintProperty('background', 'background-color', '#1a1a1a')
+            if (mapInstance.setPaintProperty && map.style && map.style.getLayer && !(map as any)._disableBackgroundOptimizations) {
+              // Check if background layer exists before trying to style it
+              try {
+                const backgroundLayer = map.style.getLayer('background')
+                if (backgroundLayer) {
+                  mapInstance.setPaintProperty('background', 'background-color', '#1a1a1a')
+                } else {
+                  console.log('Background layer not found in current style, skipping background optimization')
+                }
+              } catch (layerError) {
+                console.log('Background layer styling failed, disabling future background optimizations:', layerError)
+                ;(map as any)._disableBackgroundOptimizations = true
+              }
             }
           } else if (performanceWarnings === 2) {
             // Second warning: Disable terrain and fog
@@ -273,23 +284,52 @@ export function MapProvider({
       if (error.error && 'message' in error.error) {
         const errorMessage = error.error.message.toLowerCase()
 
+        // Background layer error - specific handling
+        if (errorMessage.includes('background') && errorMessage.includes('layer')) {
+          console.log('Background layer styling error detected, disabling background optimizations')
+          // Disable background layer optimizations by setting a flag
+          if (mapRef.current) {
+            (mapRef.current as any)._disableBackgroundOptimizations = true
+          }
+        }
+
         // Style loading error - try fallback style
         if (errorMessage.includes('style') || errorMessage.includes('tile')) {
-          console.log('Attempting fallback map style...')
+          console.log('Style loading error, attempting fallback map style...')
           // Reset to basic OpenStreetMap style (free fallback)
-          MAP_CONFIG.mapStyle = OPENSTREETMAP_STYLES.osm_standard
+          if (mapRef.current && mapRef.current.setStyle) {
+            try {
+              mapRef.current.setStyle(OPENSTREETMAP_STYLES.osm_standard)
+              console.log('Successfully switched to fallback OSM style')
+            } catch (styleError) {
+              console.error('Failed to apply fallback style:', styleError)
+            }
+          }
         }
 
         // Authentication error
         if (errorMessage.includes('token') || errorMessage.includes('unauthorized')) {
-          console.error('Map authentication error. Check your API token.')
+          console.error('Map authentication error. Using free OpenStreetMap tiles.')
+          if (mapRef.current && mapRef.current.setStyle) {
+            try {
+              mapRef.current.setStyle(OPENSTREETMAP_STYLES.osm_standard)
+            } catch (styleError) {
+              console.error('Failed to apply fallback style:', styleError)
+            }
+          }
         }
 
         // Network error
         if (errorMessage.includes('network') || errorMessage.includes('fetch')) {
           console.log('Network error detected. Retrying in 5 seconds...')
           setTimeout(() => {
-            window.location.reload()
+            if (mapRef.current && mapRef.current.setStyle) {
+              try {
+                mapRef.current.setStyle(OPENSTREETMAP_STYLES.osm_standard)
+              } catch (styleError) {
+                console.error('Failed to apply fallback style:', styleError)
+              }
+            }
           }, 5000)
         }
       }

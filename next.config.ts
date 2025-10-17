@@ -4,8 +4,13 @@ const nextConfig: NextConfig = {
   // Enable experimental features for better compatibility
   experimental: {
     optimizePackageImports: ['tailwind-merge', 'clsx', 'lucide-react'],
-    // Disable turbopack for production to fix MapLibre GL compatibility
+    // Force webpack for all builds
     webpackBuildWorker: false,
+  },
+  // Disable Turbopack completely - use webpack only
+  turbopack: {
+    // Disable turbopack to force webpack usage
+    enabled: false,
   },
   // Server external packages - fix MapLibre GL conflict
   serverExternalPackages: ['@supabase/supabase-js', 'maplibre-gl'],

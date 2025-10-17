@@ -128,6 +128,13 @@ export const OPENSTREETMAP_STYLES = {
     },
     layers: [
       {
+        id: 'background',
+        type: 'background',
+        paint: {
+          'background-color': '#f0f0f0'
+        }
+      },
+      {
         id: 'osm-tiles-layer',
         type: 'raster',
         source: 'osm-tiles',
@@ -151,6 +158,13 @@ export const OPENSTREETMAP_STYLES = {
       }
     },
     layers: [
+      {
+        id: 'background',
+        type: 'background',
+        paint: {
+          'background-color': '#ffffff'
+        }
+      },
       {
         id: 'cartodb-tiles-layer',
         type: 'raster',
@@ -176,6 +190,13 @@ export const OPENSTREETMAP_STYLES = {
     },
     layers: [
       {
+        id: 'background',
+        type: 'background',
+        paint: {
+          'background-color': '#1a1a1a'
+        }
+      },
+      {
         id: 'cartodb-dark-tiles-layer',
         type: 'raster',
         source: 'cartodb-dark-tiles',
@@ -199,6 +220,13 @@ export const OPENSTREETMAP_STYLES = {
       }
     },
     layers: [
+      {
+        id: 'background',
+        type: 'background',
+        paint: {
+          'background-color': '#fafafa'
+        }
+      },
       {
         id: 'stamen-toner-tiles-layer',
         type: 'raster',
