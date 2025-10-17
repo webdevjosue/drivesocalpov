@@ -62,7 +62,7 @@ export const createSupabaseClient = (options?: {
     autoRefreshToken?: boolean;
   };
 }) => {
-  return createClient<Database>(supabaseUrl, supabaseAnonKey, {
+  return createClient(supabaseUrl, supabaseAnonKey, {
     ...options,
   });
 };

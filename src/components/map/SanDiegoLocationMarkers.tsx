@@ -18,9 +18,32 @@ interface FilterState {
   price: string
 }
 
+// Location marker data structure from API - matches transformLocationToMarker return type
+interface LocationMarker {
+  id: string
+  name: string
+  coordinates: [number, number]
+  category: string
+  type: string
+  description: string
+  rating: number
+  isFree: boolean
+  isPremium: boolean
+  region: string
+  address?: string | null
+  phone?: string | null
+  website?: string | null
+  photos: string[]
+  amenities: string[]
+  hours?: unknown
+  price_level?: number | null
+  review_count: number
+  _source?: any // LocationWithCategories from the database
+}
+
 interface SanDiegoLocationMarkersProps {
   showPopups?: boolean
-  onMarkerClick?: (location: any) => void
+  onMarkerClick?: (location: LocationMarker) => void
   filters?: FilterState
 }
 
@@ -30,7 +53,7 @@ export default function SanDiegoLocationMarkers({
   filters = { region: 'San Diego', category: 'All Categories', price: 'All Prices' }
 }: SanDiegoLocationMarkersProps) {
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null)
-  const [locations, setLocations] = useState<any[]>([])
+  const [locations, setLocations] = useState<LocationMarker[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -42,7 +65,7 @@ export default function SanDiegoLocationMarkers({
         setError(null)
 
         // Build filter parameters for the API call
-        const apiFilters: any = {}
+        const apiFilters: Record<string, string | boolean | number> = {}
         if (filters?.region) {
           apiFilters.region = filters.region
         }
@@ -55,13 +78,13 @@ export default function SanDiegoLocationMarkers({
           }
         }
 
-        const { markers, error, count } = await fetchLocationMarkers(apiFilters)
+        const { markers, error } = await fetchLocationMarkers(apiFilters)
 
         if (error) {
           setError(error)
           console.error(`Failed to load locations for ${filters?.region || 'San Diego'}:`, error)
         } else {
-          setLocations(markers)
+          setLocations(markers as LocationMarker[])
           console.log(`Loaded ${markers.length} locations for ${filters?.region || 'San Diego'} from database`, markers)
         }
       } catch (err) {
@@ -102,7 +125,7 @@ export default function SanDiegoLocationMarkers({
   }, [locations, filters])
 
   // Render marker content
-  const renderMarkerContent = (location: any) => {
+  const renderMarkerContent = (location: LocationMarker) => {
     return (
       <div className="relative flex items-center justify-center" style={{
         transform: 'translate(-50%, -100%)',
@@ -175,7 +198,7 @@ export default function SanDiegoLocationMarkers({
   }
 
   // Handle marker click
-  const handleMarkerClick = (location: any) => {
+  const handleMarkerClick = (location: LocationMarker) => {
     setSelectedLocation(location.id === selectedLocation ? null : location.id)
     onMarkerClick?.(location)
   }
@@ -524,7 +547,7 @@ export default function SanDiegoLocationMarkers({
                       transition: 'all 0.2s ease',
                       WebkitTapHighlightColor: 'transparent'
                     }}
-                    onClick={() => window.open(location.website, '_blank')}
+                    onClick={() => location.website && window.open(location.website, '_blank')}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.backgroundColor = '#f3f4f6'
                       e.currentTarget.style.color = '#ef4444'

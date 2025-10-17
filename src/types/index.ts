@@ -12,7 +12,7 @@ export interface Location {
   zipCode: string | null;
   phone: string | null;
   website: string | null;
-  hours: Record<string, any> | null;
+  hours: Record<string, unknown> | null;
   priceRange: string | null;
   rating: number | null;
   imageUrls: string[];
@@ -96,7 +96,7 @@ export interface Achievement {
   id: string;
   userId: string;
   achievementType: AchievementType;
-  achievementData: Record<string, any>;
+  achievementData: Record<string, unknown>;
   createdAt: string;
 }
 
