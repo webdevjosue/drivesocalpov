@@ -1,0 +1,23 @@
+{
+  "timestamp": "2025-10-16T22:57:33.751Z",
+  "summary": {
+    "total": 29,
+    "valid": 29,
+    "invalid": 0,
+    "warnings": 7
+  },
+  "invalid_locations": [],
+  "valid_locations_summary": {
+    "total_valid": 29,
+    "with_warnings": 7,
+    "without_warnings": 22
+  },
+  "validation_rules_applied": [
+    "Required fields presence and format",
+    "Coordinate bounds validation (Southern California)",
+    "Address format and ZIP code validation",
+    "Phone number and website format validation",
+    "Business information consistency",
+    "Regional city validation"
+  ]
+}

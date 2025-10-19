@@ -1,0 +1,300 @@
+{
+  "schema_export": {
+    "export_date": "2025-01-16T10:00:00Z",
+    "project": "Drive SoCal POV",
+    "description": "Southern California travel guide database schema for web scraping data collection",
+    "version": "1.0",
+    "regions": ["San Diego", "Los Angeles", "Inland Empire"],
+    "coordinate_bounds": {
+      "north": 34.6,
+      "south": 31.5,
+      "east": -113.5,
+      "west": -120.5
+    }
+  },
+  "core_tables": {
+    "locations": {
+      "description": "Primary table for Southern California attractions, restaurants, and venues",
+      "required_fields": [
+        {
+          "name": "name",
+          "type": "text",
+          "description": "Business or location name",
+          "example": "Balboa Park",
+          "required": true,
+          "scraping_priority": "high"
+        },
+        {
+          "name": "category_id",
+          "type": "uuid",
+          "description": "Reference to categories table",
+          "example": "attractions_category_uuid",
+          "required": true,
+          "scraping_priority": "high",
+          "lookup_table": "categories"
+        },
+        {
+          "name": "subcategory_id",
+          "type": "uuid",
+          "description": "Reference to subcategories table",
+          "example": "parks_subcategory_uuid",
+          "required": false,
+          "scraping_priority": "medium",
+          "lookup_table": "subcategories"
+        },
+        {
+          "name": "summary",
+          "type": "text",
+          "description": "Brief description (1-2 sentences)",
+          "example": "Historic urban cultural park in San Diego with museums, gardens, and the San Diego Zoo",
+          "required": false,
+          "scraping_priority": "high"
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "description": "Detailed description of the location",
+          "example": "Balboa Park is a 1,200-acre historic urban cultural park in San Diego...",
+          "required": false,
+          "scraping_priority": "medium"
+        },
+        {
+          "name": "website",
+          "type": "text",
+          "description": "Official website URL",
+          "example": "https://www.balboapark.org/",
+          "required": false,
+          "scraping_priority": "medium"
+        },
+        {
+          "name": "phone",
+          "type": "text",
+          "description": "Contact phone number",
+          "example": "(619) 239-0512",
+          "required": false,
+          "scraping_priority": "low"
+        },
+        {
+          "name": "address",
+          "type": "text",
+          "description": "Street address",
+          "example": "1549 El Prado, San Diego, CA 92101",
+          "required": false,
+          "scraping_priority": "high"
+        },
+        {
+          "name": "city",
+          "type": "text",
+          "description": "City name (must be in Southern California)",
+          "example": "San Diego",
+          "required": true,
+          "scraping_priority": "high",
+          "allowed_values": ["San Diego", "Los Angeles", "Inland Empire cities"]
+        },
+        {
+          "name": "region",
+          "type": "text",
+          "description": "Geographic region within Southern California",
+          "example": "San Diego",
+          "required": true,
+          "scraping_priority": "high",
+          "allowed_values": ["San Diego", "Los Angeles", "Inland Empire"]
+        },
+        {
+          "name": "postal_code",
+          "type": "text",
+          "description": "ZIP code",
+          "example": "92101",
+          "required": false,
+          "scraping_priority": "medium"
+        },
+        {
+          "name": "coordinates",
+          "type": "geometry",
+          "description": "GPS coordinates (latitude, longitude)",
+          "example": "POINT(-117.1596 32.7341)",
+          "required": false,
+          "scraping_priority": "high",
+          "format": "longitude,latitude"
+        },
+        {
+          "name": "price_level",
+          "type": "integer",
+          "description": "Price tier (1=very cheap, 4=expensive)",
+          "example": 2,
+          "required": false,
+          "scraping_priority": "medium",
+          "range": {"min": 1, "max": 4}
+        },
+        {
+          "name": "is_free",
+          "type": "boolean",
+          "description": "Whether the location is completely free",
+          "example": true,
+          "required": false,
+          "scraping_priority": "high"
+        },
+        {
+          "name": "cost_estimate",
+          "type": "text",
+          "description": "Estimated cost for visit",
+          "example": "Free admission, parking $15-20",
+          "required": false,
+          "scraping_priority": "medium"
+        },
+        {
+          "name": "rating",
+          "type": "numeric",
+          "description": "Average rating (0-5)",
+          "example": 4.5,
+          "required": false,
+          "scraping_priority": "medium",
+          "range": {"min": 0, "max": 5}
+        },
+        {
+          "name": "review_count",
+          "type": "integer",
+          "description": "Number of reviews",
+          "example": 15420,
+          "required": false,
+          "scraping_priority": "low"
+        },
+        {
+          "name": "photos",
+          "type": "array",
+          "description": "Array of photo URLs",
+          "example": ["https://example.com/photo1.jpg", "https://example.com/photo2.jpg"],
+          "required": false,
+          "scraping_priority": "low"
+        },
+        {
+          "name": "tags",
+          "type": "array",
+          "description": "Relevant tags for search and categorization",
+          "example": ["family-friendly", "outdoors", "museums", "gardens"],
+          "required": false,
+          "scraping_priority": "medium"
+        },
+        {
+          "name": "amenities",
+          "type": "array",
+          "description": "Available amenities and features",
+          "example": ["parking", "restrooms", "gift shop", "restaurant"],
+          "required": false,
+          "scraping_priority": "low"
+        },
+        {
+          "name": "hours",
+          "type": "jsonb",
+          "description": "Opening hours in JSON format",
+          "example": "{\"monday\": \"9:00-18:00\", \"tuesday\": \"9:00-18:00\"}",
+          "required": false,
+          "scraping_priority": "medium"
+        }
+      ],
+      "scraping_strategy": {
+        "primary_sources": [
+          "Google Maps",
+          "Yelp",
+          "TripAdvisor",
+          "Official tourism websites",
+          "City government websites"
+        ],
+        "data_validation": {
+          "required_fields": ["name", "category_id", "city", "region"],
+          "coordinate_bounds": {
+            "latitude": {"min": 31.5, "max": 34.6},
+            "longitude": {"min": -120.5, "max": -113.5}
+          },
+          "region_validation": "Must be one of: San Diego, Los Angeles, Inland Empire"
+        }
+      }
+    },
+    "categories": {
+      "description": "Main categories for organizing locations",
+      "current_data": [
+        {"slug": "attractions", "name": "Attractions", "icon": "map-pin", "color": "#3B82F6"},
+        {"slug": "restaurants", "name": "Restaurants", "icon": "utensils", "color": "#EF4444"},
+        {"slug": "events", "name": "Events", "icon": "calendar", "color": "#10B981"},
+        {"slug": "accommodations", "name": "Accommodations", "icon": "bed", "color": "#8B5CF6"},
+        {"slug": "shopping", "name": "Shopping", "icon": "shopping-bag", "color": "#F59E0B"},
+        {"slug": "entertainment", "name": "Entertainment", "icon": "music", "color": "#EC4899"},
+        {"slug": "outdoors", "name": "Outdoors & Recreation", "icon": "trees", "color": "#059669"},
+        {"slug": "transportation", "name": "Transportation", "icon": "car", "color": "#6B7280"}
+      ],
+      "scraping_usage": "Use these slugs to categorize scraped locations"
+    },
+    "subcategories": {
+      "description": "More specific subcategories within each main category",
+      "current_data": [
+        {"slug": "museums", "name": "Museums", "category": "attractions"},
+        {"slug": "parks", "name": "Parks & Gardens", "category": "attractions"},
+        {"slug": "beaches", "name": "Beaches", "category": "attractions"},
+        {"slug": "landmarks", "name": "Landmarks", "category": "attractions"},
+        {"slug": "family-fun", "name": "Family Fun", "category": "attractions"}
+      ],
+      "scraping_usage": "Use these for more specific categorization when available"
+    },
+    "neighborhoods": {
+      "description": "Neighborhoods and areas within Southern California cities",
+      "current_data": [
+        {"slug": "gaslamp-quarter", "name": "Gaslamp Quarter", "city": "San Diego", "region": "San Diego"},
+        {"slug": "la-jolla", "name": "La Jolla", "city": "San Diego", "region": "San Diego"},
+        {"slug": "hollywood", "name": "Hollywood", "city": "Los Angeles", "region": "Los Angeles"},
+        {"slug": "santa-monica", "name": "Santa Monica", "city": "Los Angeles", "region": "Los Angeles"},
+        {"slug": "pasadena", "name": "Pasadena", "city": "Los Angeles", "region": "Los Angeles"}
+      ],
+      "scraping_usage": "Associate locations with neighborhoods when possible for better geographic organization"
+    }
+  },
+  "web_scraping_guidelines": {
+    "target_regions": [
+      {
+        "name": "San Diego County",
+        "cities": ["San Diego", "La Jolla", "Coronado", "Chula Vista", "Escondido", "Oceanside", "Carlsbad"],
+        "priority": "high"
+      },
+      {
+        "name": "Los Angeles County",
+        "cities": ["Los Angeles", "Santa Monica", "Hollywood", "Beverly Hills", "Pasadena", "Long Beach", "Malibu"],
+        "priority": "high"
+      },
+      {
+        "name": "Inland Empire",
+        "cities": ["Riverside", "San Bernardino", "Ontario", "Palm Springs", "Temecula", "Murrieta"],
+        "priority": "medium"
+      }
+    ],
+    "priority_categories": [
+      "Free attractions and activities",
+      "Budget-friendly restaurants",
+      "Family-friendly locations",
+      "Tourist landmarks and attractions",
+      "Outdoor activities and parks",
+      "Cultural attractions and museums"
+    ],
+    "data_quality_requirements": {
+      "minimum_fields_per_location": ["name", "category", "city", "region"],
+      "preferred_fields_per_location": ["name", "category", "summary", "address", "coordinates", "website"],
+      "coordinate_accuracy": "GPS coordinates must be within Southern California bounds",
+      "content_quality": "Descriptions should be original and informative (50-500 words)",
+      "image_requirements": "High-quality photos preferred but not mandatory"
+    }
+  },
+  "import_instructions": {
+    "data_format": "JSON array of location objects",
+    "validation_steps": [
+      "1. Ensure all required fields are present",
+      "2. Validate coordinates are within Southern California bounds",
+      "3. Check category and subcategory references exist",
+      "4. Normalize phone numbers and addresses",
+      "5. Remove duplicate entries"
+    ],
+    "import_order": [
+      "1. categories (if adding new ones)",
+      "2. subcategories (if adding new ones)",
+      "3. neighborhoods (if adding new ones)",
+      "4. locations (main data import)"
+    ]
+  }
+}

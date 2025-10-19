@@ -1,0 +1,286 @@
+{
+  "metadata": {
+    "region": "San Diego",
+    "category": "free-attractions",
+    "tier": "free",
+    "last_updated": "2025-01-16T10:00:00Z",
+    "total_locations": 7,
+    "status": "in-progress"
+  },
+  "locations": [
+    {
+      "name": "Balboa Park",
+      "category": "attractions",
+      "subcategory": "parks",
+      "city": "San Diego",
+      "region": "San Diego",
+      "address": "1549 El Prado, San Diego, CA 92101",
+      "coordinates": {
+        "latitude": 32.7341,
+        "longitude": -117.1596
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "Historic 1,200-acre urban cultural park with museums, gardens, and the San Diego Zoo",
+      "description": "Balboa Park is a 1,200-acre historic urban cultural park in San Diego, California. The park contains numerous museums, theaters, gardens, shops, restaurants, and the world-famous San Diego Zoo. Many of the park's attractions are free to explore, including beautiful gardens, walking paths, and architectural landmarks.",
+      "website": "https://www.balboapark.org/",
+      "social_media": {
+        "facebook": "https://www.facebook.com/balboapark",
+        "instagram": "https://www.instagram.com/balboapark",
+        "twitter": "https://twitter.com/balboapark"
+      },
+      "contact": {
+        "phone": "(619) 239-0512",
+        "email": "info@balboapark.org"
+      },
+      "hours": {
+        "park": "24/7",
+        "museums": "Varies by location"
+      },
+      "rating": 4.8,
+      "review_count": 15420,
+      "photos": [
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800"
+      ],
+      "tags": ["family-friendly", "outdoors", "museums", "gardens", "historic", "cultural"],
+      "amenities": ["parking", "restrooms", "gift shops", "restaurants", "museums"],
+      "seasonality": ["spring", "summer", "fall", "winter"],
+      "neighborhood": "Balboa Park",
+      "special_notes": "Park grounds are always free. Some museums and attractions may charge admission. Parking is free on weekends.",
+      "data_source": "websearchprime",
+      "verified": false
+    },
+    {
+      "name": "Torrey Pines State Natural Reserve",
+      "category": "outdoors",
+      "subcategory": "parks",
+      "city": "San Diego",
+      "region": "San Diego",
+      "address": "12600 N Torrey Pines Rd, La Jolla, CA 92037",
+      "coordinates": {
+        "latitude": 32.9218,
+        "longitude": -117.2532
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "2,000-acre coastal wilderness reserve with rare Torrey pine trees, hiking trails, and dramatic cliff views",
+      "description": "Torrey Pines State Natural Reserve is one of the wildest stretches of land on the Southern California coast, featuring rare Torrey pine trees, miles of unspoiled beaches, and stunning ocean cliffs. The reserve offers numerous hiking trails with breathtaking views of the Pacific Ocean, making it a paradise for nature lovers and hikers.",
+      "website": "https://www.parks.ca.gov/torreypines",
+      "phone": "(858) 755-2063",
+      "hours": {
+        "reserve": "Sunrise to sunset",
+        "visitor_center": "9:00-18:00"
+      },
+      "rating": 4.9,
+      "review_count": 8750,
+      "photos": [
+        "https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=800"
+      ],
+      "tags": ["hiking", "nature", "wildlife", "cliffs", "beaches", "photography", "rare-trees"],
+      "amenities": ["parking", "restrooms", "visitor center", "hiking trails", "beach access"],
+      "seasonality": ["spring", "summer", "fall", "winter"],
+      "neighborhood": "La Jolla",
+      "special_notes": "Parking fee applies ($15-25). Reserve closes at sunset. No dogs allowed on trails. Wear proper hiking shoes.",
+      "data_source": "websearchprime",
+      "verified": false
+    },
+    {
+      "name": "Sunset Cliffs Natural Park",
+      "category": "outdoors",
+      "subcategory": "parks",
+      "city": "San Diego",
+      "region": "San Diego",
+      "address": "1253 Sunset Cliffs Blvd, San Diego, CA 92107",
+      "coordinates": {
+        "latitude": 32.7514,
+        "longitude": -117.2512
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "68-acre coastal park with dramatic sunset views, rugged cliffs, and ocean vistas",
+      "description": "Sunset Cliffs Natural Park offers spectacular sunset views over the Pacific Ocean with dramatic coastal cliffs and sea caves. The park features walking paths, scenic viewpoints, and natural rock formations. It's one of San Diego's most photographed locations, especially during golden hour when the cliffs glow with sunset colors.",
+      "website": "https://www.sandiego.gov/park-and-recreation/parks/sunset-cliffs",
+      "phone": "(619) 221-8899",
+      "hours": {
+        "park": "24/7",
+        "best_viewing": "1 hour before sunset"
+      },
+      "rating": 4.7,
+      "review_count": 6820,
+      "photos": [
+        "https://images.unsplash.com/photo-1578873292081-1f8b5b5f1e6e?w=800"
+      ],
+      "tags": ["sunset", "cliffs", "ocean-views", "photography", "romantic", "natural-beauty"],
+      "amenities": ["parking", "walking paths", "scenic viewpoints"],
+      "seasonality": ["spring", "summer", "fall", "winter"],
+      "neighborhood": "Point Loma",
+      "special_notes": "Best visited 1 hour before sunset. No lifeguards. Cliff areas can be dangerous - stay on marked paths. Free parking available.",
+      "data_source": "websearchprime",
+      "verified": false
+    },
+    {
+      "name": "Old Town San Diego State Historic Park",
+      "category": "attractions",
+      "subcategory": "historic",
+      "city": "San Diego",
+      "region": "San Diego",
+      "address": "4002 Wallace St, San Diego, CA 92110",
+      "coordinates": {
+        "latitude": 32.7543,
+        "longitude": -117.1968
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "Historic park recreating San Diego life in the 1820s with original adobe buildings and period demonstrations",
+      "description": "Old Town San Diego State Historic Park preserves and recreates San Diego's early Mexican and American period. The park features historic adobe buildings, museums, restaurants, and shops. Visitors can enjoy free walking tours, watch blacksmith demonstrations, and experience California's early history. The park comes alive with colorful fiestas and cultural events throughout the year.",
+      "website": "https://www.parks.ca.gov/oldtownsandiego",
+      "phone": "(619) 220-5422",
+      "hours": {
+        "park": "24/7",
+        "buildings": "10:00-17:00",
+        "restaurants": "Varies"
+      },
+      "rating": 4.6,
+      "review_count": 12450,
+      "photos": [
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800"
+      ],
+      "tags": ["history", "mexican-heritage", "museums", "culture", "family-friendly", "shopping", "restaurants"],
+      "amenities": ["parking", "restrooms", "gift shops", "restaurants", "museums", "walking tours"],
+      "seasonality": ["spring", "summer", "fall", "winter"],
+      "neighborhood": "Old Town",
+      "special_notes": "Free park admission. Some museums and restaurants may charge. Free parking available. Cultural events on weekends.",
+      "data_source": "websearchprime",
+      "verified": false
+    },
+    {
+      "name": "Seaport Village",
+      "category": "shopping",
+      "subcategory": "outdoor-shopping",
+      "city": "San Diego",
+      "region": "San Diego",
+      "address": "849 W Harbor Dr, San Diego, CA 92101",
+      "coordinates": {
+        "latitude": 32.7144,
+        "longitude": -117.1758
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "Waterfront shopping and dining area with street performers, art galleries, and harbor views",
+      "description": "Seaport Village is a 14-acre waterfront shopping, dining, and entertainment complex along San Diego Bay. While shopping and dining cost money, visitors can enjoy free strolling along the waterfront, watch street performers, browse window displays, and enjoy beautiful harbor views. The area features historic ships, art installations, and regular free events.",
+      "website": "https://www.seaportvillage.com/",
+      "phone": "(619) 235-4014",
+      "hours": {
+        "area": "24/7",
+        "shops": "10:00-20:00 (varies by store)",
+        "restaurants": "Varies"
+      },
+      "rating": 4.4,
+      "review_count": 9320,
+      "photos": [
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800"
+      ],
+      "tags": ["waterfront", "shopping", "dining", "entertainment", "street-performers", "harbor-views", "family-friendly"],
+      "amenities": ["parking", "restrooms", "waterfront access", "public art"],
+      "seasonality": ["spring", "summer", "fall", "winter"],
+      "neighborhood": "Downtown",
+      "special_notes": "Free to walk around. Window shopping and street performances are free. Paid parking available. Beautiful sunset views.",
+      "data_source": "websearchprime",
+      "verified": false
+    },
+    {
+      "name": "Gaslamp Quarter",
+      "category": "attractions",
+      "subcategory": "historic-district",
+      "city": "San Diego",
+      "region": "San Diego",
+      "address": "5th Ave & Island Ave, San Diego, CA 92101",
+      "coordinates": {
+        "latitude": 32.7105,
+        "longitude": -117.1619
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "Historic Victorian-era district with 16 blocks of dining, shopping, and entertainment venues",
+      "description": "The Gaslamp Quarter is a 16-block historic neighborhood in downtown San Diego, known for its Victorian architecture, vibrant nightlife, and diverse dining scene. While restaurants and clubs charge admission, the area is free to explore on foot. Visitors can admire the historic architecture, enjoy street performances, and soak in the lively atmosphere of this National Historic District.",
+      "website": "https://www.gaslamp.org/",
+      "phone": "(619) 233-5227",
+      "hours": {
+        "area": "24/7",
+        "businesses": "Varies by establishment"
+      },
+      "rating": 4.5,
+      "review_count": 7850,
+      "photos": [
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800"
+      ],
+      "tags": ["historic", "architecture", "nightlife", "dining", "shopping", "entertainment", "victorian"],
+      "amenities": ["parking", "restrooms", "historic-architecture", "street-performers"],
+      "seasonality": ["spring", "summer", "fall", "winter"],
+      "neighborhood": "Downtown",
+      "special_notes": "Free to walk around. Best experienced in evening when district comes alive. Paid parking available. Historic walking tours available for fee.",
+      "data_source": "websearchprime",
+      "verified": false
+    },
+    {
+      "name": "Mission Bay Park",
+      "category": "outdoors",
+      "subcategory": "parks",
+      "city": "San Diego",
+      "region": "San Diego",
+      "address": "2688 E Mission Bay Dr, San Diego, CA 92109",
+      "coordinates": {
+        "latitude": 32.7795,
+        "longitude": -117.2134
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "4,600-acre aquatic park with beaches, bike paths, and water sports activities",
+      "description": "Mission Bay Park is a massive 4,600-acre aquatic park offering 27 miles of shoreline, including numerous beaches, picnic areas, and recreational facilities. The park is perfect for biking, walking, jogging, and water sports. Visitors can enjoy free beach access, playgrounds, and beautiful bay views. The calm waters make it ideal for families and water sports enthusiasts.",
+      "website": "https://www.sandiego.gov/park-and-recreation/parks/mission-bay",
+      "phone": "(619) 694-3049",
+      "hours": {
+        "park": "24/7",
+        "facilities": "Varies by location"
+      },
+      "rating": 4.6,
+      "review_count": 5890,
+      "photos": [
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800"
+      ],
+      "tags": ["beaches", "water-sports", "biking", "picnicking", "family-friendly", "recreation", "bay-views"],
+      "amenities": ["parking", "restrooms", "playgrounds", "beach access", "bike paths", "picnic areas"],
+      "seasonality": ["spring", "summer", "fall", "winter"],
+      "neighborhood": "Mission Beach",
+      "special_notes": "Free park and beach access. Parking fees apply in some areas. Great for families and water activities. Fire pits available for evening use.",
+      "data_source": "websearchprime",
+      "verified": false
+    }
+  ],
+  "collection_notes": {
+    "priority_locations": [
+      "Balboa Park",
+      "Old Town San Diego State Historic Park",
+      "La Jolla Cove",
+      "Torrey Pines State Natural Reserve",
+      "Sunset Cliffs Natural Park",
+      "Gaslamp Quarter (walking area)",
+      "Seaport Village (window shopping)",
+      "Liberty Station (public market)",
+      "Waterfront Park",
+      "Mission Bay Park"
+    ],
+    "search_queries_used": [
+      "free things to do in San Diego",
+      "best free attractions San Diego California",
+      "no cost activities San Diego families",
+      "San Diego free outdoor activities"
+    ],
+    "data_quality_goals": {
+      "target_locations": 25,
+      "minimum_required_fields": ["name", "category", "city", "region", "address", "coordinates", "is_free"],
+      "preferred_fields": ["name", "category", "summary", "address", "coordinates", "website", "hours", "photos", "tags"],
+      "coordinate_accuracy": "Must be within San Diego County bounds"
+    }
+  }
+}

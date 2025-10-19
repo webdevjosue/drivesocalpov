@@ -1,0 +1,372 @@
+{
+  "metadata": {
+    "region": "San Diego",
+    "category": "beaches",
+    "tier": "free",
+    "last_updated": "2025-01-16T10:00:00Z",
+    "total_locations": 8,
+    "status": "in-progress"
+  },
+  "locations": [
+    {
+      "name": "La Jolla Cove",
+      "category": "outdoors",
+      "subcategory": "beaches",
+      "city": "San Diego",
+      "region": "San Diego",
+      "address": "1100 Coast Blvd, La Jolla, CA 92037",
+      "coordinates": {
+        "latitude": 32.8509,
+        "longitude": -117.2719
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "Picturesque cove beach with clear waters, sea lions, and stunning coastal views",
+      "description": "La Jolla Cove is a small, picturesque cove and beach in La Jolla, San Diego. Known for its crystal-clear waters, abundant sea life, and dramatic coastal scenery. The area is perfect for swimming, snorkeling, and observing sea lions and seals in their natural habitat. The surrounding cliffs and coves offer excellent photo opportunities.",
+      "website": "https://www.sandiego.gov/park-and-recreation/parks/beaches",
+      "phone": "(858) 459-2555",
+      "hours": {
+        "beach": "24/7",
+        "parking": "Varies, typically 8:00-20:00"
+      },
+      "rating": 4.7,
+      "review_count": 8923,
+      "photos": [
+        "https://images.unsplash.com/photo-1579605071242-c6a66f5484d4?w=800"
+      ],
+      "tags": ["beach", "snorkeling", "sea-lions", "photography", "family-friendly", "swimming"],
+      "amenities": ["parking", "restrooms", "showers", "lifeguards", "picnic areas"],
+      "seasonality": ["spring", "summer", "fall"],
+      "neighborhood": "La Jolla",
+      "special_notes": "Popular for sea lion viewing. Best visited early morning to avoid crowds. Parking can be challenging on weekends.",
+      "data_source": "websearchprime",
+      "verified": false
+    },
+    {
+      "name": "Mission Beach",
+      "category": "outdoors",
+      "subcategory": "beaches",
+      "city": "San Diego",
+      "region": "San Diego",
+      "address": "Mission Beach, San Diego, CA 92109",
+      "coordinates": {
+        "latitude": 32.7725,
+        "longitude": -117.2515
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "Vibrant 2-mile beach boardwalk with Belmont Park amusement park, surfing, and beach volleyball",
+      "description": "Mission Beach is a lively 2-mile stretch of sand connecting San Diego Bay to the Pacific Ocean. The beach features a bustling boardwalk perfect for walking, biking, and skating, with Belmont Park amusement park featuring the historic Giant Dipper roller coaster. The area is popular for swimming, surfing, beach volleyball, and people-watching.",
+      "website": "https://www.sandiego.gov/park-and-recreation/parks/mission-beach",
+      "social_media": {
+        "facebook": "https://www.facebook.com/belmontpark",
+        "instagram": "https://www.instagram.com/missionbeachsd"
+      },
+      "contact": {
+        "phone": "(858) 488-3123",
+        "email": "parks@sandiego.gov"
+      },
+      "hours": {
+        "beach": "24/7",
+        "boardwalk": "24/7",
+        "belmont_park": "11:00-20:00 (seasonal)"
+      },
+      "rating": 4.6,
+      "review_count": 8950,
+      "photos": [
+        "https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?w=800"
+      ],
+      "tags": ["boardwalk", "surfing", "beach-volleyball", "family-friendly", "amusement-park", "biking", "skating"],
+      "amenities": ["parking", "restrooms", "showers", "lifeguards", "restaurants", "shops", "rentals"],
+      "seasonality": ["spring", "summer", "fall"],
+      "neighborhood": "Mission Beach",
+      "special_notes": "Free beach access, parking meters in effect. Belmont Park rides cost extra. Very crowded on summer weekends. Fire pits available for evening use.",
+      "data_source": "websearchprime",
+      "verified": false
+    },
+    {
+      "name": "Pacific Beach",
+      "category": "outdoors",
+      "subcategory": "beaches",
+      "city": "San Diego",
+      "region": "San Diego",
+      "address": "Pacific Beach, San Diego, CA 92109",
+      "coordinates": {
+        "latitude": 32.7958,
+        "longitude": -117.2556
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "Energetic beach town atmosphere with surfing, beach bars, and vibrant nightlife",
+      "description": "Pacific Beach is a youthful, energetic beach community known for its wide sandy beaches, excellent surfing conditions, and lively social scene. The area features a bustling boardfront with numerous bars, restaurants, and shops. PB attracts a younger crowd and is famous for its beach volleyball, surfing culture, and vibrant nightlife.",
+      "website": "https://www.pacificbeach.org/",
+      "social_media": {
+        "facebook": "https://www.facebook.com/pacificbeachca",
+        "instagram": "https://www.instagram.com/pacificbeach"
+      },
+      "contact": {
+        "phone": "(858) 273-1492",
+        "email": "info@pacificbeach.org"
+      },
+      "hours": {
+        "beach": "24/7",
+        "boardfront": "24/7",
+        "establishments": "Varies"
+      },
+      "rating": 4.5,
+      "review_count": 10230,
+      "photos": [
+        "https://images.unsplash.com/photo-1579532582997-4b9c3c4a6a4b?w=800"
+      ],
+      "tags": ["surfing", "nightlife", "beach-bars", "young-crowd", "volleyball", "social-scene", "boardfront"],
+      "amenities": ["parking", "restrooms", "showers", "lifeguards", "restaurants", "bars", "surf-shops"],
+      "seasonality": ["spring", "summer", "fall"],
+      "neighborhood": "Pacific Beach",
+      "special_notes": "Free beach access. Very active nightlife scene. Parking challenging, especially weekends. Popular with college students and young adults.",
+      "data_source": "websearchprime",
+      "verified": false
+    },
+    {
+      "name": "Coronado Beach",
+      "category": "outdoors",
+      "subcategory": "beaches",
+      "city": "Coronado",
+      "region": "San Diego",
+      "address": "Coronado Beach, Coronado, CA 92118",
+      "coordinates": {
+        "latitude": 32.6848,
+        "longitude": -117.1832
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "Wide, sparkling sand beach with gentle waves and family-friendly atmosphere near Hotel del Coronado",
+      "description": "Coronado Beach is renowned for its wide, sparkling golden sand and gentle waves, making it perfect for families and swimming. The beach stretches for miles with the iconic Hotel del Coronado as a backdrop. The flat terrain and calm waters make it ideal for children, while the expansive space accommodates beach volleyball, sunbathing, and long walks.",
+      "website": "https://www.coronadovisitorcenter.com/beaches",
+      "social_media": {
+        "facebook": "https://www.facebook.com/coronadobeach",
+        "instagram": "https://www.instagram.com/coronadobeach"
+      },
+      "contact": {
+        "phone": "(619) 435-1464",
+        "email": "info@coronadovisitorcenter.com"
+      },
+      "hours": {
+        "beach": "24/7",
+        "facilities": "6:00-22:00"
+      },
+      "rating": 4.8,
+      "review_count": 12450,
+      "photos": [
+        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800"
+      ],
+      "tags": ["family-friendly", "gentle-waves", "wide-sand", "hotel-del-coronado", "swimming", "romantic", "fire-pits"],
+      "amenities": ["parking", "restrooms", "showers", "lifeguards", "picnic areas", "fire-pits", "beach-wheelchairs"],
+      "seasonality": ["spring", "summer", "fall", "winter"],
+      "neighborhood": "Coronado",
+      "special_notes": "Free beach access, paid parking available. Named one of America's best beaches. Fire pits popular for evening bonfires. Accessible via Coronado Bridge.",
+      "data_source": "websearchprime",
+      "verified": false
+    },
+    {
+      "name": "Ocean Beach",
+      "category": "outdoors",
+      "subcategory": "beaches",
+      "city": "San Diego",
+      "region": "San Diego",
+      "address": "Ocean Beach, San Diego, CA 92107",
+      "coordinates": {
+        "latitude": 32.7522,
+        "longitude": -117.2528
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "Laid-back beach town with dog-friendly areas, fishing pier, and vintage surf culture",
+      "description": "Ocean Beach (OB) embodies Southern California's relaxed beach culture with a bohemian, eclectic vibe. The beach features a long fishing pier, dog-friendly areas, and excellent surf breaks. The community is known for its vintage shops, casual restaurants, and friendly locals. OB offers both beach and bay access, with the Ocean Beach Pier being the longest concrete pier on the West Coast.",
+      "website": "https://www.oboceanc.org/",
+      "social_media": {
+        "facebook": "https://www.facebook.com/oceanbeachsandiego",
+        "instagram": "https://www.instagram.com/oceanbeach"
+      },
+      "contact": {
+        "phone": "(619) 224-3909",
+        "email": "info@obmainstreet.com"
+      },
+      "hours": {
+        "beach": "24/7",
+        "pier": "24/7",
+        "dog-beach": "24/7"
+      },
+      "rating": 4.6,
+      "review_count": 9870,
+      "photos": [
+        "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800"
+      ],
+      "tags": ["dog-friendly", "fishing-pier", "surfing", "bohemian", "laid-back", "vintage-culture", "bay-access"],
+      "amenities": ["parking", "restrooms", "showers", "lifeguards", "fishing-pier", "dog-park", "volleyball-courts"],
+      "seasonality": ["spring", "summer", "fall", "winter"],
+      "neighborhood": "Ocean Beach",
+      "special_notes": "Free beach access. Famous Dog Beach allows off-leash dogs. Pier fishing popular. Weekly farmers market on Wednesdays. Very pet-friendly community.",
+      "data_source": "websearchprime",
+      "verified": false
+    },
+    {
+      "name": "Imperial Beach",
+      "category": "outdoors",
+      "subcategory": "beaches",
+      "city": "Imperial Beach",
+      "region": "San Diego",
+      "address": "Imperial Beach, CA 91932",
+      "coordinates": {
+        "latitude": 32.5836,
+        "longitude": -117.1132
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "Southernmost California beach with wide sand, gentle surf, and annual sand castle competition",
+      "description": "Imperial Beach is San Diego County's southernmost beach, offering wide sandy shores and gentle waves perfect for families. The beach is known for its annual U.S. Open Sandcastle Competition and excellent bird watching opportunities at the nearby Tijuana Estuary. The area provides a more relaxed, less crowded alternative to northern San Diego beaches.",
+      "website": "https://www.imperialbeach.gov/247/Pier-Beach",
+      "social_media": {
+        "facebook": "https://www.facebook.com/cityofib",
+        "instagram": "https://www.instagram.com/imperialbeach"
+      },
+      "contact": {
+        "phone": "(619) 423-8300",
+        "email": "parksrecreation@imperialbeach.gov"
+      },
+      "hours": {
+        "beach": "24/7",
+        "pier": "24/7",
+        "park-facilities": "6:00-22:00"
+      },
+      "rating": 4.4,
+      "review_count": 5230,
+      "photos": [
+        "https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?w=800"
+      ],
+      "tags": ["family-friendly", "bird-watching", "sandcastle-competition", "relaxed", "southernmost-beach", "fishing-pier"],
+      "amenities": ["parking", "restrooms", "showers", "lifeguards", "fishing-pier", "picnic-areas", "playground"],
+      "seasonality": ["spring", "summer", "fall", "winter"],
+      "neighborhood": "Imperial Beach",
+      "special_notes": "Free beach access. Less crowded than northern beaches. Great for bird watching near Tijuana Estuary. Annual sand castle competition in July.",
+      "data_source": "websearchprime",
+      "verified": false
+    },
+    {
+      "name": "Silver Strand State Beach",
+      "category": "outdoors",
+      "subcategory": "beaches",
+      "city": "Coronado",
+      "region": "San Diego",
+      "address": "5000 Hwy 75, Coronado, CA 92118",
+      "coordinates": {
+        "latitude": 32.6478,
+        "longitude": -117.1234
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "Scenic narrow peninsula with both ocean and bay beaches, camping, and water sports",
+      "description": "Silver Strand State Beach offers the unique experience of both Pacific Ocean and San Diego Bay beaches on a narrow strip of land. The park features camping facilities, calm bay waters perfect for swimming and kayaking, and ocean waves ideal for surfing. The area connects Coronado to Imperial Beach and provides spectacular views of both the ocean and bay.",
+      "website": "https://www.parks.ca.gov/silverstrand",
+      "social_media": {
+        "facebook": "https://www.facebook.com/SilverStrandStateBeach",
+        "instagram": "https://www.instagram.com/silverstrandbeach"
+      },
+      "contact": {
+        "phone": "(619) 435-5184",
+        "email": "silver.strand@parks.ca.gov"
+      },
+      "hours": {
+        "park": "24/7",
+        "camping": "Check-in 15:00, Check-out 12:00",
+        "day-use": "8:00-sunset"
+      },
+      "rating": 4.7,
+      "review_count": 6850,
+      "photos": [
+        "https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?w=800"
+      ],
+      "tags": ["camping", "bay-beach", "ocean-beach", "water-sports", "kayaking", "swimming", "bird-watching"],
+      "amenities": ["camping", "parking", "restrooms", "showers", "lifeguards", "picnic-areas", "boat-launch"],
+      "seasonality": ["spring", "summer", "fall"],
+      "neighborhood": "Coronado",
+      "special_notes": "Day use free, camping fees apply. Unique bay/ocean access. Popular for kayaking and stand-up paddleboarding on bay side. Reservations recommended for camping.",
+      "data_source": "websearchprime",
+      "verified": false
+    },
+    {
+      "name": "La Jolla Shores Park",
+      "category": "outdoors",
+      "subcategory": "beaches",
+      "city": "San Diego",
+      "region": "San Diego",
+      "address": "8300 Camino del Oro, La Jolla, CA 92037",
+      "coordinates": {
+        "latitude": 32.8470,
+        "longitude": -117.2734
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "Family-friendly crescent beach with gentle waves, grassy park, and kayak rentals",
+      "description": "La Jolla Shores is a wide, crescent-shaped beach with gentle waves perfect for families and swimming. The adjacent park offers grassy areas, picnic tables, and playground equipment. The beach is popular for kayaking, stand-up paddleboarding, and scuba diving at the nearby La Jolla Ecological Reserve. Marine life viewing, including sea lions and dolphins, is common.",
+      "website": "https://www.sandiego.gov/park-and-recreation/parks/lajolla-shores",
+      "social_media": {
+        "facebook": "https://www.facebook.com/lajollashores",
+        "instagram": "https://www.instagram.com/lajollashores"
+      },
+      "contact": {
+        "phone": "(619) 221-8899",
+        "email": "lajollashores@sandiego.gov"
+      },
+      "hours": {
+        "beach": "24/7",
+        "park": "24/7",
+        "facilities": "6:00-22:00"
+      },
+      "rating": 4.7,
+      "review_count": 7890,
+      "photos": [
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800"
+      ],
+      "tags": ["family-friendly", "kayaking", "scuba-diving", "marine-life", "gentle-waves", "picnicking", "playground"],
+      "amenities": ["parking", "restrooms", "showers", "lifeguards", "playground", "picnic-areas", "grass-park", "rentals"],
+      "seasonality": ["spring", "summer", "fall", "winter"],
+      "neighborhood": "La Jolla",
+      "special_notes": "Free beach access. Paid parking lot available. Excellent for beginner surfers and kayakers. Marine life protected area. Popular for family gatherings and picnics.",
+      "data_source": "websearchprime",
+      "verified": false
+    }
+  ],
+  "collection_notes": {
+    "priority_beaches": [
+      "La Jolla Cove",
+      "Mission Beach",
+      "Pacific Beach",
+      "Coronado Beach",
+      "Ocean Beach",
+      "Sunset Cliffs Beach",
+      "Torrey Pines State Beach",
+      "Imperial Beach",
+      "Cardiff State Beach",
+      "Del Mar City Beach"
+    ],
+    "search_queries_used": [
+      "best beaches San Diego California",
+      "free public beaches San Diego County",
+      "San Diego family-friendly beaches",
+      "southern California beach destinations San Diego"
+    ],
+    "data_quality_goals": {
+      "target_locations": 20,
+      "minimum_required_fields": ["name", "category", "city", "region", "address", "coordinates", "is_free"],
+      "preferred_fields": ["name", "category", "summary", "address", "coordinates", "hours", "photos", "tags", "amenities"],
+      "coordinate_accuracy": "Must be coastal San Diego County locations"
+    },
+    "beach_specific_fields": {
+      "water_quality": "Good/Excellent/Fair/Poor",
+      "lifeguard_hours": "Seasonal or year-round",
+      "parking_type": "Free/Paid/Metered",
+      "beach_type": ["Sandy", "Rocky", "Cove", "State Beach", "City Beach"],
+      "activities": ["Swimming", "Surfing", "Snorkeling", "Volleyball", "Fishing", "Picnicking"]
+    }
+  }
+}

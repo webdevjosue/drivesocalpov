@@ -1,0 +1,382 @@
+{
+  "metadata": {
+    "region": "Los Angeles",
+    "category": "free-attractions",
+    "tier": "free",
+    "last_updated": "2025-01-16T10:30:00Z",
+    "total_locations": 8,
+    "status": "in-progress"
+  },
+  "locations": [
+    {
+      "name": "Griffith Park",
+      "category": "outdoors",
+      "subcategory": "parks",
+      "city": "Los Angeles",
+      "region": "Los Angeles",
+      "address": "4730 Crystal Springs Dr, Los Angeles, CA 90027",
+      "coordinates": {
+        "latitude": 34.1365,
+        "longitude": -118.2935
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "4,210-acre urban park with hiking trails, Griffith Observatory, and Hollywood Sign views",
+      "description": "Griffith Park is one of the largest urban parks in North America, offering extensive hiking trails, picnic areas, and stunning views of Los Angeles and the iconic Hollywood Sign. While the Griffith Observatory and planetarium shows require tickets, the park grounds, hiking trails, and many viewpoints are completely free to explore.",
+      "website": "https://www.laparks.org/griffithpark",
+      "social_media": {
+        "facebook": "https://www.facebook.com/GriffithParkLA",
+        "instagram": "https://www.instagram.com/griffithparkla",
+        "twitter": "https://twitter.com/griffithparkla"
+      },
+      "contact": {
+        "phone": "(323) 913-4688",
+        "email": "griffithobservatory@lacity.org"
+      },
+      "hours": {
+        "park": "24/7",
+        "observatory_exterior": "24/7",
+        "facilities": "Varies by location"
+      },
+      "rating": 4.8,
+      "review_count": 25680,
+      "photos": [
+        "https://images.unsplash.com/photo-1520467790875-79e45456c6c0?w=800"
+      ],
+      "tags": ["hiking", "hollywood-sign", "city-views", "family-friendly", "outdoors", "picnicking", "nature"],
+      "amenities": ["parking", "restrooms", "hiking trails", "picnic areas", "playgrounds", "horseback riding"],
+      "seasonality": ["spring", "summer", "fall", "winter"],
+      "neighborhood": "Los Feliz",
+      "special_notes": "Free park access. Observatory free admission but timed reservations required. Parking fees apply ($4-20). Great Hollywood Sign viewing spots.",
+      "data_source": "websearchprime",
+      "verified": false
+    },
+    {
+      "name": "The Getty Center",
+      "category": "attractions",
+      "subcategory": "museums",
+      "city": "Los Angeles",
+      "region": "Los Angeles",
+      "address": "1200 Getty Center Dr, Los Angeles, CA 90049",
+      "coordinates": {
+        "latitude": 34.0775,
+        "longitude": -118.4747
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "World-class art museum with stunning architecture, gardens, and panoramic city views",
+      "description": "The Getty Center is a world-renowned art museum featuring European paintings, drawings, sculptures, decorative arts, and photographs from the Middle Ages to the present. The complex is famous for its stunning architecture, beautiful gardens, and panoramic views of Los Angeles. While parking costs money, admission to the museum and all exhibitions is completely free.",
+      "website": "https://www.getty.edu/visit/center/",
+      "social_media": {
+        "facebook": "https://www.facebook.com/gettymuseum",
+        "instagram": "https://www.instagram.com/gettymuseum",
+        "twitter": "https://twitter.com/gettymuseum"
+      },
+      "contact": {
+        "phone": "(310) 440-7300",
+        "email": "visitor.services@getty.edu"
+      },
+      "hours": {
+        "museum": "Tuesday-Friday: 10:00-17:00, Saturday-Sunday: 10:00-17:00",
+        "gardens": "24/7 access",
+        "closed": "Mondays"
+      },
+      "rating": 4.7,
+      "review_count": 18950,
+      "photos": [
+        "https://images.unsplash.com/photo-1594736797933-d0acc2401915?w=800"
+      ],
+      "tags": ["art", "architecture", "gardens", "city-views", "family-friendly", "photography", "culture"],
+      "amenities": ["parking", "restrooms", "restaurants", "gift shops", "gardens", "audio-guides"],
+      "seasonality": ["spring", "summer", "fall", "winter"],
+      "neighborhood": "Brentwood",
+      "special_notes": "Free admission with timed reservations required. Parking $20 per car. Closed Mondays. Arrive early for best parking availability.",
+      "data_source": "websearchprime",
+      "verified": false
+    },
+    {
+      "name": "Hollywood Walk of Fame",
+      "category": "attractions",
+      "subcategory": "historic-district",
+      "city": "Los Angeles",
+      "region": "Los Angeles",
+      "address": "Hollywood Blvd & Vine St, Los Angeles, CA 90028",
+      "coordinates": {
+        "latitude": 34.1018,
+        "longitude": -118.3269
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "Iconic sidewalk with celebrity stars, historic theaters, and Hollywood glamour",
+      "description": "The Hollywood Walk of Fame is a world-famous attraction featuring more than 2,600 brass stars embedded in the sidewalks along Hollywood Boulevard and Vine Street. The walk celebrates achievements in the entertainment industry, with stars honoring actors, musicians, directors, and other celebrities. The surrounding area includes historic theaters like the TCL Chinese Theatre and the Dolby Theatre.",
+      "website": "https://www.walkoffame.com/",
+      "social_media": {
+        "facebook": "https://www.facebook.com/HollywoodWalkOfFame",
+        "instagram": "https://www.instagram.com/hollywoodwalkoffame",
+        "twitter": "https://twitter.com/walkoffame"
+      },
+      "contact": {
+        "phone": "(323) 469-8311",
+        "email": "info@walkoffame.com"
+      },
+      "hours": {
+        "walk": "24/7",
+        "ceremonies": "Varies by event",
+        "theaters": "Varies by venue"
+      },
+      "rating": 4.4,
+      "review_count": 32480,
+      "photos": [
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800"
+      ],
+      "tags": ["hollywood", "celebrities", "entertainment", "historic-theaters", "photography", "tourist-attraction"],
+      "amenities": ["parking", "restrooms", "restaurants", "shops", "tourist-information"],
+      "seasonality": ["spring", "summer", "fall", "winter"],
+      "neighborhood": "Hollywood",
+      "special_notes": "Completely free to walk around. Star ceremonies happen regularly. Busy area - be aware of surroundings. Paid parking available in nearby lots.",
+      "data_source": "websearchprime",
+      "verified": false
+    },
+    {
+      "name": "Santa Monica Pier",
+      "category": "attractions",
+      "subcategory": "beach-pier",
+      "city": "Santa Monica",
+      "region": "Los Angeles",
+      "address": "200 Santa Monica Pier, Santa Monica, CA 90401",
+      "coordinates": {
+        "latitude": 34.0089,
+        "longitude": -118.4998
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "Historic pier with carnival rides, Pacific Park amusement area, and beachfront views",
+      "description": "The Santa Monica Pier is a historic landmark dating back to 1909, featuring the Pacific Park amusement area with rides like the solar-powered Pacific Wheel Ferris wheel and West Coaster roller coaster. While individual rides cost money, walking on the pier, enjoying ocean views, and watching the sunset are completely free. The pier offers classic beach town atmosphere with street performers, fishing, and dining options.",
+      "website": "https://www.santamonicapier.org/",
+      "social_media": {
+        "facebook": "https://www.facebook.com/santamonicapier",
+        "instagram": "https://www.instagram.com/santamonicapier",
+        "twitter": "https://twitter.com/santamonicapier"
+      },
+      "contact": {
+        "phone": "(310) 458-8901",
+        "email": "info@santamonicapier.org"
+      },
+      "hours": {
+        "pier": "24/7",
+        "rides": "Monday-Friday: 12:00-20:00, Saturday-Sunday: 11:00-20:00",
+        "seasonal_hours": "Extended summer hours"
+      },
+      "rating": 4.5,
+      "review_count": 19458,
+      "photos": [
+        "https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?w=800"
+      ],
+      "tags": ["beach", "pier", "amusement-rides", "sunset", "family-friendly", "ocean-views", "historic"],
+      "amenities": ["parking", "restrooms", "restaurants", "shops", "fishing", "playground"],
+      "seasonality": ["spring", "summer", "fall", "winter"],
+      "neighborhood": "Santa Monica",
+      "special_notes": "Free to walk on pier. Individual ride tickets required for attractions. Parking fees in nearby lots. Beautiful sunset viewing spot.",
+      "data_source": "websearchprime",
+      "verified": false
+    },
+    {
+      "name": "Venice Beach Boardwalk",
+      "category": "attractions",
+      "subcategory": "boardwalk",
+      "city": "Los Angeles",
+      "region": "Los Angeles",
+      "address": "1800 Ocean Front Walk, Los Angeles, CA 90291",
+      "coordinates": {
+        "latitude": 33.9850,
+        "longitude": -118.4695
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "Eclectic boardwalk with street performers, artists, skate park, and Venice Canals",
+      "description": "The Venice Beach Boardwalk is one of LA's most iconic and colorful destinations, featuring a diverse array of street performers, artists, vendors, and attractions. The area includes the famous Venice Skate Park, outdoor basketball courts, bodybuilding areas, and numerous shops and cafes. The adjacent Venice Canals offer a peaceful contrast with beautiful residential waterways. It's a celebration of LA's bohemian beach culture.",
+      "website": "https://www.laparks.org/venice/",
+      "social_media": {
+        "facebook": "https://www.facebook.com/venicebeachboardwalk",
+        "instagram": "https://www.instagram.com/venicebeach",
+        "twitter": "https://twitter.com/venicebeach"
+      },
+      "contact": {
+        "phone": "(310) 399-2775",
+        "email": "venice@lacity.org"
+      },
+      "hours": {
+        "boardwalk": "24/7",
+        "facilities": "Varies by location",
+        "skate_park": "8:00-sunset"
+      },
+      "rating": 4.6,
+      "review_count": 21890,
+      "photos": [
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800"
+      ],
+      "tags": ["street-performers", "skateboarding", "beach-culture", "bohemian", "artists", "canals", "basketball"],
+      "amenities": ["parking", "restrooms", "skate-park", "basketball-courts", "outdoor-gym", "shops"],
+      "seasonality": ["spring", "summer", "fall", "winter"],
+      "neighborhood": "Venice",
+      "special_notes": "Free to explore. Very crowded on weekends and summer. Unique street performers and artists. Venice Canals nearby worth visiting.",
+      "data_source": "websearchprime",
+      "verified": false
+    },
+    {
+      "name": "Runyon Canyon Park",
+      "category": "outdoors",
+      "subcategory": "parks",
+      "city": "Los Angeles",
+      "region": "Los Angeles",
+      "address": "2000 N Fuller Ave, Los Angeles, CA 90046",
+      "coordinates": {
+        "latitude": 34.1269,
+        "longitude": -118.3448
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "Popular hiking trail with Hollywood Sign views and celebrity sightings",
+      "description": "Runyon Canyon Park is one of LA's most famous hiking spots, offering scenic trails with panoramic views of Los Angeles and the Hollywood Sign. The park attracts fitness enthusiasts, dog walkers, and celebrities seeking exercise. Multiple trail options range from easy walks to challenging hikes, making it accessible to various fitness levels. The park is known for its social scene and stunning city views.",
+      "website": "https://www.laparks.org/runyon-canyon-park",
+      "social_media": {
+        "facebook": "https://www.facebook.com/RunyonCanyon",
+        "instagram": "https://www.instagram.com/runyoncanyon",
+        "twitter": "https://twitter.com/runyoncanyon"
+      },
+      "contact": {
+        "phone": "(323) 848-6522",
+        "email": "runyon.canyon@lacity.org"
+      },
+      "hours": {
+        "park": "24/7",
+        "gates": "6:30-dusk",
+        "best_hiking": "Early morning or late afternoon"
+      },
+      "rating": 4.4,
+      "review_count": 8750,
+      "photos": [
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800"
+      ],
+      "tags": ["hiking", "city-views", "hollywood-sign", "dog-friendly", "fitness", "celebrity-sightings"],
+      "amenities": ["parking", "hiking trails", "water fountains", "bag dispensers", "multiple entrances"],
+      "seasonality": ["spring", "summer", "fall", "winter"],
+      "neighborhood": "Hollywood Hills",
+      "special_notes": "Free admission. Limited street parking. Very popular - arrive early. Dogs allowed on-leash. Bring water and sun protection.",
+      "data_source": "websearchprime",
+      "verified": false
+    },
+    {
+      "name": "Olvera Street",
+      "category": "attractions",
+      "subcategory": "historic",
+      "city": "Los Angeles",
+      "region": "Los Angeles",
+      "address": "845 N Alameda St, Los Angeles, CA 90012",
+      "coordinates": {
+        "latitude": 34.0626,
+        "longitude": -118.2369
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "Birthplace of Los Angeles with historic Mexican marketplace and cultural attractions",
+      "description": "Olvera Street is known as the birthplace of Los Angeles, offering a vibrant taste of old Mexico with historic buildings, traditional restaurants, and colorful shops. The street features the Avila Adobe, the oldest standing residence in Los Angeles, along with museums, cultural performances, and authentic Mexican cuisine. It's a free outdoor museum celebrating LA's Mexican heritage and founding.",
+      "website": "https://olvera-street.com/",
+      "social_media": {
+        "facebook": "https://www.facebook.com/olverastreet",
+        "instagram": "https://www.instagram.com/olverastreet",
+        "twitter": "https://twitter.com/olverastreet"
+      },
+      "contact": {
+        "phone": "(213) 628-1274",
+        "email": "info@olvera-street.com"
+      },
+      "hours": {
+        "street": "10:00-19:00 (daily)",
+        "museums": "10:00-16:00 (Wednesday-Sunday)",
+        "restaurants": "Varies by establishment"
+      },
+      "rating": 4.4,
+      "review_count": 6580,
+      "photos": [
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800"
+      ],
+      "tags": ["history", "mexican-heritage", "culture", "museums", "shopping", "traditional-food", "founding-of-LA"],
+      "amenities": ["parking", "restrooms", "museums", "restaurants", "shops", "cultural-performances"],
+      "seasonality": ["spring", "summer", "fall", "winter"],
+      "neighborhood": "El Pueblo",
+      "special_notes": "Free street access, some museums may charge admission. Cultural events and celebrations throughout the year. Authentic Mexican dining experience.",
+      "data_source": "websearchprime",
+      "verified": false
+    },
+    {
+      "name": "The Grove",
+      "category": "shopping",
+      "subcategory": "outdoor-mall",
+      "city": "Los Angeles",
+      "region": "Los Angeles",
+      "address": "189 The Grove Dr, Los Angeles, CA 90036",
+      "coordinates": {
+        "latitude": 34.0481,
+        "longitude": -118.3570
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "Outdoor shopping center with beautiful landscaping, fountain shows, and free trolley",
+      "description": "The Grove is an upscale outdoor shopping and entertainment center featuring beautiful architecture, landscaping, and a choreographed fountain show. While shopping and dining cost money, visitors can enjoy free strolling through the property, watching the fountain shows, riding the free trolley to The Original Farmers Market, and admiring the ambiance. The center features a dancing water fountain synchronized to music and seasonal decorations.",
+      "website": "https://www.thegrovela.com/",
+      "social_media": {
+        "facebook": "https://www.facebook.com/thegrovela",
+        "instagram": "https://www.instagram.com/thegrovela",
+        "twitter": "https://twitter.com/thegrovela"
+      },
+      "contact": {
+        "phone": "(323) 900-8080",
+        "email": "info@thegrovela.com"
+      },
+      "hours": {
+        "center": "10:00-21:00 (Monday-Saturday), 11:00-19:00 (Sunday)",
+        "fountain_shows": "Every hour during operating hours",
+        "trolley": "During center hours"
+      },
+      "rating": 4.6,
+      "review_count": 12450,
+      "photos": [
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800"
+      ],
+      "tags": ["shopping", "outdoor-mall", "fountain-shows", "family-friendly", "dining", "entertainment"],
+      "amenities": ["parking", "restrooms", "free-trolley", "fountain-shows", "playground"],
+      "seasonality": ["spring", "summer", "fall", "winter"],
+      "neighborhood": "Mid-City West",
+      "special_notes": "Free to walk around and enjoy atmosphere. Fountain shows run hourly. Free trolley connects to Farmers Market. Shopping and dining cost extra.",
+      "data_source": "websearchprime",
+      "verified": false
+    }
+  ],
+  "collection_notes": {
+    "priority_locations": [
+      "Griffith Park",
+      "Hollywood Walk of Fame",
+      "Santa Monica Pier",
+      "Venice Beach Boardwalk",
+      "The Getty Center",
+      "Hollywood Sign (viewing areas)",
+      "Runyon Canyon",
+      "Malibu Beach",
+      "Manhattan Beach Pier",
+      "Olvera Street"
+    ],
+    "search_queries_used": [
+      "free things to do in Los Angeles",
+      "best free attractions Los Angeles California",
+      "no cost activities LA families",
+      "Los Angeles free outdoor activities"
+    ],
+    "data_quality_goals": {
+      "target_locations": 20,
+      "minimum_required_fields": ["name", "category", "city", "region", "address", "coordinates", "is_free"],
+      "preferred_fields": ["name", "category", "summary", "address", "coordinates", "website", "hours", "photos", "tags"],
+      "coordinate_accuracy": "Must be within Los Angeles County bounds"
+    }
+  }
+}

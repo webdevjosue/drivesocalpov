@@ -1,0 +1,247 @@
+{
+  "metadata": {
+    "region": "Inland Empire",
+    "category": "free-attractions",
+    "tier": "free",
+    "last_updated": "2025-01-16T11:00:00Z",
+    "total_locations": 5,
+    "status": "in-progress"
+  },
+  "locations": [
+    {
+      "name": "Mission Inn Festival of Lights",
+      "category": "attractions",
+      "subcategory": "festival",
+      "city": "Riverside",
+      "region": "Inland Empire",
+      "address": "3649 Mission Inn Ave, Riverside, CA 92501",
+      "coordinates": {
+        "latitude": 33.9832,
+        "longitude": -117.3769
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "Historic hotel with spectacular Christmas light display and holiday festivities",
+      "description": "The Mission Inn Festival of Lights is a spectacular holiday tradition featuring over 5 million lights decorating the historic Mission Inn Hotel. While the hotel itself requires paid access, the outdoor light display and surrounding festivities are completely free to enjoy from the street. The event includes live entertainment, holiday vendors, and beautiful holiday decorations throughout downtown Riverside.",
+      "website": "https://www.missioninn.com/festival-of-lights",
+      "social_media": {
+        "facebook": "https://www.facebook.com/missioninnhotel",
+        "instagram": "https://www.instagram.com/missioninn",
+        "twitter": "https://twitter.com/missioninn"
+      },
+      "contact": {
+        "phone": "(951) 784-0300",
+        "email": "info@missioninn.com"
+      },
+      "hours": {
+        "light_display": "Daily from late November through December, 17:00-24:00",
+        "seasonal": "Holiday season only (November-January)"
+      },
+      "rating": 4.8,
+      "review_count": 12480,
+      "photos": [
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800"
+      ],
+      "tags": ["holiday", "christmas", "lights", "historic-hotel", "family-tradition", "festivals"],
+      "amenities": ["parking", "restaurants", "shopping", "entertainment", "historic-architecture"],
+      "seasonality": ["winter"],
+      "neighborhood": "Downtown Riverside",
+      "special_notes": "Free outdoor light viewing. Hotel tours require paid admission. Very crowded during holiday season. Street parking available.",
+      "data_source": "websearchprime",
+      "verified": false
+    },
+    {
+      "name": "March Field Air Museum",
+      "category": "attractions",
+      "subcategory": "museum",
+      "city": "Riverside",
+      "region": "Inland Empire",
+      "address": "22550 Van Buren Blvd, Riverside, CA 92518",
+      "coordinates": {
+        "latitude": 33.8769,
+        "longitude": -117.4256
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "Aviation museum with historic aircraft and free outdoor aircraft displays",
+      "description": "March Field Air Museum features an impressive collection of historic aircraft and aviation artifacts, with many aircraft displayed outdoors for free viewing. The indoor museum has an admission fee, but the outdoor aircraft collection, including helicopters, fighter jets, and bombers from various eras, can be viewed completely free. The museum is located at the historic March Air Reserve Base.",
+      "website": "https://www.marchfield.org/",
+      "social_media": {
+        "facebook": "https://www.facebook.com/MarchFieldAirMuseum",
+        "instagram": "https://www.instagram.com/marchfieldairmuseum",
+        "twitter": "https://twitter.com/marchfieldmuseum"
+      },
+      "contact": {
+        "phone": "(951) 697-6702",
+        "email": "info@marchfield.org"
+      },
+      "hours": {
+        "outdoor_displays": "24/7 visibility from perimeter",
+        "museum": "10:00-17:00 (Tuesday-Sunday, paid admission)",
+        "closed": "Mondays"
+      },
+      "rating": 4.6,
+      "review_count": 6890,
+      "photos": [
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800"
+      ],
+      "tags": ["aviation", "military", "aircraft", "history", "family-friendly", "outdoor-exhibits"],
+      "amenities": ["parking", "gift shop", "restrooms", "picnic areas"],
+      "seasonality": ["spring", "summer", "fall", "winter"],
+      "neighborhood": "Riverside",
+      "special_notes": "Free outdoor aircraft viewing. Indoor museum requires admission. Great for aviation enthusiasts and families. Military base area - follow all posted rules.",
+      "data_source": "websearchprime",
+      "verified": false
+    },
+    {
+      "name": "Pioneer Park",
+      "category": "outdoors",
+      "subcategory": "parks",
+      "city": "Temecula",
+      "region": "Inland Empire",
+      "address": "31985 Moreno Rd, Temecula, CA 92592",
+      "coordinates": {
+        "latitude": 33.4968,
+        "longitude": -117.1474
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "Historic park with original Temecula buildings, museums, and Old West charm",
+      "description": "Pioneer Park in Temecula preserves the town's pioneer heritage with historic buildings, including the original Temecula jail, schoolhouse, and various pioneer-era structures. The park offers free outdoor exploration of historic buildings, picnic areas, and beautiful views of the surrounding countryside. It's a peaceful step back into Southern California's Old West history.",
+      "website": "https://www.temeculaca.gov/ThingsToDo/PioneerPark",
+      "social_media": {
+        "facebook": "https://www.facebook.com/cityoftemecula",
+        "instagram": "https://www.instagram.com/cityoftemecula",
+        "twitter": "https://twitter.com/cityoftemecula"
+      },
+      "contact": {
+        "phone": "(951) 694-6410",
+        "email": "parks@temeculaca.gov"
+      },
+      "hours": {
+        "park": "24/7",
+        "building_viewing": "Outdoor viewing available anytime",
+        "picnic_areas": "24/7"
+      },
+      "rating": 4.5,
+      "review_count": 3240,
+      "photos": [
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800"
+      ],
+      "tags": ["history", "pioneer-era", "old-west", "picnicking", "family-friendly", "historic-buildings"],
+      "amenities": ["parking", "restrooms", "picnic areas", "walking paths", "historic-structures"],
+      "seasonality": ["spring", "summer", "fall", "winter"],
+      "neighborhood": "Temecula",
+      "special_notes": "Free outdoor historic area. Buildings may have limited access. Great for history buffs and family picnics. Near Old Town Temecula.",
+      "data_source": "websearchprime",
+      "verified": false
+    },
+    {
+      "name": "Big Bear Discovery Center",
+      "category": "outdoors",
+      "subcategory": "nature-center",
+      "city": "Fawnskin",
+      "region": "Inland Empire",
+      "address": "40971 North Shore Dr, Fawnskin, CA 92333",
+      "coordinates": {
+        "latitude": 34.2712,
+        "longitude": -116.8983
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "Mountain nature center with forest information, trails, and wildlife education",
+      "description": "The Big Bear Discovery Center serves as the gateway to the San Bernardino National Forest, offering free outdoor exhibits, trail information, and educational displays about local wildlife and forest ecology. While some programs and facility rentals have fees, the center itself, outdoor exhibits, and access to trail heads are completely free. It's an excellent starting point for exploring Big Bear Lake's natural beauty.",
+      "website": "https://www.disbigbear.com/",
+      "social_media": {
+        "facebook": "https://www.facebook.com/bigbeardiscoverycenter",
+        "instagram": "https://www.instagram.com/bigbeardiscoverycenter",
+        "twitter": "https://twitter.com/bigbeardiscovery"
+      },
+      "contact": {
+        "phone": "(909) 382-2790",
+        "email": "info@disbigbear.com"
+      },
+      "hours": {
+        "center": "8:00-17:00 (daily)",
+        "outdoor_exhibits": "24/7 access",
+        "trails": "Dawn to dusk"
+      },
+      "rating": 4.4,
+      "review_count": 4580,
+      "photos": [
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800"
+      ],
+      "tags": ["nature", "wildlife", "hiking", "forests", "mountains", "family-friendly", "education"],
+      "amenities": ["parking", "restrooms", "information center", "trail access", "picnic areas"],
+      "seasonality": ["spring", "summer", "fall", "winter"],
+      "neighborhood": "Big Bear Lake",
+      "special_notes": "Free admission to center and outdoor areas. Some special programs may require fees. Great starting point for mountain hiking. Check weather conditions in winter.",
+      "data_source": "websearchprime",
+      "verified": false
+    },
+    {
+      "name": "Lake Perris State Recreation Area",
+      "category": "outdoors",
+      "subcategory": "recreation-area",
+      "city": "Perris",
+      "region": "Inland Empire",
+      "address": "18700 Lake Perris Dr, Perris, CA 92571",
+      "coordinates": {
+        "latitude": 33.7901,
+        "longitude": -117.2479
+      },
+      "is_free": true,
+      "tier": "free",
+      "summary": "Large reservoir with beaches, hiking trails, fishing, and outdoor recreation",
+      "description": "Lake Perris State Recreation Area offers diverse outdoor activities around a large reservoir in the heart of the Inland Empire. While day-use parking has fees, the lake perimeter can be accessed for free viewing from certain areas, and the surrounding hills provide excellent hiking opportunities. The park features sandy beaches, fishing areas, picnic spots, and beautiful mountain views.",
+      "website": "https://www.parks.ca.gov/?page_id=656",
+      "social_media": {
+        "facebook": "https://www.facebook.com/LakePerrisSRA",
+        "instagram": "https://www.instagram.com/lakeperris",
+        "twitter": "https://twitter.com/lakeperris"
+      },
+      "contact": {
+        "phone": "(951) 940-5600",
+        "email": "lake.perris@parks.ca.gov"
+      },
+      "hours": {
+        "park": "24/7 access to perimeter areas",
+        "facilities": "Varies by season and facility type",
+        "day_use": "Sunrise to sunset"
+      },
+      "rating": 4.5,
+      "review_count": 7890,
+      "photos": [
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800"
+      ],
+      "tags": ["lake", "fishing", "hiking", "picnicking", "beaches", "outdoor-recreation", "water-sports"],
+      "amenities": ["parking", "restrooms", "picnic areas", "hiking trails", "beach access", "fishing"],
+      "seasonality": ["spring", "summer", "fall", "winter"],
+      "neighborhood": "Perris",
+      "special_notes": "Free lake viewing from perimeter. Some parking areas and facilities require day-use fees. Popular for fishing and water activities. Hiking trails free to access.",
+      "data_source": "websearchprime",
+      "verified": false
+    }
+  ],
+  "collection_notes": {
+    "priority_locations": [
+      "Mission Inn Festival of Lights",
+      "March Field Air Museum",
+      "Pioneer Park Temecula",
+      "Big Bear Discovery Center",
+      "Lake Perris State Recreation Area"
+    ],
+    "search_queries_used": [
+      "free things to do Inland Empire California",
+      "best free attractions Riverside San Bernardino",
+      "no cost activities Temecula Murrieta",
+      "Inland Empire free outdoor activities"
+    ],
+    "data_quality_goals": {
+      "target_locations": 15,
+      "minimum_required_fields": ["name", "category", "city", "region", "address", "coordinates", "is_free"],
+      "preferred_fields": ["name", "category", "summary", "address", "coordinates", "website", "hours", "photos", "tags"],
+      "coordinate_accuracy": "Must be within Inland Empire bounds (Riverside/San Bernardino counties)"
+    }
+  }
+}
