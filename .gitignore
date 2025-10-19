@@ -27,6 +27,7 @@ build/
 /mcp-integrations
 /plugin
 /skills
+/docs
 
 # Development artifacts
 /logs/

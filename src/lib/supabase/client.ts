@@ -17,7 +17,7 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
     detectSessionInUrl: true,
   },
   db: {
-    schema: 'api', // Use api schema for security as user requested
+    schema: 'public', // Use public schema as required by Supabase
   },
   realtime: {
     params: {
@@ -40,7 +40,7 @@ export const createTypedClient = () => {
       detectSessionInUrl: true,
     },
     db: {
-      schema: 'api', // Use api schema for security as user requested
+      schema: 'public', // Use public schema as required by Supabase
     },
     realtime: {
       params: {
