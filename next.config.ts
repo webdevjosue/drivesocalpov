@@ -7,11 +7,7 @@ const nextConfig: NextConfig = {
     // Force webpack for all builds
     webpackBuildWorker: false,
   },
-  // Disable Turbopack completely - use webpack only
-  turbopack: {
-    // Disable turbopack to force webpack usage
-    enabled: false,
-  },
+  // Note: Turbopack disabled via environment variable NEXT_TURBOPACK=0
   // Server external packages - fix MapLibre GL conflict
   serverExternalPackages: ['@supabase/supabase-js', 'maplibre-gl'],
 

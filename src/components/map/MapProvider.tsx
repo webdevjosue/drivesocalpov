@@ -13,6 +13,9 @@ import { useMapStore } from '@/store/mapStore'
 import { useIsMobile } from '@/hooks/useIsMobile'
 import type { DriveSoCalMap } from '@/types/map'
 
+// Import MapLibre types for proper typing
+import type { Map as MapLibreMap } from 'maplibre-gl'
+
 // Import styles for mobile optimization
 import '@/styles/map.css'
 
@@ -92,7 +95,7 @@ export function MapProvider({
   }, [])
 
   // Enhanced performance monitoring with adaptive quality
-  const setupPerformanceMonitoring = useCallback((map: unknown) => {
+  const setupPerformanceMonitoring = useCallback((map: MapLibreMap) => {
     let frameCount = 0
     let lastTime = performance.now()
     let performanceWarnings = 0
@@ -110,7 +113,7 @@ export function MapProvider({
           performanceWarnings++
           console.warn(`Low FPS detected: ${fps}, enabling performance optimizations (Warning ${performanceWarnings}/3)`)
 
-          const mapInstance = map as {
+          const mapInstance = map as MapLibreMap & {
             setPaintProperty?: (layer: string, property: string, value: unknown) => void,
             setTerrain?: (terrain: any) => void,
             setFog?: (fog: any) => void
@@ -119,10 +122,10 @@ export function MapProvider({
           // Progressive performance degradation
           if (performanceWarnings === 1) {
             // First warning: Reduce visual quality
-            if (mapInstance.setPaintProperty && map.style && map.style.getLayer && !(map as any)._disableBackgroundOptimizations) {
+            if (mapInstance.setPaintProperty && (map as any).style && (map as any).style.getLayer && !(map as any)._disableBackgroundOptimizations) {
               // Check if background layer exists before trying to style it
               try {
-                const backgroundLayer = map.style.getLayer('background')
+                const backgroundLayer = (map as any).style.getLayer('background')
                 if (backgroundLayer) {
                   mapInstance.setPaintProperty('background', 'background-color', '#1a1a1a')
                 } else {
@@ -204,20 +207,28 @@ export function MapProvider({
       setLoading(false)
       setStyleLoaded(true)
 
+      // Get the native map instance for optimizations
+      const mapInstance = mapRef.current?.getMap()
+
       // Set maxBounds for ALL users to enforce boundaries
-      map.setMaxBounds(MAP_CONFIG.maxBounds)
-      map.setRenderWorldCopies(false)
+      if (mapInstance) {
+        mapInstance.setMaxBounds(MAP_CONFIG.maxBounds)
+        mapInstance.setRenderWorldCopies(false)
+      }
 
       // Mobile-specific optimizations
-      if (isMobile) {
+      if (isMobile && mapRef.current) {
+        const mobileMapInstance = mapRef.current.getMap()
+        if (!mobileMapInstance) return
+
         // Enable touch gestures
-        map.touchZoomRotate.enable()
-        map.dragPan.enable()
-        map.dragRotate.disable()
-        map.touchPitch.disable()
+        mobileMapInstance.touchZoomRotate.enable()
+        mobileMapInstance.dragPan.enable()
+        mobileMapInstance.dragRotate.disable()
+        mobileMapInstance.touchPitch.disable()
 
         // Optimize for mobile rendering
-        const canvas = map.getCanvas()
+        const canvas = mobileMapInstance.getCanvas()
         if (canvas) {
           const devicePixelRatio = window.devicePixelRatio
           if (devicePixelRatio > 2) {
@@ -230,7 +241,7 @@ export function MapProvider({
         }
 
         // Optimize font rendering for mobile
-        if (map.style && (map.style as any).glyphs) {
+        if ((mobileMapInstance as any).style && (mobileMapInstance as any).style.glyphs) {
           // Force better font rendering on mobile
           ;(canvas.style as any).fontSmooth = 'always'
           ;(canvas.style as any).webkitFontSmoothing = 'antialiased'
@@ -245,10 +256,10 @@ export function MapProvider({
         // Performance is handled through config.maxTileCacheSize in MAP_CONFIG
 
         // Monitor performance
-        setupPerformanceMonitoring(map)
-
-        // Setup progressive tile loading
-        setupProgressiveLoading(map)
+        if (mapInstance) {
+          setupPerformanceMonitoring(mapInstance)
+          setupProgressiveLoading(mapInstance)
+        }
       }
 
       // Set viewport information
@@ -269,7 +280,7 @@ export function MapProvider({
         config: mapConfig,
       })
     },
-    [isMobile, setMap, setLoading, setStyleLoaded, setPerformanceMode, setViewport, onMapLoad, enablePerfMode, mapConfig, setupProgressiveLoading]
+    [isMobile, setMap, setLoading, setStyleLoaded, setPerformanceMode, setViewport, onMapLoad, enablePerfMode, mapConfig, setupProgressiveLoading, setupPerformanceMonitoring]
   )
 
   // Error handling with fallback strategies
@@ -297,12 +308,15 @@ export function MapProvider({
         if (errorMessage.includes('style') || errorMessage.includes('tile')) {
           console.log('Style loading error, attempting fallback map style...')
           // Reset to basic OpenStreetMap style (free fallback)
-          if (mapRef.current && mapRef.current.setStyle) {
-            try {
-              mapRef.current.setStyle(OPENSTREETMAP_STYLES.osm_standard)
-              console.log('Successfully switched to fallback OSM style')
-            } catch (styleError) {
-              console.error('Failed to apply fallback style:', styleError)
+          if (mapRef.current) {
+            const mapInstance = mapRef.current.getMap()
+            if (mapInstance && 'setStyle' in mapInstance) {
+              try {
+                (mapInstance as any).setStyle(OPENSTREETMAP_STYLES.osm_standard)
+                console.log('Successfully switched to fallback OSM style')
+              } catch (styleError) {
+                console.error('Failed to apply fallback style:', styleError)
+              }
             }
           }
         }
@@ -310,11 +324,14 @@ export function MapProvider({
         // Authentication error
         if (errorMessage.includes('token') || errorMessage.includes('unauthorized')) {
           console.error('Map authentication error. Using free OpenStreetMap tiles.')
-          if (mapRef.current && mapRef.current.setStyle) {
-            try {
-              mapRef.current.setStyle(OPENSTREETMAP_STYLES.osm_standard)
-            } catch (styleError) {
-              console.error('Failed to apply fallback style:', styleError)
+          if (mapRef.current) {
+            const mapInstance = mapRef.current.getMap()
+            if (mapInstance && 'setStyle' in mapInstance) {
+              try {
+                (mapInstance as any).setStyle(OPENSTREETMAP_STYLES.osm_standard)
+              } catch (styleError) {
+                console.error('Failed to apply fallback style:', styleError)
+              }
             }
           }
         }
@@ -323,11 +340,14 @@ export function MapProvider({
         if (errorMessage.includes('network') || errorMessage.includes('fetch')) {
           console.log('Network error detected. Retrying in 5 seconds...')
           setTimeout(() => {
-            if (mapRef.current && mapRef.current.setStyle) {
-              try {
-                mapRef.current.setStyle(OPENSTREETMAP_STYLES.osm_standard)
-              } catch (styleError) {
-                console.error('Failed to apply fallback style:', styleError)
+            if (mapRef.current) {
+              const mapInstance = mapRef.current.getMap()
+              if (mapInstance && 'setStyle' in mapInstance) {
+                try {
+                  (mapInstance as any).setStyle(OPENSTREETMAP_STYLES.osm_standard)
+                } catch (styleError) {
+                  console.error('Failed to apply fallback style:', styleError)
+                }
               }
             }
           }, 5000)
