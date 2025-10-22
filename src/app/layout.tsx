@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme/theme-provider";
-import { PerformanceMonitor } from "@/components/debug/PerformanceMonitor";
-import { TestSuite } from "@/components/debug/TestSuite";
 
 export const metadata: Metadata = {
   title: {
@@ -265,33 +263,7 @@ export default function RootLayout({
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
         </div>
 
-        {/* Development testing components */}
-        {process.env.NODE_ENV === 'development' && (
-          <>
-            <PerformanceMonitor
-              enabled={true}
-              showDetails={true}
-              onUpdate={(metrics) => {
-                // Log performance issues in development
-                if (metrics.fps < 30) {
-                  console.warn('Low FPS detected:', metrics)
-                }
-                if (metrics.memoryUsage > 100) {
-                  console.warn('High memory usage:', metrics)
-                }
-              }}
-            />
-            <TestSuite
-              enabled={false} // Enable manually for testing
-              onTestComplete={(results) => {
-                console.log('Test Suite Results:', results)
-                const passed = results.filter(r => r.status === 'passed').length
-                const total = results.length
-                console.log(`Tests completed: ${passed}/${total} passed`)
-              }}
-            />
-          </>
-        )}
+        {/* Development testing components moved to discardata/ */}
       </body>
     </html>
   );

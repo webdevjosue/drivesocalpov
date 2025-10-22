@@ -93,8 +93,9 @@ gta_icons/
 # Test files directory (move to discardata/)
 tests/
 
-# Test files in src directory
+# Test files in src directory (except production test files)
 **/__tests__/
+!src/hooks/__tests__/
 
 # Generated icon folders
 public/icons/

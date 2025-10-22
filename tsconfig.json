@@ -52,6 +52,8 @@
     "src/components/test/**/*",
     "src/hooks/__tests__/**/*",
     "tests/**/*",
-    "src/components/debug/**/*"
+    "src/components/debug/**/*",
+    "discardata/**/*",
+    "schemas/**/*"
   ]
 }
