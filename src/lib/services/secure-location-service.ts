@@ -17,6 +17,8 @@ export interface SecureLocation {
   tags: string[] | null;
   category_id: string;
   created_at: string;
+  longitude: number;
+  latitude: number;
 }
 
 export interface Category {
@@ -233,6 +235,23 @@ class SecureLocationService {
 
 // Export singleton instance
 export const secureLocationService = new SecureLocationService();
+
+// Transform location to marker format for map integration
+export function transformLocationToMarker(location: SecureLocation) {
+  return {
+    id: location.id,
+    name: location.name,
+    coordinates: [location.longitude, location.latitude],
+    city: location.city,
+    region: location.region,
+    category: 'attractions', // Default category
+    rating: location.rating,
+    is_free: location.is_free,
+    photos: location.photos,
+    tags: location.tags,
+    summary: location.summary
+  };
+}
 
 // Export types for use in components
 export type { SecureLocation as Location, Category };

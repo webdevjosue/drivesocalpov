@@ -1,10 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
-// Initialize Supabase client
+// Initialize Supabase client with API schema configuration
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  db: {
+    schema: 'api'
+  }
+});
 
 // Rate limiting (simple in-memory for now)
 const rateLimiter = new Map();
@@ -45,7 +49,7 @@ export async function GET(request: NextRequest) {
     const isFree = searchParams.get('is_free');
     const limit = Math.min(parseInt(searchParams.get('limit') || '20'), 100); // Max 100
 
-    // Build secure query - only select necessary columns
+    // Build secure query - use API schema view with computed coordinate columns
     let query = supabase
       .from('locations')
       .select(`
@@ -60,7 +64,9 @@ export async function GET(request: NextRequest) {
         photos,
         tags,
         category_id,
-        created_at
+        created_at,
+        longitude,
+        latitude
       `)
       .eq('is_published', true)
       .order('rating', { ascending: false })

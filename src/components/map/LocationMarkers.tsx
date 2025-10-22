@@ -8,12 +8,13 @@
 
 import React, { useMemo, useCallback, useEffect, useState } from 'react'
 import { Marker } from '@vis.gl/react-maplibre'
-import { useLocations } from '@/hooks/useLocations'
+import { useSecureLocations } from '@/hooks/useSecureLocations'
 import { useNavigation } from '@/hooks/useNavigation'
+import { transformLocationToMarker } from '@/lib/services/secure-location-service'
 
 // Marker component types
 interface LocationMarkerProps {
-  marker: NonNullable<ReturnType<typeof import('@/lib/services/location-service').transformLocationToMarker>>
+  marker: NonNullable<ReturnType<typeof import('@/lib/services/secure-location-service').transformLocationToMarker>>
   isSelected: boolean
   onSelect: (marker: LocationMarkerProps['marker']) => void
   onDeselect: () => void
@@ -354,9 +355,15 @@ function LocationMarker({ marker, isSelected, onSelect, onDeselect, showPopup = 
 
 // Main LocationMarkers component
 export function LocationMarkers() {
-  const { markers, loading, error } = useLocations()
+  const { locations, loading, error } = useSecureLocations()
   const { navState } = useNavigation()
   const selectedRegion = navState.selectedRegion || 'Los Angeles'
+
+  // Transform locations to markers for map display
+  const markers = useMemo(() => {
+    if (!locations) return []
+    return locations.map(transformLocationToMarker)
+  }, [locations])
   const selectedCategory = navState.selectedCategory || 'all'
   const selectedPriceFilter = navState.selectedPriceFilter || 'All Prices'
   const [selectedMarker, setSelectedMarker] = useState<LocationMarkerProps['marker'] | null>(null)

@@ -9,6 +9,7 @@ import React, { useState, useEffect } from 'react'
 import { Navigation, Menu, LogOut, Maximize2, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { ThemeToggle } from '@/components/theme/theme-toggle'
+import { SoCalThemeToggle } from '@/components/ui/SoCalThemeToggle'
 import { useNavigation } from '@/hooks/useNavigation'
 
 interface MobileLayoutProps {
@@ -206,8 +207,8 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
       >
         {/* Left Controls Group */}
         <div style={{ display: 'flex', gap: 'var(--space-2)', alignItems: 'center' }}>
-          {/* Theme Toggle */}
-          <ThemeToggle />
+          {/* SoCal + GTA 5 Theme Toggle */}
+          <SoCalThemeToggle />
 
           {/* Fullscreen Icon - Top Left - Now Functional */}
           <button

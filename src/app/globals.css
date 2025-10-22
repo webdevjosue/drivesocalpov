@@ -45,7 +45,7 @@
   --line-height-normal: 1.5;
   --line-height-relaxed: 1.75;
 
-  /* === SOUTHERN CALIFORNIA COLOR PALETTE === */
+  /* === SOUTHERN CALIFORNIA + GTA 5 COLOR PALETTE === */
   /* SoCal Ocean Blue - Primary Brand */
   --socal-ocean-50: #e8f4fd;
   --socal-ocean-100: #c1e2fa;
@@ -69,6 +69,42 @@
   --socal-sunset-700: #c2410c;
   --socal-sunset-800: #9a3412;
   --socal-sunset-900: #7c2d12;
+
+  /* GTA 5 Yellow - Highlight/Action */
+  --gta-yellow-50: #fefce8;
+  --gta-yellow-100: #fef9c3;
+  --gta-yellow-200: #fef08a;
+  --gta-yellow-300: #fde047;
+  --gta-yellow-400: #facc15;
+  --gta-yellow-500: #eab308;
+  --gta-yellow-600: #ca8a04;
+  --gta-yellow-700: #a16207;
+  --gta-yellow-800: #854d0e;
+  --gta-yellow-900: #713f12;
+
+  /* GTA 5 Mission Red - Important/Alert */
+  --gta-mission-50: #fef2f2;
+  --gta-mission-100: #fee2e2;
+  --gta-mission-200: #fecaca;
+  --gta-mission-300: #fca5a5;
+  --gta-mission-400: #f87171;
+  --gta-mission-500: #ef4444;
+  --gta-mission-600: #dc2626;
+  --gta-mission-700: #b91c1c;
+  --gta-mission-800: #991b1b;
+  --gta-mission-900: #7f1d1d;
+
+  /* GTA 5 Purple - Premium/Special */
+  --gta-purple-50: #faf5ff;
+  --gta-purple-100: #f3e8ff;
+  --gta-purple-200: #e9d5ff;
+  --gta-purple-300: #d8b4fe;
+  --gta-purple-400: #c084fc;
+  --gta-purple-500: #a855f7;
+  --gta-purple-600: #9333ea;
+  --gta-purple-700: #7c3aed;
+  --gta-purple-800: #6b21a8;
+  --gta-purple-900: #581c87;
 
   /* SoCal Palm Green - Success/Nature */
   --socal-palm-50: #f0fdf4;
@@ -185,63 +221,81 @@
   --color-warning-dark: var(--gtav-gold-400);
   --color-danger-dark: #ef4444;
 
-  /* === SHADCN/UI SYSTEM VARIABLES === */
-  /* Light mode */
+  /* === ENHANCED SHADCN/UI SYSTEM VARIABLES - SOCAL + GTA 5 THEME === */
+  /* Light mode - SoCal Beach Vibe */
   --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
-  --primary: 221.2 83.2% 53.3%;
-  --primary-foreground: 210 40% 98%;
-  --secondary: 210 40% 96%;
-  --secondary-foreground: 222.2 84% 4.9%;
-  --muted: 210 40% 96%;
-  --muted-foreground: 215.4 16.3% 46.9%;
-  --accent: 210 40% 96%;
-  --accent-foreground: 222.2 84% 4.9%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-  --ring: 221.2 83.2% 53.3%;
+  --foreground: 210 10% 9%;
+  --card: 210 10% 98%;
+  --card-foreground: 210 10% 9%;
+  --popover: 210 10% 98%;
+  --popover-foreground: 210 10% 9%;
+  --primary: 202 78% 40%; /* SoCal Ocean Blue */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 16 85% 55%; /* SoCal Sunset Orange */
+  --secondary-foreground: 0 0% 100%;
+  --muted: 210 10% 95%;
+  --muted-foreground: 210 10% 50%;
+  --accent: 42 100% 50%; /* GTA 5 Yellow */
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%; /* GTA 5 Mission Red */
+  --destructive-foreground: 0 0% 100%;
+  --border: 210 10% 85%;
+  --input: 210 10% 85%;
+  --ring: 202 78% 40%;
+  --radius: 0.75rem;
+}
 
-  /* === BORDER RADIUS === */
-  --radius-sm: 0.25rem;   /* 4px */
-  --radius-md: 0.375rem;  /* 6px */
-  --radius-lg: 0.5rem;    /* 8px */
-  --radius-xl: 0.75rem;   /* 12px */
-  --radius-2xl: 1rem;     /* 16px */
-  --radius-3xl: 1.5rem;   /* 24px */
-  --radius-full: 9999px;
+/* ===================================
+   DARK MODE THEME - GTA 5 NIGHT VIBES
+   =================================== */
 
-  /* === SHADOWS === */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+.dark {
+  /* Enhanced shadcn/ui dark mode - GTA 5 Night Theme */
+  --background: 240 5% 3%; /* Dark night background */
+  --foreground: 0 0% 95%;
+  --card: 240 5% 8%;
+  --card-foreground: 0 0% 95%;
+  --popover: 240 5% 8%;
+  --popover-foreground: 0 0% 95%;
+  --primary: 202 78% 50%; /* Bright SoCal Ocean Blue */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 16 85% 50%; /* Bright SoCal Sunset Orange */
+  --secondary-foreground: 0 0% 100%;
+  --muted: 240 5% 12%;
+  --muted-foreground: 0 0% 65%;
+  --accent: 42 100% 50%; /* GTA 5 Yellow */
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%; /* GTA 5 Mission Red */
+  --destructive-foreground: 0 0% 100%;
+  --border: 240 5% 15%;
+  --input: 240 5% 15%;
+  --ring: 202 78% 50%;
+}
 
-  /* === TRANSITIONS === */
-  --transition-fast: 150ms ease-in-out;
-  --transition-normal: 200ms ease-in-out;
-  --transition-slow: 300ms ease-in-out;
+/* GTA 5 inspired dark mode enhancements */
+.dark .gta-enhanced {
+  --background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+  --card: rgba(26, 26, 46, 0.8);
+  --border: rgba(255, 215, 0, 0.2);
+  --shadow: 0 10px 25px rgba(255, 215, 0, 0.1);
+}
 
-  /* === Z-INDEX SCALE === */
-  --z-dropdown: 1000;
-  --z-sticky: 1020;
-  --z-fixed: 1030;
-  --z-modal-backdrop: 1040;
-  --z-modal: 1050;
-  --z-popover: 1060;
-  --z-tooltip: 1070;
-  --z-toast: 1080;
+.dark .socal-enhanced {
+  --background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  --card: rgba(30, 41, 59, 0.9);
+  --border: rgba(251, 146, 60, 0.2);
+  --shadow: 0 10px 25px rgba(251, 146, 60, 0.1);
+}
 
-  /* === LAYOUT DIMENSIONS === */
-  --header-height: 60px;    /* App header height */
-  --filter-height: 60px;    /* Bottom filter height (reduced) */
-  --footer-height: 44px;    /* Ad banner height */
-  --sidebar-width: 120px;   /* Left sidebar width */
+/* Theme toggle improvements */
+.dark .theme-toggle {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+}
+
+.dark .theme-toggle::after {
+  background: #fde047;
+  box-shadow: 0 0 10px rgba(253, 224, 71, 0.5);
 }
 
 /* ===================================
@@ -328,36 +382,70 @@ body {
 }
 
 .btn--primary {
-  background-color: var(--color-primary-600);
+  background: linear-gradient(135deg, var(--socal-ocean-500), var(--socal-ocean-600));
   color: var(--color-text-inverse);
-  border-color: var(--color-primary-600);
+  border: 2px solid var(--socal-ocean-400);
+  box-shadow: 0 4px 12px rgba(9, 119, 216, 0.2);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .btn--primary:hover {
-  background-color: var(--color-primary-700);
-  border-color: var(--color-primary-700);
+  background: linear-gradient(135deg, var(--socal-ocean-600), var(--socal-ocean-700));
+  border-color: var(--socal-ocean-500);
+  box-shadow: 0 6px 16px rgba(9, 119, 216, 0.3);
+  transform: translateY(-1px);
 }
 
 .btn--secondary {
-  background-color: var(--color-surface);
-  color: var(--color-text-primary);
-  border-color: var(--color-border-secondary);
+  background: linear-gradient(135deg, var(--socal-sunset-500), var(--socal-sunset-600));
+  color: var(--color-text-inverse);
+  border: 2px solid var(--socal-sunset-400);
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .btn--secondary:hover {
-  background-color: var(--color-surface-alt);
-  border-color: var(--color-gray-300);
+  background: linear-gradient(135deg, var(--socal-sunset-600), var(--socal-sunset-700));
+  border-color: var(--socal-sunset-500);
+  box-shadow: 0 6px 16px rgba(249, 115, 22, 0.3);
+  transform: translateY(-1px);
 }
 
 .btn--ghost {
-  background-color: transparent;
-  color: var(--color-text-secondary);
-  border-color: transparent;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 215, 0, 0.1));
+  color: var(--socal-ocean-600);
+  border: 2px solid rgba(9, 119, 216, 0.2);
+  backdrop-filter: blur(10px);
+  font-weight: 500;
 }
 
 .btn--ghost:hover {
-  background-color: var(--color-gray-100);
-  color: var(--color-text-primary);
+  background: linear-gradient(135deg, rgba(9, 119, 216, 0.1), rgba(249, 115, 22, 0.1));
+  color: var(--socal-ocean-700);
+  border-color: rgba(9, 119, 216, 0.4);
+  box-shadow: 0 4px 12px rgba(9, 119, 216, 0.1);
+}
+
+/* GTA 5 style button variants */
+.btn--gta {
+  background: linear-gradient(135deg, #fde047, #facc15);
+  color: #000000;
+  border: 3px solid #000000;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.btn--gta:hover {
+  background: linear-gradient(135deg, #facc15, #fde047);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
 .btn--icon {

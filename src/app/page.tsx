@@ -8,8 +8,9 @@
 import React, { useEffect, useState } from 'react'
 import MapContainer from '@/components/map/MapContainer'
 import MobileLayout from '@/components/layout/MobileLayout'
-import SanDiegoLocationMarkers from '@/components/map/SanDiegoLocationMarkers'
+import LocationMarkers from '@/components/map/LocationMarkers'
 import { validateMapEnvironment } from '@/lib/map/config'
+import { SoCalThemeToggle } from '@/components/ui/SoCalThemeToggle'
 import {
   WebSiteStructuredData,
   MobileApplicationStructuredData,
@@ -139,11 +140,10 @@ export default function Home() {
           showControls={true}
           enablePerformanceMode={true}
         >
-          {/* Real San Diego Location Markers from Database */}
-          <SanDiegoLocationMarkers
+          {/* Secure Location Markers from API */}
+          <LocationMarkers
             showPopups={true}
             onMarkerClick={handleMarkerClick}
-            filters={filters}
           />
         </MapContainer>
       </MobileLayout>
