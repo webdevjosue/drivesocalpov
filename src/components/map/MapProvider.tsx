@@ -16,6 +16,9 @@ import type { DriveSoCalMap } from '@/types/map'
 // Import MapLibre types for proper typing
 import type { Map as MapLibreMap } from 'maplibre-gl'
 
+// Import real location markers
+import LocationMarkers from './LocationMarkers'
+
 // Import styles for mobile optimization
 import '@/styles/map.css'
 
@@ -503,6 +506,8 @@ export function MapProvider({
         }}
       >
         {children}
+        {/* Real location markers from database */}
+        <LocationMarkers />
       </Map>
     </div>
   )

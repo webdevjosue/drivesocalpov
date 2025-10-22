@@ -6,7 +6,10 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { Navigation, Menu, Search, Heart, User, MapPin, Star, Settings, LogOut, Maximize2, X, House } from 'lucide-react'
+import { Navigation, Menu, LogOut, Maximize2, X } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { ThemeToggle } from '@/components/theme/theme-toggle'
+import { useNavigation } from '@/hooks/useNavigation'
 
 interface MobileLayoutProps {
   children: React.ReactNode
@@ -37,13 +40,24 @@ interface WindowWithDebugMap extends Window {
 }
 
 export default function MobileLayout({ children, title = "Drive SoCal POV" }: MobileLayoutProps) {
-  // State management - single declarations only
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  // Use integrated navigation and location hooks
+  const {
+    navState,
+    closeMenu,
+    toggleMenu,
+    navigationItems,
+    flyToRegion,
+    filterByCategory,
+    filterByPrice,
+    REGIONS,
+    CATEGORIES
+  } = useNavigation()
+
+  // Legacy state for compatibility (will be migrated)
   const [activeFilter, setActiveFilter] = useState<'region' | 'places' | 'free' | null>(null)
-  const [selectedRegion, setSelectedRegion] = useState('Los Angeles')
   const [selectedPlace, setSelectedPlace] = useState('food')
-  const [currentMapRegion, setCurrentMapRegion] = useState('Los Angeles')
   const [selectedPrice, setSelectedPrice] = useState('All Prices')
+  const [selectedRegion, setSelectedRegion] = useState('Los Angeles')
 
   
   // Close filter popups and menu when clicking outside
@@ -55,16 +69,16 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
       }
       // Also close menu when clicking outside
       if (!target.closest('[data-menu-container]')) {
-        setIsMenuOpen(false)
+        closeMenu()
       }
     }
 
-    if (activeFilter || isMenuOpen) {
+    if (activeFilter || navState.isOpen) {
       document.addEventListener('click', handleClickOutside)
       return () => document.removeEventListener('click', handleClickOutside)
     }
     return undefined
-  }, [activeFilter, isMenuOpen])
+  }, [activeFilter, navState.isOpen, closeMenu])
 
   // Smart region detection based on map center position
   useEffect(() => {
@@ -98,55 +112,34 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
     return () => clearInterval(interval)
   }, [])
 
-  const menuItems = [
-    { icon: House, label: 'Home' },
-    { icon: Search, label: 'Explore' },
-    { icon: Heart, label: 'Favorites' },
-    { icon: MapPin, label: 'Itinerary' },
-    { icon: Star, label: 'Top Rated' },
-    { icon: User, label: 'Profile' },
-    { icon: Settings, label: 'Settings' },
-  ]
+  // Current map region state
+  const [currentMapRegion, setCurrentMapRegion] = useState('Los Angeles')
+
+  // Use integrated navigation items
+  const menuItems = navigationItems
 
   // Regions with coordinates for map navigation
-  const regions = [
-    { name: 'Inland Empire', coordinates: [-117.3, 34.1] as [number, number] },
-    { name: 'Los Angeles', coordinates: [-118.24, 34.05] as [number, number] },
-    { name: 'San Diego', coordinates: [-117.15, 32.71] as [number, number] },
-  ]
+  const regions = Object.entries(REGIONS).map(([key, config]) => ({
+    name: config.name,
+    coordinates: config.coordinates,
+    key
+  }))
 
   // Place categories
-  const placeCategories = ['food', 'events', 'attractions', 'beaches', 'museums', 'bars']
+  const placeCategories = Object.keys(CATEGORIES)
 
   // Handle region selection - move map to selected region
   const handleRegionSelect = (region: typeof regions[0]) => {
-    setSelectedRegion(region.name)
+    flyToRegion(region.key as keyof typeof REGIONS)
     setActiveFilter(null)
-
-    // Save to localStorage for marker filtering
-    localStorage.setItem('selectedRegion', region.name)
-
-    // Access the map instance and move to selected region
-    const map = (window as WindowWithDebugMap).__debugMap
-    if (map) {
-      map.flyTo({
-        center: region.coordinates,
-        zoom: 11,
-        bearing: 0,
-        pitch: 0,
-        duration: 1000,
-        essential: true,
-      })
-    }
+    setSelectedRegion(region.name)
   }
 
   // Handle place selection
   const handlePlaceSelect = (place: string) => {
+    filterByCategory(place as keyof typeof CATEGORIES)
     setSelectedPlace(place)
     setActiveFilter(null)
-
-    // Save to localStorage for marker filtering
-    localStorage.setItem('selectedCategory', place)
   }
 
   // Handle integrated menu interactions - premium features are part of the menu
@@ -211,37 +204,44 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
           height: 'var(--header-height)',
         }}
       >
-        {/* Fullscreen Icon - Top Left - Now Functional */}
-        <button
-          className="btn btn--ghost btn--icon"
-          aria-label="Toggle fullscreen"
-          onClick={() => {
-            if (!document.fullscreenElement) {
-              document.documentElement.requestFullscreen()
-            } else {
-              document.exitFullscreen()
-            }
-          }}
-          style={{
-            border: '2px solid var(--color-primary-600)',
-            borderRadius: 'var(--radius-sm)',
-            padding: '4px',
-            transition: 'all var(--transition-normal)',
-            backgroundColor: 'var(--color-background)',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = 'var(--color-primary-50)'
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'var(--color-background)'
-          }}
-        >
-          <Maximize2 style={{ width: '16px', height: '16px', color: 'var(--color-primary-600)' }} />
-        </button>
+        {/* Left Controls Group */}
+        <div style={{ display: 'flex', gap: 'var(--space-2)', alignItems: 'center' }}>
+          {/* Theme Toggle */}
+          <ThemeToggle />
 
-        {/* Application Title - Centered with Border - Now Clickable */}
-        <button
-          className="btn btn--secondary"
+          {/* Fullscreen Icon - Top Left - Now Functional */}
+          <button
+            className="btn btn--ghost btn--icon"
+            aria-label="Toggle fullscreen"
+            onClick={() => {
+              if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen()
+              } else {
+                document.exitFullscreen()
+              }
+            }}
+            style={{
+              border: '2px solid var(--color-border-focus)',
+              borderRadius: 'var(--radius-sm)',
+              padding: '4px',
+              transition: 'all var(--transition-normal)',
+              backgroundColor: 'var(--color-surface)',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--color-surface-alt)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--color-surface)'
+            }}
+          >
+            <Maximize2 style={{ width: '16px', height: '16px', color: 'var(--color-text-primary)' }} />
+          </button>
+        </div>
+
+        {/* Application Title - Centered with SoCal Theme - Now Clickable */}
+        <Button
+          variant="socal"
+          size="mobile"
           onClick={() => {
             // Reset map to initial view
             const map = (window as WindowWithDebugMap).__debugMap
@@ -255,38 +255,26 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
               })
             }
           }}
-          style={{
-            border: '2px solid var(--color-primary-600)',
-            borderRadius: 'var(--radius-md)',
-            padding: 'var(--space-2) var(--space-4)',
-            backgroundColor: 'var(--color-primary-50)',
-            transition: 'all var(--transition-normal)',
-            minHeight: '44px',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = 'var(--color-primary-100)'
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'var(--color-primary-50)'
-          }}
+          className="font-bold tracking-wide shadow-lg hover:shadow-xl"
         >
           <h1
             style={{
               fontFamily: 'var(--font-sans)',
               fontSize: 'var(--text-sm)',
               fontWeight: '700',
-              color: 'var(--color-primary-700)',
+              color: '#ffffff',
               textAlign: 'center',
               margin: 0,
               lineHeight: '1.2',
               textTransform: 'uppercase',
               letterSpacing: '0.05em',
               fontVariantNumeric: 'tabular-nums',
+              textShadow: '0 1px 2px rgba(0,0,0,0.3)',
             }}
           >
             {title}
           </h1>
-        </button>
+        </Button>
 
         </header>
 
@@ -375,8 +363,8 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
               onClick={() => {
                 setActiveFilter(activeFilter === 'region' ? null : 'region')
                 // Close burger menu when opening region filter
-                if (isMenuOpen) {
-                  setIsMenuOpen(false)
+                if (navState.isOpen) {
+                  closeMenu()
                 }
               }}
             >
@@ -487,8 +475,8 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
               onClick={() => {
                 setActiveFilter(activeFilter === 'places' ? null : 'places')
                 // Close burger menu when opening places filter
-                if (isMenuOpen) {
-                  setIsMenuOpen(false)
+                if (navState.isOpen) {
+                  closeMenu()
                 }
               }}
             >
@@ -594,8 +582,8 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
               onClick={() => {
                 setActiveFilter(activeFilter === 'free' ? null : 'free')
                 // Close burger menu when opening price filter
-                if (isMenuOpen) {
-                  setIsMenuOpen(false)
+                if (navState.isOpen) {
+                  closeMenu()
                 }
               }}
             >
@@ -655,11 +643,9 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
                         boxShadow: selectedPrice === price ? '0 2px 8px rgba(37, 99, 235, 0.1)' : 'none',
                       }}
                       onClick={() => {
+                        filterByPrice(price)
                         setSelectedPrice(price)
                         setActiveFilter(null)
-
-                        // Save to localStorage for marker filtering
-                        localStorage.setItem('selectedPrice', price)
                       }}
                     >
                       <span style={{
@@ -685,7 +671,7 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
             onClick={() => {
               // Close any active filters when opening menu
               setActiveFilter(null)
-              setIsMenuOpen(!isMenuOpen)
+              toggleMenu()
             }}
             aria-label="Open navigation menu with premium features"
             style={{
@@ -783,7 +769,7 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
 
       
       {/* Integrated Premium Menu with Embedded Ads */}
-      {isMenuOpen && (
+      {navState.isOpen && (
         <div
           data-menu-container
           style={{
@@ -799,9 +785,9 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
             border: '1px solid rgba(255, 255, 255, 0.2)',
             WebkitBackdropFilter: 'blur(20px)',
             backdropFilter: 'blur(20px)',
-            transform: isMenuOpen ? 'translateY(0)' : 'translateY(10px)',
-            WebkitTransform: isMenuOpen ? 'translateY(0)' : 'translateY(10px)',
-            opacity: isMenuOpen ? 1 : 0,
+            transform: navState.isOpen ? 'translateY(0)' : 'translateY(10px)',
+            WebkitTransform: navState.isOpen ? 'translateY(0)' : 'translateY(10px)',
+            opacity: navState.isOpen ? 1 : 0,
             transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             WebkitTransition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             willChange: 'transform, opacity',
@@ -829,7 +815,7 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
             </div>
             <button
               className="btn btn--ghost btn--icon"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => closeMenu()}
               aria-label="Close menu"
               style={{
                 padding: 'var(--space-1)',
@@ -1122,7 +1108,7 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
             }} />
 
             <nav style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-1)' }} aria-label="Main navigation">
-              {menuItems.map((item, index) => (
+              {menuItems.map((item: any, index: number) => (
                 <button
                   key={index}
                   className="btn btn--ghost"
@@ -1147,8 +1133,7 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
                     e.currentTarget.style.backgroundColor = 'transparent'
                   }}
                   onClick={() => {
-                    setIsMenuOpen(false)
-                    // TODO: Add navigation logic for each menu item
+                    item.action()
                   }}
                 >
                   <item.icon style={{ width: '16px', height: '16px', color: 'var(--color-text-muted)' }} />
@@ -1194,7 +1179,7 @@ export default function MobileLayout({ children, title = "Drive SoCal POV" }: Mo
                 e.currentTarget.style.backgroundColor = 'transparent'
               }}
               onClick={() => {
-                setIsMenuOpen(false)
+                closeMenu()
                 // TODO: Add sign out logic
               }}
             >

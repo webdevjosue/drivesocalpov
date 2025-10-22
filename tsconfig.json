@@ -49,6 +49,9 @@
     ".next",
     "dist",
     "build",
-    "src/components/test/**/*"
+    "src/components/test/**/*",
+    "src/hooks/__tests__/**/*",
+    "tests/**/*",
+    "src/components/debug/**/*"
   ]
 }

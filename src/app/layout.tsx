@@ -1,5 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme/theme-provider";
+import { PerformanceMonitor } from "@/components/debug/PerformanceMonitor";
+import { TestSuite } from "@/components/debug/TestSuite";
 
 export const metadata: Metadata = {
   title: {
@@ -213,46 +216,82 @@ export default function RootLayout({
           overflow: 'hidden',
         }}
       >
-        <div
-          className="relative flex flex-col ios-fixed"
-          style={{
-            // Force iOS Safari viewport coverage
-            height: '-webkit-fill-available',
-            minHeight: '-webkit-fill-available',
-            width: '100vw',
-            position: 'fixed',
-            top: '0px',
-            left: '0px',
-            right: '0px',
-            bottom: '0px',
-            margin: '0px',
-            padding: '0px',
-            // Prevent iOS Safari viewport issues
-            WebkitOverflowScrolling: 'touch',
-            overflow: 'hidden',
-          }}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem={true}
+          storageKey="drivesocalpov-theme"
+          themes={['light', 'dark', 'system']}
         >
-          {/* Main content area */}
-          <main
-            className="flex-1 relative"
+          <div
+            className="relative flex flex-col ios-fixed"
             style={{
-              // Ensure main content fills available space
-              flex: '1',
-              display: 'flex',
-              flexDirection: 'column',
-              // iOS Safari specific fixes
+              // Force iOS Safari viewport coverage
+              height: '-webkit-fill-available',
+              minHeight: '-webkit-fill-available',
+              width: '100vw',
+              position: 'fixed',
+              top: '0px',
+              left: '0px',
+              right: '0px',
+              bottom: '0px',
+              margin: '0px',
+              padding: '0px',
+              // Prevent iOS Safari viewport issues
               WebkitOverflowScrolling: 'touch',
               overflow: 'hidden',
             }}
           >
-            {children}
-          </main>
-        </div>
+            {/* Main content area */}
+            <main
+              className="flex-1 relative"
+              style={{
+                // Ensure main content fills available space
+                flex: '1',
+                display: 'flex',
+                flexDirection: 'column',
+                // iOS Safari specific fixes
+                WebkitOverflowScrolling: 'touch',
+                overflow: 'hidden',
+              }}
+            >
+              {children}
+            </main>
+          </div>
+        </ThemeProvider>
 
         {/* Global loading indicator */}
         <div id="global-loading" className="fixed inset-0 bg-background/80 backdrop-blur-sm z-[200] hidden items-center justify-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
         </div>
+
+        {/* Development testing components */}
+        {process.env.NODE_ENV === 'development' && (
+          <>
+            <PerformanceMonitor
+              enabled={true}
+              showDetails={true}
+              onUpdate={(metrics) => {
+                // Log performance issues in development
+                if (metrics.fps < 30) {
+                  console.warn('Low FPS detected:', metrics)
+                }
+                if (metrics.memoryUsage > 100) {
+                  console.warn('High memory usage:', metrics)
+                }
+              }}
+            />
+            <TestSuite
+              enabled={false} // Enable manually for testing
+              onTestComplete={(results) => {
+                console.log('Test Suite Results:', results)
+                const passed = results.filter(r => r.status === 'passed').length
+                const total = results.length
+                console.log(`Tests completed: ${passed}/${total} passed`)
+              }}
+            />
+          </>
+        )}
       </body>
     </html>
   );

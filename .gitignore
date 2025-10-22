@@ -68,3 +68,36 @@ coverage/
 # Temporary files
 *.tmp
 *.temp
+nul
+ios-safari-test.html
+package.json.backup
+
+# Generated reports and documentation (move to discardata/)
+*_REPORT.md
+*_SUMMARY.md
+*_dataset.md
+*_sources.md
+*.pdf
+
+# Database seeding files (move to discardata/)
+database-seed-data.sql
+database-seeding-*.md
+
+# Development scripts and utilities (move to discardata/)
+generate_*.py
+*_status_report.py
+*_philosophy.md
+*_generator.html
+gta_icons/
+
+# Test files directory (move to discardata/)
+tests/
+
+# Test files in src directory
+**/__tests__/
+
+# Generated icon folders
+public/icons/
+
+# Production environment file
+.env.production

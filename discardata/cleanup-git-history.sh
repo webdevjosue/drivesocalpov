@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Git History Cleanup Script
+# This script helps remove large files from git history using BFG Repo-Cleaner
+
+echo "=== Git History Cleanup Instructions ==="
+echo ""
+echo "Large files found in git history:"
+echo "1. docs/assets/wireframes/previous/2025-10-14 11-40-14.mp4 (681KB)"
+echo "2. Multiple .next build artifacts"
+echo "3. Test result images"
+echo ""
+echo "To clean up git history:"
+echo ""
+echo "1. Download BFG Repo-Cleaner:"
+echo "   wget -O bfg.jar https://repo1.maven.org/maven2/com/madgag/bfg/1.14.0/bfg-1.14.0.jar"
+echo ""
+echo "2. Remove large files from history:"
+echo "   java -jar bfg.jar --delete-files '*.mp4' --delete-files '*.js.map' --delete-files '*.png' .git"
+echo ""
+echo "3. Clean up .next directories from history:"
+echo "   java -jar bfg.jar --delete-folders .next .git"
+echo ""
+echo "4. After running BFG, run:"
+echo "   git reflog expire --expire=now --all && git gc --prune=now --aggressive"
+echo ""
+echo "5. Force push to remote (WARNING: This rewrites history!):"
+echo "   git push origin --force --all"
+echo "   git push origin --force --tags"
+echo ""
+echo "WARNING: This will rewrite git history. Ensure all team members are aware."

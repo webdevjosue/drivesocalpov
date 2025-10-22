@@ -293,6 +293,150 @@ export const GTA_MAP_STYLES = {
   satellite: OPENFREEMAP_STYLES.liberty,         // Modern design (closest to satellite available)
   hybrid: OPENFREEMAP_STYLES.positron,           // Minimal, light design for hybrid view
   streets: OPENFREEMAP_STYLES.bright,            // High contrast street view
+
+  // SoCal themed styles
+  socal_ocean: OPENFREEMAP_STYLES.bright,        // Ocean-inspired bright theme
+  socal_sunset: OPENFREEMAP_STYLES.liberty,     // Warm sunset theme
+  socal_night: OPENFREEMAP_STYLES.dark,          // SoCal nightlife theme
+
+  // GTA V inspired styles
+  gtav_day: OPENFREEMAP_STYLES.bright,           // GTA V daytime aesthetic
+  gtav_night: OPENFREEMAP_STYLES.dark,           // GTA V nighttime aesthetic
+  gtav_heist: OPENFREEMAP_STYLES.positron,       // Clean heist planning view
+}
+
+/**
+ * SoCal themed custom map styles
+ * Enhanced with our SoCal color palette for better brand integration
+ */
+export const SOCAL_CUSTOM_STYLES = {
+  // SoCal Ocean - Fresh, clean, coastal theme
+  ocean_breeze: {
+    version: 8,
+    name: 'SoCal Ocean Breeze',
+    sources: {
+      'osm-liberty': {
+        type: 'vector',
+        tiles: ['https://tiles.openfreemap.org/tiles/v2/{z}/{x}/{y}.pbf'],
+        attribution: '© OpenStreetMap contributors',
+        maxzoom: 15,
+      }
+    },
+    layers: [
+      {
+        id: 'background',
+        type: 'background',
+        paint: {
+          'background-color': '#f8fafc' // SoCal stone-50
+        }
+      },
+      {
+        id: 'water',
+        type: 'fill',
+        source: 'osm-liberty',
+        'source-layer': 'water',
+        paint: {
+          'fill-color': '#2b94eb', // SoCal ocean-400
+          'fill-opacity': 0.8
+        }
+      },
+      {
+        id: 'parks',
+        type: 'fill',
+        source: 'osm-liberty',
+        'source-layer': 'landcover',
+        filter: ['==', 'class', 'park'],
+        paint: {
+          'fill-color': '#4ade80', // SoCal palm-400
+          'fill-opacity': 0.6
+        }
+      },
+      {
+        id: 'buildings',
+        type: 'fill',
+        source: 'osm-liberty',
+        'source-layer': 'building',
+        paint: {
+          'fill-color': '#94a3b8', // SoCal stone-400
+          'fill-opacity': 0.8
+        }
+      },
+      {
+        id: 'roads',
+        type: 'line',
+        source: 'osm-liberty',
+        'source-layer': 'road',
+        paint: {
+          'line-color': '#cbd5e1', // SoCal stone-300
+          'line-width': 1.5
+        }
+      }
+    ]
+  },
+
+  // SoCal Sunset - Warm, golden hour theme
+  golden_hour: {
+    version: 8,
+    name: 'SoCal Golden Hour',
+    sources: {
+      'osm-liberty': {
+        type: 'vector',
+        tiles: ['https://tiles.openfreemap.org/tiles/v2/{z}/{x}/{y}.pbf'],
+        attribution: '© OpenStreetMap contributors',
+        maxzoom: 15,
+      }
+    },
+    layers: [
+      {
+        id: 'background',
+        type: 'background',
+        paint: {
+          'background-color': '#fff7ed' // SoCal sunset-50
+        }
+      },
+      {
+        id: 'water',
+        type: 'fill',
+        source: 'osm-liberty',
+        'source-layer': 'water',
+        paint: {
+          'fill-color': '#5eb5f2', // SoCal ocean-300
+          'fill-opacity': 0.9
+        }
+      },
+      {
+        id: 'parks',
+        type: 'fill',
+        source: 'osm-liberty',
+        'source-layer': 'landcover',
+        filter: ['==', 'class', 'park'],
+        paint: {
+          'fill-color': '#fdba74', // SoCal sunset-300
+          'fill-opacity': 0.5
+        }
+      },
+      {
+        id: 'buildings',
+        type: 'fill',
+        source: 'osm-liberty',
+        'source-layer': 'building',
+        paint: {
+          'fill-color': '#fed7aa', // SoCal sunset-200
+          'fill-opacity': 0.7
+        }
+      },
+      {
+        id: 'roads',
+        type: 'line',
+        source: 'osm-liberty',
+        'source-layer': 'road',
+        paint: {
+          'line-color': '#d6d3d1', // SoCal sand-300
+          'line-width': 2
+        }
+      }
+    ]
+  }
 }
 
 /**

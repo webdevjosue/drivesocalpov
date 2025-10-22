@@ -9,6 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // shadcn/ui system colors
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -42,13 +43,115 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Map-specific colors for Drive SoCal POV
+
+        // SoCal Inspired Colors
+        socal: {
+          ocean: {
+            50: "var(--socal-ocean-50)",
+            100: "var(--socal-ocean-100)",
+            200: "var(--socal-ocean-200)",
+            300: "var(--socal-ocean-300)",
+            400: "var(--socal-ocean-400)",
+            500: "var(--socal-ocean-500)",
+            600: "var(--socal-ocean-600)",
+            700: "var(--socal-ocean-700)",
+            800: "var(--socal-ocean-800)",
+            900: "var(--socal-ocean-900)",
+          },
+          sunset: {
+            50: "var(--socal-sunset-50)",
+            100: "var(--socal-sunset-100)",
+            200: "var(--socal-sunset-200)",
+            300: "var(--socal-sunset-300)",
+            400: "var(--socal-sunset-400)",
+            500: "var(--socal-sunset-500)",
+            600: "var(--socal-sunset-600)",
+            700: "var(--socal-sunset-700)",
+            800: "var(--socal-sunset-800)",
+            900: "var(--socal-sunset-900)",
+          },
+          palm: {
+            50: "var(--socal-palm-50)",
+            100: "var(--socal-palm-100)",
+            200: "var(--socal-palm-200)",
+            300: "var(--socal-palm-300)",
+            400: "var(--socal-palm-400)",
+            500: "var(--socal-palm-500)",
+            600: "var(--socal-palm-600)",
+            700: "var(--socal-palm-700)",
+            800: "var(--socal-palm-800)",
+            900: "var(--socal-palm-900)",
+          },
+          sand: {
+            50: "var(--socal-sand-50)",
+            100: "var(--socal-sand-100)",
+            200: "var(--socal-sand-200)",
+            300: "var(--socal-sand-300)",
+            400: "var(--socal-sand-400)",
+            500: "var(--socal-sand-500)",
+            600: "var(--socal-sand-600)",
+            700: "var(--socal-sand-700)",
+            800: "var(--socal-sand-800)",
+            900: "var(--socal-sand-900)",
+          },
+          stone: {
+            50: "var(--socal-stone-50)",
+            100: "var(--socal-stone-100)",
+            200: "var(--socal-stone-200)",
+            300: "var(--socal-stone-300)",
+            400: "var(--socal-stone-400)",
+            500: "var(--socal-stone-500)",
+            600: "var(--socal-stone-600)",
+            700: "var(--socal-stone-700)",
+            800: "var(--socal-stone-800)",
+            900: "var(--socal-stone-900)",
+          },
+        },
+
+        // GTA V Inspired Colors
+        gtav: {
+          gold: {
+            50: "var(--gtav-gold-50)",
+            100: "var(--gtav-gold-100)",
+            200: "var(--gtav-gold-200)",
+            300: "var(--gtav-gold-300)",
+            400: "var(--gtav-gold-400)",
+            500: "var(--gtav-gold-500)",
+            600: "var(--gtav-gold-600)",
+            700: "var(--gtav-gold-700)",
+            800: "var(--gtav-gold-800)",
+            900: "var(--gtav-gold-900)",
+          },
+          purple: {
+            50: "var(--gtav-purple-50)",
+            100: "var(--gtav-purple-100)",
+            200: "var(--gtav-purple-200)",
+            300: "var(--gtav-purple-300)",
+            400: "var(--gtav-purple-400)",
+            500: "var(--gtav-purple-500)",
+            600: "var(--gtav-purple-600)",
+            700: "var(--gtav-purple-700)",
+            800: "var(--gtav-purple-800)",
+            900: "var(--gtav-purple-900)",
+          },
+        },
+
+        // Semantic System Colors
+        surface: "var(--color-surface)",
+        "surface-alt": "var(--color-surface-alt)",
+        "surface-elevated": "var(--color-surface-elevated)",
+        "surface-overlay": "var(--color-surface-overlay)",
+
+        // Map-specific colors for Drive SoCal POV (updated with better contrast)
         map: {
-          water: "#4A90E2",
-          park: "#7CB342",
-          road: "#E0E0E0",
-          building: "#CCCCCC",
-          poi: "#FF6B6B",
+          water: "var(--socal-ocean-400)",
+          park: "var(--socal-palm-500)",
+          road: "var(--socal-stone-300)",
+          building: "var(--socal-stone-400)",
+          poi: "var(--socal-sunset-500)",
+          "poi-dark": "var(--socal-sunset-400)",
+          highway: "var(--socal-sand-400)",
+          coastline: "var(--socal-ocean-300)",
         },
       },
       borderRadius: {

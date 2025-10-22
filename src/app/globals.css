@@ -45,44 +45,167 @@
   --line-height-normal: 1.5;
   --line-height-relaxed: 1.75;
 
-  /* === COLOR PALETTE === */
-  /* Primary Colors - California Ocean/Sky Theme */
-  --color-primary-50: #eff6ff;
-  --color-primary-100: #dbeafe;
-  --color-primary-200: #bfdbfe;
-  --color-primary-300: #93c5fd;
-  --color-primary-400: #60a5fa;
-  --color-primary-500: #3b82f6;
-  --color-primary-600: #2563eb;
-  --color-primary-700: #1d4ed8;
-  --color-primary-800: #1e40af;
-  --color-primary-900: #1e3a8a;
+  /* === SOUTHERN CALIFORNIA COLOR PALETTE === */
+  /* SoCal Ocean Blue - Primary Brand */
+  --socal-ocean-50: #e8f4fd;
+  --socal-ocean-100: #c1e2fa;
+  --socal-ocean-200: #93cef7;
+  --socal-ocean-300: #5eb5f2;
+  --socal-ocean-400: #2b94eb;
+  --socal-ocean-500: #0977d8;
+  --socal-ocean-600: #0760bc;
+  --socal-ocean-700: #054d9d;
+  --socal-ocean-800: #043e84;
+  --socal-ocean-900: #033470;
 
-  /* Neutral Colors */
-  --color-gray-50: #f9fafb;
-  --color-gray-100: #f3f4f6;
-  --color-gray-200: #e5e7eb;
-  --color-gray-300: #d1d5db;
-  --color-gray-400: #9ca3af;
-  --color-gray-500: #6b7280;
-  --color-gray-600: #4b5563;
-  --color-gray-700: #374151;
-  --color-gray-800: #1f2937;
-  --color-gray-900: #111827;
+  /* SoCal Sunset Orange - Accent/Action */
+  --socal-sunset-50: #fff7ed;
+  --socal-sunset-100: #ffedd5;
+  --socal-sunset-200: #fed7aa;
+  --socal-sunset-300: #fdba74;
+  --socal-sunset-400: #fb923c;
+  --socal-sunset-500: #f97316;
+  --socal-sunset-600: #ea580c;
+  --socal-sunset-700: #c2410c;
+  --socal-sunset-800: #9a3412;
+  --socal-sunset-900: #7c2d12;
 
-  /* Semantic Colors */
+  /* SoCal Palm Green - Success/Nature */
+  --socal-palm-50: #f0fdf4;
+  --socal-palm-100: #dcfce7;
+  --socal-palm-200: #bbf7d0;
+  --socal-palm-300: #86efac;
+  --socal-palm-400: #4ade80;
+  --socal-palm-500: #22c55e;
+  --socal-palm-600: #16a34a;
+  --socal-palm-700: #15803d;
+  --socal-palm-800: #166534;
+  --socal-palm-900: #14532d;
+
+  /* SoCal Desert Sand - Neutral/Warm */
+  --socal-sand-50: #fafaf9;
+  --socal-sand-100: #f5f5f4;
+  --socal-sand-200: #e7e5e4;
+  --socal-sand-300: #d6d3d1;
+  --socal-sand-400: #a8a29e;
+  --socal-sand-500: #78716c;
+  --socal-sand-600: #57534e;
+  --socal-sand-700: #44403c;
+  --socal-sand-800: #292524;
+  --socal-sand-900: #1c1917;
+
+  /* SoCal Mountain Stone - Cool Neutral */
+  --socal-stone-50: #f8fafc;
+  --socal-stone-100: #f1f5f9;
+  --socal-stone-200: #e2e8f0;
+  --socal-stone-300: #cbd5e1;
+  --socal-stone-400: #94a3b8;
+  --socal-stone-500: #64748b;
+  --socal-stone-600: #475569;
+  --socal-stone-700: #334155;
+  --socal-stone-800: #1e293b;
+  --socal-stone-900: #0f172a;
+
+  /* GTA V Inspired Colors */
+  --gtav-gold-50: #fffdf0;
+  --gtav-gold-100: #fefce8;
+  --gtav-gold-200: #fef9c3;
+  --gtav-gold-300: #fef08a;
+  --gtav-gold-400: #fde047;
+  --gtav-gold-500: #facc15;
+  --gtav-gold-600: #eab308;
+  --gtav-gold-700: #ca8a04;
+  --gtav-gold-800: #a16207;
+  --gtav-gold-900: #854d0e;
+
+  --gtav-purple-50: #faf5ff;
+  --gtav-purple-100: #f3e8ff;
+  --gtav-purple-200: #e9d5ff;
+  --gtav-purple-300: #d8b4fe;
+  --gtav-purple-400: #c084fc;
+  --gtav-purple-500: #a855f7;
+  --gtav-purple-600: #9333ea;
+  --gtav-purple-700: #7e22ce;
+  --gtav-purple-800: #6b21a8;
+  --gtav-purple-900: #581c87;
+
+  /* === LIGHT MODE THEME === */
   --color-background: #ffffff;
-  --color-surface: #f8fafc;
-  --color-surface-alt: #f1f5f9;
+  --color-surface: var(--socal-stone-50);
+  --color-surface-alt: var(--socal-sand-50);
+  --color-surface-elevated: #ffffff;
+  --color-surface-overlay: rgba(255, 255, 255, 0.95);
 
-  --color-text-primary: var(--color-gray-900);
-  --color-text-secondary: var(--color-gray-600);
-  --color-text-muted: var(--color-gray-500);
+  --color-text-primary: var(--socal-stone-900);
+  --color-text-secondary: var(--socal-stone-600);
+  --color-text-muted: var(--socal-stone-500);
   --color-text-inverse: #ffffff;
+  --color-text-accent: var(--socal-ocean-600);
 
-  --color-border-primary: var(--color-gray-200);
-  --color-border-secondary: var(--color-gray-300);
-  --color-border-focus: var(--color-primary-500);
+  --color-border-primary: var(--socal-stone-200);
+  --color-border-secondary: var(--socal-stone-300);
+  --color-border-focus: var(--socal-ocean-500);
+  --color-border-accent: var(--socal-sunset-400);
+
+  --color-primary: var(--socal-ocean-500);
+  --color-primary-hover: var(--socal-ocean-600);
+  --color-primary-active: var(--socal-ocean-700);
+
+  --color-accent: var(--socal-sunset-500);
+  --color-accent-hover: var(--socal-sunset-600);
+  --color-success: var(--socal-palm-500);
+  --color-warning: var(--gtav-gold-500);
+  --color-danger: #dc2626;
+
+  /* === DARK MODE THEME === */
+  --color-background-dark: #0a0a0a;
+  --color-surface-dark: var(--socal-stone-900);
+  --color-surface-alt-dark: var(--socal-sand-900);
+  --color-surface-elevated-dark: #1a1a1a;
+  --color-surface-overlay-dark: rgba(10, 10, 10, 0.95);
+
+  --color-text-primary-dark: #ffffff;
+  --color-text-secondary-dark: var(--socal-stone-300);
+  --color-text-muted-dark: var(--socal-stone-400);
+  --color-text-inverse-dark: var(--socal-stone-900);
+  --color-text-accent-dark: var(--socal-ocean-400);
+
+  --color-border-primary-dark: var(--socal-stone-700);
+  --color-border-secondary-dark: var(--socal-stone-600);
+  --color-border-focus-dark: var(--socal-ocean-400);
+  --color-border-accent-dark: var(--socal-sunset-400);
+
+  --color-primary-dark: var(--socal-ocean-600);
+  --color-primary-hover-dark: var(--socal-ocean-500);
+  --color-primary-active-dark: var(--socal-ocean-400);
+
+  --color-accent-dark: var(--socal-sunset-400);
+  --color-accent-hover-dark: var(--socal-sunset-300);
+  --color-success-dark: var(--socal-palm-400);
+  --color-warning-dark: var(--gtav-gold-400);
+  --color-danger-dark: #ef4444;
+
+  /* === SHADCN/UI SYSTEM VARIABLES === */
+  /* Light mode */
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 221.2 83.2% 53.3%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222.2 84% 4.9%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96%;
+  --accent-foreground: 222.2 84% 4.9%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 221.2 83.2% 53.3%;
 
   /* === BORDER RADIUS === */
   --radius-sm: 0.25rem;   /* 4px */
@@ -599,5 +722,357 @@ html {
   }
   100% {
     transform: translateX(100%);
+  }
+}
+
+/* ===================================
+   DARK MODE STYLES
+   =================================== */
+
+/* Dark mode class applied to html element */
+.dark {
+  /* Override light mode colors with dark mode colors */
+  --color-background: var(--color-background-dark);
+  --color-surface: var(--color-surface-dark);
+  --color-surface-alt: var(--color-surface-alt-dark);
+  --color-surface-elevated: var(--color-surface-elevated-dark);
+  --color-surface-overlay: var(--color-surface-overlay-dark);
+
+  --color-text-primary: var(--color-text-primary-dark);
+  --color-text-secondary: var(--color-text-secondary-dark);
+  --color-text-muted: var(--color-text-muted-dark);
+  --color-text-inverse: var(--color-text-inverse-dark);
+  --color-text-accent: var(--color-text-accent-dark);
+
+  --color-border-primary: var(--color-border-primary-dark);
+  --color-border-secondary: var(--color-border-secondary-dark);
+  --color-border-focus: var(--color-border-focus-dark);
+  --color-border-accent: var(--color-border-accent-dark);
+
+  --color-primary: var(--color-primary-dark);
+  --color-primary-hover: var(--color-primary-hover-dark);
+  --color-primary-active: var(--color-primary-active-dark);
+
+  --color-accent: var(--color-accent-dark);
+  --color-accent-hover: var(--color-accent-hover-dark);
+  --color-success: var(--color-success-dark);
+  --color-warning: var(--color-warning-dark);
+  --color-danger: var(--color-danger-dark);
+
+  /* shadcn/ui dark mode variables with SoCal theme */
+  --background: 0 0% 4%;
+  --foreground: 210 40% 98%;
+  --card: 0 0% 4%;
+  --card-foreground: 210 40% 98%;
+  --popover: 0 0% 4%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 217 91% 60%;
+  --primary-foreground: 222.2 84% 4.9%;
+  --secondary: 215 28% 17%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 215 28% 17%;
+  --muted-foreground: 217.9 10.6% 64.9%;
+  --accent: 215 28% 17%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 215 28% 17%;
+  --input: 215 28% 17%;
+  --ring: 217 91% 60%;
+}
+
+/* Dark mode specific component styles */
+.dark body {
+  background-color: var(--color-background-dark);
+  color: var(--color-text-primary-dark);
+}
+
+.dark .btn {
+  border-color: var(--color-border-primary-dark);
+}
+
+.dark .btn--primary {
+  background-color: var(--color-primary-dark);
+  color: var(--color-text-inverse-dark);
+  border-color: var(--color-primary-dark);
+}
+
+.dark .btn--primary:hover {
+  background-color: var(--color-primary-hover-dark);
+  border-color: var(--color-primary-hover-dark);
+}
+
+.dark .btn--secondary {
+  background-color: var(--color-surface-dark);
+  color: var(--color-text-primary-dark);
+  border-color: var(--color-border-secondary-dark);
+}
+
+.dark .btn--secondary:hover {
+  background-color: var(--color-surface-alt-dark);
+  border-color: var(--color-border-primary-dark);
+}
+
+.dark .btn--ghost:hover {
+  background-color: var(--color-surface-elevated-dark);
+  color: var(--color-text-primary-dark);
+}
+
+.dark .card {
+  background-color: var(--color-surface-dark);
+  border-color: var(--color-border-primary-dark);
+}
+
+.dark .surface {
+  background-color: var(--color-surface-alt-dark);
+}
+
+/* Map styles for dark mode */
+.dark .mapboxgl-popup {
+  background-color: var(--color-surface-dark);
+  border-color: var(--color-border-primary-dark);
+}
+
+.dark .mapboxgl-popup-content {
+  background-color: var(--color-surface-dark);
+  color: var(--color-text-primary-dark);
+}
+
+.dark .mapboxgl-popup-close-button {
+  color: var(--color-text-muted-dark);
+}
+
+.dark .mapboxgl-popup-close-button:hover {
+  color: var(--color-text-primary-dark);
+}
+
+/* ===================================
+   GTA V INSPIRED ANIMATIONS & EFFECTS
+   =================================== */
+
+/* GTA V style loading animation */
+@keyframes gtav-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+/* SoCal sunset glow effect */
+@keyframes socal-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(249, 115, 22, 0.6);
+  }
+}
+
+/* Premium shimmer with GTA V gold */
+@keyframes gtav-shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Smooth theme transition */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Enhanced button styles with SoCal theme */
+.btn-socal {
+  background: linear-gradient(135deg, var(--socal-ocean-500), var(--socal-ocean-600));
+  color: white;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(9, 119, 216, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-socal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-socal:hover::before {
+  left: 100%;
+}
+
+.btn-socal:hover {
+  background: linear-gradient(135deg, var(--socal-ocean-600), var(--socal-ocean-700));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(9, 119, 216, 0.4);
+}
+
+.btn-sunset {
+  background: linear-gradient(135deg, var(--socal-sunset-500), var(--socal-sunset-600));
+  color: white;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(249, 115, 22, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-sunset::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  transition: all 0.4s;
+  transform: translate(-50%, -50%);
+}
+
+.btn-sunset:hover::after {
+  width: 120%;
+  height: 120%;
+}
+
+.btn-sunset:hover {
+  background: linear-gradient(135deg, var(--socal-sunset-600), var(--socal-sunset-700));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.4);
+}
+
+.btn-gtav-gold {
+  background: linear-gradient(135deg, var(--gtav-gold-500), var(--gtav-gold-600));
+  color: var(--socal-stone-900);
+  border: none;
+  font-weight: 700;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(250, 204, 21, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn-gtav-gold::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  transition: left 0.6s;
+}
+
+.btn-gtav-gold::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, var(--gtav-purple-400) 0%, transparent 30%, transparent 70%, var(--gtav-purple-400) 100%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  background-size: 200% 200%;
+  animation: gtav-shimmer 3s linear infinite;
+}
+
+.btn-gtav-gold:hover::before {
+  left: 100%;
+}
+
+.btn-gtav-gold:hover::after {
+  opacity: 0.6;
+}
+
+.btn-gtav-gold:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(250, 204, 21, 0.6);
+  background: linear-gradient(135deg, var(--gtav-gold-400), var(--gtav-gold-500));
+}
+
+/* Enhanced card styles with better contrast */
+.card-socal {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.card-socal:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.card-gtav {
+  background: linear-gradient(135deg, var(--color-surface-elevated), var(--color-surface));
+  border: 1px solid var(--gtav-gold-600);
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-gtav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gtav-gold-500), var(--gtav-purple-500), var(--gtav-gold-500));
+  background-size: 200% 100%;
+  animation: gtav-shimmer 3s ease-in-out infinite;
+}
+
+/* Theme toggle animation */
+.theme-toggle {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border-primary);
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.dark .theme-toggle::after {
+  left: 32px;
+  background: var(--gtav-gold-500);
+}
+
+/* Mobile-optimized high contrast styles */
+@media (max-width: 768px) {
+  .btn, .card {
+    min-height: 48px; /* Larger touch targets */
+  }
+
+  .btn-socal, .btn-sunset, .btn-gtav-gold {
+    min-height: 52px; /* Even larger for themed buttons */
   }
 }
