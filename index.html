@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drive SoCal POV | Authentic Rideshare Adventures</title>
+    <meta name="description" content="Experience Southern California through the eyes of a 30+ year rideshare driver. Real stories, real people, real POV.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="js/supabase-config.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF6B35;
+            --primary-dark: #E55A2B;
+            --secondary: #004E89;
+            --accent: #F7C59F;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+            --gray: #6B7280;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #004E89 0%, #1A1A2E 50%, #FF6B35 100%);
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .hero-content {
+            max-width: 900px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 .highlight {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-buttons .cta-button {
+            background: white;
+            color: var(--primary);
+        }
+
+        .hero-buttons .cta-button:hover {
+            background: var(--light);
+        }
+
+        .hero-buttons .secondary {
+            background: transparent;
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+        }
+
+        .hero-buttons .secondary:hover {
+            border-color: white;
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Stats */
+        .stats {
+            background: white;
+            padding: 4rem 2rem;
+        }
+
+        .stats .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        /* About */
+        .about {
+            padding: 6rem 2rem;
+            background: var(--light);
+        }
+
+        .about .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--gray);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Content */
+        .content {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .content .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .content-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--light);
+            transition: all 0.3s;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+        }
+
+        .content-card .thumbnail {
+            height: 200px;
+            background: linear-gradient(135deg, var(--secondary), var(--dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .content-card .info {
+            padding: 1.5rem;
+        }
+
+        .content-card .tag {
+            display: inline-block;
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .content-card h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .content-card p {
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+
+        /* Social */
+        .social {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--secondary), var(--dark));
+            color: white;
+            text-align: center;
+        }
+
+        .social h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .social p {
+            opacity: 0.9;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(255,255,255,0.1);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .social-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+
+        .social-btn .icon {
+            font-size: 1.5rem;
+        }
+
+        /* CTA */
+        .cta-section {
+            padding: 6rem 2rem;
+            background: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: var(--gray);
+            font-size: 1.125rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.7;
+            font-size: 0.875rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 8rem 1.5rem 4rem;
+            }
+
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .cta-button {
+                text-align: center;
+            }
+        }
+
+        /* Directory Section */
+        .directory {
+            padding: 6rem 2rem;
+            background: var(--light);
+        }
+
+        .directory .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category-filter {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            background: white;
+            border: 2px solid #e5e7eb;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .directory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .business-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .business-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .business-card.featured {
+            border: 2px solid var(--primary);
+        }
+
+        .business-card.premium {
+            border: 2px solid gold;
+        }
+
+        .business-card .badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 1;
+        }
+
+        .business-card .card-header {
+            height: 120px;
+            background: linear-gradient(135deg, var(--secondary), var(--dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .business-card .card-body {
+            padding: 1.5rem;
+        }
+
+        .business-card .category-tag {
+            display: inline-block;
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .business-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .business-card .address {
+            color: var(--gray);
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .business-card .phone {
+            color: var(--gray);
+            font-size: 0.875rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .business-card .description {
+            color: var(--gray);
+            font-size: 0.875rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .business-card .card-footer {
+            display: flex;
+            gap: 0.75rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .business-card .card-footer a {
+            flex: 1;
+            text-align: center;
+            padding: 0.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.875rem;
+            transition: all 0.3s;
+        }
+
+        .business-card .website-btn {
+            background: var(--primary);
+            color: white;
+        }
+
+        .business-card .website-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .business-card .map-btn {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .business-card .map-btn:hover {
+            background: var(--dark);
+        }
+
+        .loading {
+            text-align: center;
+            color: var(--gray);
+            font-size: 1.125rem;
+            grid-column: 1 / -1;
+            padding: 4rem 2rem;
+        }
+
+        .error {
+            text-align: center;
+            color: #dc2626;
+            font-size: 1.125rem;
+            grid-column: 1 / -1;
+            padding: 2rem;
+            background: #fee2e2;
+            border-radius: 12px;
+        }
+
+        /* Map Section */
+        .map-section {
+            margin-top: 4rem;
+        }
+
+        .map-section .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .map-section h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .map-section p {
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        .map-placeholder {
+            background: linear-gradient(135deg, #e0e7ff 0%, #f0f9ff 100%);
+            border-radius: 20px;
+            padding: 4rem 2rem;
+            text-align: center;
+            border: 2px dashed var(--secondary);
+        }
+
+        .map-content .map-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .map-content h4 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .map-content > p {
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .map-features {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .map-features span {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--gray);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">🚗 Drive<span>SoCal</span>POV</a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#content">Content</a>
+                <a href="#directory">Directory</a>
+                <a href="#social">Connect</a>
+                <a href="https://youtube.com/@DriveSocalPOV" target="_blank" class="cta-button">Subscribe</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="badge">🎥 New videos weekly</div>
+            <h1>Experience SoCal <br><span class="highlight">Through My Eyes</span></h1>
+            <p>30+ years of rideshare adventures. Real passengers, real stories, authentic Southern California POV content.</p>
+            <div class="hero-buttons">
+                <a href="https://youtube.com/@DriveSocalPOV" target="_blank" class="cta-button">Watch on YouTube</a>
+                <a href="#about" class="cta-button secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="container">
+            <div class="stat-item">
+                <h3>30+</h3>
+                <p>Years Experience</p>
+            </div>
+            <div class="stat-item">
+                <h3>100%</h3>
+                <p>Authentic Content</p>
+            </div>
+            <div class="stat-item">
+                <h3>Bilingual</h3>
+                <p>English & Spanish</p>
+            </div>
+            <div class="stat-item">
+                <h3>Real</h3>
+                <p>Stories & People</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Makes This Different</h2>
+                <p>Not staged. Not scripted. Just real rideshare moments captured from the driver's seat.</p>
+            </div>
+            <div class="about-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎬</div>
+                    <h3>True POV Experience</h3>
+                    <p>See exactly what I see through the windshield. Genuine reactions, unexpected moments, and the beautiful chaos of SoCal traffic.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>Real Conversations</h3>
+                    <p>From heartwarming stories to hilarious encounters, every passenger brings a unique perspective to the ride.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌴</div>
+                    <h3>SoCal Culture</h3>
+                    <p>Explore Southern California's diverse neighborhoods, beaches, and hidden gems through the eyes of a local driver.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Bilingual Content</h3>
+                    <p>Stories and commentary in both English and Spanish, connecting with our diverse SoCal community.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⭐</div>
+                    <h3>Authentic & Raw</h3>
+                    <p>No fake drama, no staged scenarios. Just genuine moments as they happen in real rideshare situations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚕</div>
+                    <h3>Driver's Perspective</h3>
+                    <p>Learn what it's really like to drive for rideshare — the challenges, the funny moments, and the human connections.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="content" id="content">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Content</h2>
+                <p>From airport runs to late-night adventures, every ride tells a story.</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-card">
+                    <div class="thumbnail">🌅</div>
+                    <div class="info">
+                        <span class="tag">Popular</span>
+                        <h3>Early Morning Airport Runs</h3>
+                        <p>The chaos of LAX at 5 AM. Passengers catching flights, saying goodbyes, starting adventures.</p>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="thumbnail">🌙</div>
+                    <div class="info">
+                        <span class="tag">Series</span>
+                        <h3>Late Night Tales</h3>
+                        <p>The wild rides after midnight. From parties to work shifts, every passenger has a story.</p>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="thumbnail">🎭</div>
+                    <div class="info">
+                        <span class="tag">Fan Favorite</span>
+                        <h3>Passenger Conversations</h3>
+                        <p>Deep talks, funny encounters, and unexpected wisdom from people you'd never meet otherwise.</p>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="thumbnail">🏖️</div>
+                    <div class="info">
+                        <span class="tag">Scenic</span>
+                        <h3>Beach Town Cruises</h3>
+                        <p>From Santa Monica to Laguna, enjoy the coastal views and beach vibes.</p>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="thumbnail">🌆</div>
+                    <div class="info">
+                        <span class="tag">Urban</span>
+                        <h3>Downtown LA Adventures</h3>
+                        <p>Navigating the city center — sports events, concerts, nightlife, and everything in between.</p>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <div class="thumbnail">🎉</div>
+                    <div class="info">
+                        <span class="tag">Special</span>
+                        <h3>Holiday Rides</h3>
+                        <p>Thanksgiving, Christmas, New Year's — the holidays bring out the best (and weirdest) in passengers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Directory -->
+    <section class="directory" id="directory">
+        <div class="container">
+            <div class="section-header">
+                <h2>SoCal Business Directory</h2>
+                <p>Discover amazing restaurants, hotels, attractions, and more across Southern California.</p>
+            </div>
+
+            <!-- Category Filter -->
+            <div class="category-filter">
+                <button class="filter-btn active" data-category="all">All</button>
+                <button class="filter-btn" data-category="restaurant">🍽️ Restaurants</button>
+                <button class="filter-btn" data-category="hotel">🏨 Hotels</button>
+                <button class="filter-btn" data-category="attraction">🎡 Attractions</button>
+                <button class="filter-btn" data-category="service">🔧 Services</button>
+                <button class="filter-btn" data-category="shopping">🛍️ Shopping</button>
+            </div>
+
+            <!-- Business Listings Grid -->
+            <div class="directory-grid" id="directoryGrid">
+                <div class="loading">Loading businesses...</div>
+            </div>
+
+            <!-- Map Placeholder -->
+            <div class="map-section">
+                <div class="section-header">
+                    <h3>Interactive Map</h3>
+                    <p>Explore businesses on a map of Southern California</p>
+                </div>
+                <div class="map-placeholder" id="mapPlaceholder">
+                    <div class="map-content">
+                        <div class="map-icon">🗺️</div>
+                        <h4>Coming Soon</h4>
+                        <p>Interactive map integration will display all business locations with markers.</p>
+                        <div class="map-features">
+                            <span>📍 Location markers</span>
+                            <span>🔍 Search by area</span>
+                            <span>📱 Mobile-friendly</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social -->
+    <section class="social" id="social">
+        <h2>Connect & Follow</h2>
+        <p>Join the journey across all platforms. New content every week.</p>
+        <div class="social-links">
+            <a href="https://youtube.com/@DriveSocalPOV" target="_blank" class="social-btn">
+                <span class="icon">▶️</span>
+                <span>YouTube</span>
+            </a>
+            <a href="https://tiktok.com/@DriveSocalPOV" target="_blank" class="social-btn">
+                <span class="icon">🎵</span>
+                <span>TikTok</span>
+            </a>
+            <a href="https://instagram.com/@DriveSocalPOV" target="_blank" class="social-btn">
+                <span class="icon">📸</span>
+                <span>Instagram</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>Ready for the Ride?</h2>
+        <p>Subscribe to the channel and join thousands of viewers experiencing real SoCal rideshare adventures.</p>
+        <a href="https://youtube.com/@DriveSocalPOV" target="_blank" class="cta-button" style="font-size: 1.125rem; padding: 1rem 2.5rem;">Subscribe Now →</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Drive SoCal POV. All rights reserved. | Authentic rideshare content from Southern California</p>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply initial styles and observe
+        document.querySelectorAll('.feature-card, .content-card, .stat-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Directory functionality
+        let businesses = [];
+        let currentCategory = 'all';
+
+        // Category icons mapping
+        const categoryIcons = {
+            restaurant: '🍽️',
+            hotel: '🏨',
+            attraction: '🎡',
+            service: '🔧',
+            shopping: '🛍️'
+        };
+
+        // Category colors mapping
+        const categoryColors = {
+            restaurant: { bg: '#fee2e2', text: '#dc2626', gradient: 'linear-gradient(135deg, #dc2626, #b91c1c)' },
+            hotel: { bg: '#fef3c7', text: '#d97706', gradient: 'linear-gradient(135deg, #d97706, #b45309)' },
+            attraction: { bg: '#e0e7ff', text: '#4f46e5', gradient: 'linear-gradient(135deg, #4f46e5, #4338ca)' },
+            service: { bg: '#f3e8ff', text: '#9333ea', gradient: 'linear-gradient(135deg, #9333ea, #7c3aed)' },
+            shopping: { bg: '#d1fae5', text: '#059669', gradient: 'linear-gradient(135deg, #059669, #047857)' }
+        };
+
+        // Fetch businesses from Supabase
+        async function loadBusinesses() {
+            const directoryGrid = document.getElementById('directoryGrid');
+
+            try {
+                if (!window.supabaseClient) {
+                    throw new Error('Supabase client not initialized');
+                }
+
+                const { data, error } = await window.supabaseClient
+                    .from('businesses')
+                    .select('*')
+                    .order('featured', { ascending: false })
+                    .order('premium', { ascending: false })
+                    .order('name', { ascending: true });
+
+                if (error) throw error;
+
+                businesses = data || [];
+                renderBusinesses(currentCategory);
+
+                // Observe business cards for animation
+                observeBusinessCards();
+            } catch (error) {
+                console.error('Error loading businesses:', error);
+                directoryGrid.innerHTML = `
+                    <div class="error">
+                        <strong>Unable to load businesses</strong><br>
+                        ${error.message}<br>
+                        <small>Please ensure the Supabase table is created and RLS policies are configured.</small>
+                    </div>
+                `;
+            }
+        }
+
+        // Render business cards
+        function renderBusinesses(category) {
+            const directoryGrid = document.getElementById('directoryGrid');
+            let filtered = businesses;
+
+            if (category !== 'all') {
+                filtered = businesses.filter(b => b.category === category);
+            }
+
+            if (filtered.length === 0) {
+                directoryGrid.innerHTML = `
+                    <div class="loading">
+                        <strong>No businesses found</strong><br>
+                        <small>Try selecting a different category</small>
+                    </div>
+                `;
+                return;
+            }
+
+            directoryGrid.innerHTML = filtered.map(business => {
+                const colors = categoryColors[business.category] || categoryColors.service;
+                const icon = categoryIcons[business.category] || '📌';
+                const badges = [];
+
+                if (business.featured) badges.push('Featured');
+                if (business.premium) badges.push('Premium');
+
+                return `
+                    <div class="business-card ${business.featured ? 'featured' : ''} ${business.premium ? 'premium' : ''}">
+                        ${badges.length > 0 ? `<span class="badge">${badges.join(' • ')}</span>` : ''}
+                        <div class="card-header" style="background: ${colors.gradient}">
+                            ${icon}
+                        </div>
+                        <div class="card-body">
+                            <span class="category-tag" style="background: ${colors.bg}; color: ${colors.text}">
+                                ${business.category.charAt(0).toUpperCase() + business.category.slice(1)}
+                            </span>
+                            <h3>${business.name}</h3>
+                            ${business.address ? `<div class="address">📍 ${business.address}</div>` : ''}
+                            ${business.city ? `<div class="address">🏙️ ${business.city}</div>` : ''}
+                            ${business.phone ? `<div class="phone">📞 ${business.phone}</div>` : ''}
+                            ${business.description ? `<div class="description">${business.description}</div>` : ''}
+                        </div>
+                        <div class="card-footer">
+                            ${business.website ? `
+                                <a href="${business.website}" target="_blank" class="website-btn">
+                                    Visit Website
+                                </a>
+                            ` : ''}
+                            ${(business.latitude && business.longitude) ? `
+                                <a href="https://www.google.com/maps/search/?api=1&query=${business.latitude},${business.longitude}"
+                                   target="_blank"
+                                   class="map-btn">
+                                    🗺️ View on Map
+                                </a>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Filter buttons click handler
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active state
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                // Filter businesses
+                currentCategory = this.dataset.category;
+                renderBusinesses(currentCategory);
+
+                // Re-observe cards
+                observeBusinessCards();
+            });
+        });
+
+        // Observe business cards for animation
+        function observeBusinessCards() {
+            document.querySelectorAll('.business-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        }
+
+        // Load businesses when the directory section is visible
+        const directorySection = document.getElementById('directory');
+        const directoryObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && businesses.length === 0) {
+                    loadBusinesses();
+                    directoryObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        directoryObserver.observe(directorySection);
+    </script>
+</body>
+</html>
