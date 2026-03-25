@@ -1071,23 +1071,16 @@
 
         // Category icons mapping
         const categoryIcons = {
-            travel: '✈️', food: '🍽️', entertainment: '🎬', shopping: '🛍️',
-            nature: '🌿', nightlife: '🌙', culture: '🏛️', sports: '⚽',
-            beaches: '🏖️', landmarks: '🗽'
+            restaurant: '🍽️', hotel: '🏨', attraction: '🎯', service: '🔧', shopping: '🛍️'
         };
 
         // Category colors mapping
         const categoryColors = {
-            travel: { bg: '#E0F2FE', text: '#0284C7', gradient: 'linear-gradient(135deg, #0284C7, #0369A1)' },
-            food: { bg: '#FEF3C7', text: '#D97706', gradient: 'linear-gradient(135deg, #D97706, #B45309)' },
-            entertainment: { bg: '#FCE7F3', text: '#DB2777', gradient: 'linear-gradient(135deg, #DB2777, #BE185D)' },
-            shopping: { bg: '#D1FAE5', text: '#059669', gradient: 'linear-gradient(135deg, #059669, #047857)' },
-            nature: { bg: '#DCFCE7', text: '#16A34A', gradient: 'linear-gradient(135deg, #16A34A, #15803D)' },
-            nightlife: { bg: '#EDE9FE', text: '#7C3AED', gradient: 'linear-gradient(135deg, #7C3AED, #6D28D9)' },
-            culture: { bg: '#FEE2E2', text: '#DC2626', gradient: 'linear-gradient(135deg, #DC2626, #B91C1C)' },
-            sports: { bg: '#FFF7ED', text: '#EA580C', gradient: 'linear-gradient(135deg, #EA580C, #C2410C)' },
-            beaches: { bg: '#E0F2FE', text: '#0284C7', gradient: 'linear-gradient(135deg, #0EA5E9, #0284C7)' },
-            landmarks: { bg: '#F3E8FF', text: '#7C3AED', gradient: 'linear-gradient(135deg, #8B5CF6, #7C3AED)' }
+            restaurant: { bg: '#FEF3C7', text: '#D97706', gradient: 'linear-gradient(135deg, #D97706, #B45309)' },
+            hotel: { bg: '#DBEAFE', text: '#1E40AF', gradient: 'linear-gradient(135deg, #1E40AF, #1E3A8A)' },
+            attraction: { bg: '#FEE2E2', text: '#DC2626', gradient: 'linear-gradient(135deg, #DC2626, #B91C1C)' },
+            service: { bg: '#D1FAE5', text: '#059669', gradient: 'linear-gradient(135deg, #059669, #047857)' },
+            shopping: { bg: '#F3E8FF', text: '#7C3AED', gradient: 'linear-gradient(135deg, #8B5CF6, #7C3AED)' }
         };
 
         // Fetch businesses from Supabase
@@ -1146,7 +1139,7 @@
 
             directoryGrid.innerHTML = filtered.map(business => {
                 const colors = categoryColors[business.category] || categoryColors.service;
-                const icon = categoryIcons[business.category] || '📌';
+                const icon = categoryIcons[business.category] || '📍';
                 const badges = [];
 
                 if (business.featured) badges.push('Featured');
