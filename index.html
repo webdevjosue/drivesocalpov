@@ -442,28 +442,68 @@
             font-size: 0.875rem;
         }
 
+        /* Mobile hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 1001;
+        }
+        .hamburger span {
+            width: 24px; height: 3px; background: var(--dark); border-radius: 2px; transition: 0.3s;
+        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255,255,255,0.98);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+            text-decoration: none; color: var(--dark); font-size: 1.5rem; font-weight: 600;
+        }
+
+        /* Category icon */
+        .category-icon {
+            width: 36px; height: 36px; display: inline-block; vertical-align: middle; margin-right: 4px;
+        }
+        .category-icon svg { width: 100%; height: 100%; }
+
         /* Mobile Responsive */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero {
-                padding: 8rem 1.5rem 4rem;
-            }
-
-            .hero h1 {
-                font-size: 2.25rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .cta-button {
-                text-align: center;
-            }
+            .hamburger { display: flex; }
+            .nav-links { display: none; }
+            .hero { padding: 7rem 1rem 3rem; }
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .hero-buttons { flex-direction: column; align-items: stretch; }
+            .cta-button { text-align: center; }
+            .section-header h2 { font-size: 1.75rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .content-grid { grid-template-columns: 1fr; }
+            .directory-grid { grid-template-columns: 1fr; }
+            .category-filter { gap: 0.5rem; }
+            .filter-btn { padding: 0.5rem 1rem; font-size: 0.8rem; }
+            .social-links { flex-direction: column; }
+            .map-placeholder { min-height: 200px; }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.75rem; }
+            .feature-card { padding: 1.25rem; }
+            .filter-btn { padding: 0.4rem 0.75rem; font-size: 0.75rem; }
+            .directory { padding: 3rem 1rem; }
+            .content { padding: 3rem 1rem; }
         }
 
         /* Directory Section */
@@ -736,8 +776,18 @@
                 <a href="#social">Connect</a>
                 <a href="https://youtube.com/@DriveSocalPOV" target="_blank" class="cta-button">Subscribe</a>
             </div>
+            <div class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </div>
         </div>
     </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about" class="mobile-link">About</a>
+        <a href="#content" class="mobile-link">Content</a>
+        <a href="#directory" class="mobile-link">Directory</a>
+        <a href="#social" class="mobile-link">Connect</a>
+        <a href="https://youtube.com/@DriveSocalPOV" target="_blank" class="cta-button" style="margin-top:1rem;">Subscribe</a>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -886,12 +936,17 @@
 
             <!-- Category Filter -->
             <div class="category-filter">
-                <button class="filter-btn active" data-category="all">All</button>
-                <button class="filter-btn" data-category="restaurant">🍽️ Restaurants</button>
-                <button class="filter-btn" data-category="hotel">🏨 Hotels</button>
-                <button class="filter-btn" data-category="attraction">🎡 Attractions</button>
-                <button class="filter-btn" data-category="service">🔧 Services</button>
+                <button class="filter-btn active" data-category="all">📍 All</button>
+                <button class="filter-btn" data-category="travel">✈️ Travel</button>
+                <button class="filter-btn" data-category="food">🍽️ Food</button>
+                <button class="filter-btn" data-category="entertainment">🎬 Entertainment</button>
                 <button class="filter-btn" data-category="shopping">🛍️ Shopping</button>
+                <button class="filter-btn" data-category="nature">🌿 Nature</button>
+                <button class="filter-btn" data-category="nightlife">🌙 Nightlife</button>
+                <button class="filter-btn" data-category="culture">🏛️ Culture</button>
+                <button class="filter-btn" data-category="sports">⚽ Sports</button>
+                <button class="filter-btn" data-category="beaches">🏖️ Beaches</button>
+                <button class="filter-btn" data-category="landmarks">🗽 Landmarks</button>
             </div>
 
             <!-- Business Listings Grid -->
@@ -953,7 +1008,26 @@
         <p>© 2026 Drive SoCal POV. All rights reserved. | Authentic rideshare content from Southern California</p>
     </footer>
 
+    <script src="assets/icons/categories.js"></script>
     <script>
+        // Hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (hamburger && mobileMenu) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                mobileMenu.classList.toggle('open');
+                document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+            });
+            document.querySelectorAll('.mobile-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    mobileMenu.classList.remove('open');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+
         // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -997,20 +1071,23 @@
 
         // Category icons mapping
         const categoryIcons = {
-            restaurant: '🍽️',
-            hotel: '🏨',
-            attraction: '🎡',
-            service: '🔧',
-            shopping: '🛍️'
+            travel: '✈️', food: '🍽️', entertainment: '🎬', shopping: '🛍️',
+            nature: '🌿', nightlife: '🌙', culture: '🏛️', sports: '⚽',
+            beaches: '🏖️', landmarks: '🗽'
         };
 
         // Category colors mapping
         const categoryColors = {
-            restaurant: { bg: '#fee2e2', text: '#dc2626', gradient: 'linear-gradient(135deg, #dc2626, #b91c1c)' },
-            hotel: { bg: '#fef3c7', text: '#d97706', gradient: 'linear-gradient(135deg, #d97706, #b45309)' },
-            attraction: { bg: '#e0e7ff', text: '#4f46e5', gradient: 'linear-gradient(135deg, #4f46e5, #4338ca)' },
-            service: { bg: '#f3e8ff', text: '#9333ea', gradient: 'linear-gradient(135deg, #9333ea, #7c3aed)' },
-            shopping: { bg: '#d1fae5', text: '#059669', gradient: 'linear-gradient(135deg, #059669, #047857)' }
+            travel: { bg: '#E0F2FE', text: '#0284C7', gradient: 'linear-gradient(135deg, #0284C7, #0369A1)' },
+            food: { bg: '#FEF3C7', text: '#D97706', gradient: 'linear-gradient(135deg, #D97706, #B45309)' },
+            entertainment: { bg: '#FCE7F3', text: '#DB2777', gradient: 'linear-gradient(135deg, #DB2777, #BE185D)' },
+            shopping: { bg: '#D1FAE5', text: '#059669', gradient: 'linear-gradient(135deg, #059669, #047857)' },
+            nature: { bg: '#DCFCE7', text: '#16A34A', gradient: 'linear-gradient(135deg, #16A34A, #15803D)' },
+            nightlife: { bg: '#EDE9FE', text: '#7C3AED', gradient: 'linear-gradient(135deg, #7C3AED, #6D28D9)' },
+            culture: { bg: '#FEE2E2', text: '#DC2626', gradient: 'linear-gradient(135deg, #DC2626, #B91C1C)' },
+            sports: { bg: '#FFF7ED', text: '#EA580C', gradient: 'linear-gradient(135deg, #EA580C, #C2410C)' },
+            beaches: { bg: '#E0F2FE', text: '#0284C7', gradient: 'linear-gradient(135deg, #0EA5E9, #0284C7)' },
+            landmarks: { bg: '#F3E8FF', text: '#7C3AED', gradient: 'linear-gradient(135deg, #8B5CF6, #7C3AED)' }
         };
 
         // Fetch businesses from Supabase

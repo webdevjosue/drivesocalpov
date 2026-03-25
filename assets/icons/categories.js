@@ -1,0 +1,27 @@
+// DriveSoCal POV - Category Icons (inline SVGs)
+const categorySVGs = {
+  travel: `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="22" fill="#E0F2FE" stroke="#0284C7" stroke-width="2"/><path d="M14 30h20M18 22h12M24 14v8" stroke="#0284C7" stroke-width="2.5" stroke-linecap="round"/><circle cx="18" cy="32" r="3" fill="#0284C7"/><circle cx="30" cy="32" r="3" fill="#0284C7"/><path d="M24 10l-8 12h16L24 10z" fill="#38BDF8" stroke="#0284C7" stroke-width="1.5"/></svg>`,
+  food: `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="22" fill="#FEF3C7" stroke="#D97706" stroke-width="2"/><path d="M16 28c0 4.4 3.6 8 8 8s8-3.6 8-8V20H16v8z" fill="#F59E0B" stroke="#D97706" stroke-width="1.5"/><path d="M14 20h20" stroke="#D97706" stroke-width="2.5" stroke-linecap="round"/><path d="M20 16v4M24 14v6M28 16v4" stroke="#D97706" stroke-width="2" stroke-linecap="round"/></svg>`,
+  entertainment: `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="22" fill="#FCE7F3" stroke="#DB2777" stroke-width="2"/><rect x="10" y="12" width="28" height="24" rx="3" fill="#F472B6" stroke="#DB2777" stroke-width="1.5"/><path d="M20 24l6-4v8l-6-4z" fill="white"/><circle cx="20" cy="14" r="2" fill="#FDE047"/><circle cx="28" cy="14" r="2" fill="#FDE047"/></svg>`,
+  shopping: `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="22" fill="#D1FAE5" stroke="#059669" stroke-width="2"/><path d="M14 16h4l4 16h12l3-10H22" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="22" cy="36" r="2.5" fill="#059669"/><circle cx="32" cy="36" r="2.5" fill="#059669"/></svg>`,
+  nature: `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="22" fill="#DCFCE7" stroke="#16A34A" stroke-width="2"/><path d="M24 38V24" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"/><path d="M24 12c-6 0-10 6-10 10h6l-6 10h20l-6-10h6c0-4-4-10-10-10z" fill="#4ADE80" stroke="#16A34A" stroke-width="1.5"/></svg>`,
+  nightlife: `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="22" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2"/><circle cx="24" cy="16" r="4" fill="#FDE047" stroke="#EAB308" stroke-width="1.5"/><path d="M18 20h12l-2 14H20l-2-14z" fill="#A78BFA" stroke="#7C3AED" stroke-width="1.5"/><circle cx="20" cy="26" r="1.5" fill="#C4B5FD"/><circle cx="28" cy="28" r="1" fill="#C4B5FD"/><circle cx="24" cy="32" r="1.5" fill="#C4B5FD"/><circle cx="16" cy="32" r="1" fill="#FDE047"/><circle cx="34" cy="14" r="0.8" fill="#FDE047"/></svg>`,
+  culture: `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="22" fill="#FEE2E2" stroke="#DC2626" stroke-width="2"/><path d="M16 34V18l8-6 8 6v16" stroke="#DC2626" stroke-width="2.5" stroke-linejoin="round"/><rect x="20" y="26" width="8" height="8" fill="#FCA5A5" stroke="#DC2626" stroke-width="1.5"/><line x1="24" y1="18" x2="24" y2="12" stroke="#DC2626" stroke-width="2" stroke-linecap="round"/></svg>`,
+  sports: `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="22" fill="#FFF7ED" stroke="#EA580C" stroke-width="2"/><circle cx="24" cy="24" r="10" fill="none" stroke="#EA580C" stroke-width="2.5"/><path d="M24 14c-2 3-2 7 0 10s2 7 0 10" stroke="#EA580C" stroke-width="1.5"/><path d="M14 24c3-2 7-2 10 0s7 2 10 0" stroke="#EA580C" stroke-width="1.5"/></svg>`,
+  beaches: `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="22" fill="#E0F2FE" stroke="#0284C7" stroke-width="2"/><path d="M12 30c4-2 8 0 12 2s8 4 12 2" stroke="#0284C7" stroke-width="2" stroke-linecap="round"/><path d="M12 34c4-2 8 0 12 2s8 4 12 2" stroke="#0284C7" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/><circle cx="34" cy="14" r="4" fill="#FDE047" stroke="#EAB308" stroke-width="1.5"/><path d="M14 26h6l-3-6 3-4" stroke="#EA580C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  landmarks: `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="22" fill="#F3E8FF" stroke="#7C3AED" stroke-width="2"/><path d="M24 10l-12 8h4v16h16V18h4L24 10z" fill="#C4B5FD" stroke="#7C3AED" stroke-width="1.5"/><rect x="21" y="26" width="6" height="8" fill="#DDD6FE" stroke="#7C3AED" stroke-width="1.5"/><circle cx="34" cy="14" r="2" fill="#FDE047" stroke="#EAB308" stroke-width="1"/></svg>`
+};
+
+// Category metadata
+const categories = {
+  travel: { label: 'Travel', emoji: '✈️', color: '#0284C7', bg: '#E0F2FE' },
+  food: { label: 'Food', emoji: '🍽️', color: '#D97706', bg: '#FEF3C7' },
+  entertainment: { label: 'Entertainment', emoji: '🎬', color: '#DB2777', bg: '#FCE7F3' },
+  shopping: { label: 'Shopping', emoji: '🛍️', color: '#059669', bg: '#D1FAE5' },
+  nature: { label: 'Nature', emoji: '🌿', color: '#16A34A', bg: '#DCFCE7' },
+  nightlife: { label: 'Nightlife', emoji: '🌙', color: '#7C3AED', bg: '#EDE9FE' },
+  culture: { label: 'Culture', emoji: '🏛️', color: '#DC2626', bg: '#FEE2E2' },
+  sports: { label: 'Sports', emoji: '⚽', color: '#EA580C', bg: '#FFF7ED' },
+  beaches: { label: 'Beaches', emoji: '🏖️', color: '#0284C7', bg: '#E0F2FE' },
+  landmarks: { label: 'Landmarks', emoji: '🗽', color: '#7C3AED', bg: '#F3E8FF' }
+};
